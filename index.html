@@ -190,7 +190,7 @@
             
 
   
-    <article id="post-手把手教你如何将博客部署到github上-md" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-最常用的hexo几个命令" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
@@ -198,7 +198,7 @@
   
     <h1 itemprop="name">
 	
-	  <a class="article-title" href="/2021/09/19/%E6%89%8B%E6%8A%8A%E6%89%8B%E6%95%99%E4%BD%A0%E5%A6%82%E4%BD%95%E5%B0%86%E5%8D%9A%E5%AE%A2%E9%83%A8%E7%BD%B2%E5%88%B0github%E4%B8%8A-md/">手把手教你如何将建好的博客部署到github上</a>
+	  <a class="article-title" href="/2021/09/19/%E6%9C%80%E5%B8%B8%E7%94%A8%E7%9A%84hexo%E5%87%A0%E4%B8%AA%E5%91%BD%E4%BB%A4/">最常用的hexo几个命令</a>
 	
     </h1>
   
@@ -206,7 +206,122 @@
 
   
   
-<a href="/2021/09/19/%E6%89%8B%E6%8A%8A%E6%89%8B%E6%95%99%E4%BD%A0%E5%A6%82%E4%BD%95%E5%B0%86%E5%8D%9A%E5%AE%A2%E9%83%A8%E7%BD%B2%E5%88%B0github%E4%B8%8A-md/" class="archive-article-date">
+<a href="/2021/09/19/%E6%9C%80%E5%B8%B8%E7%94%A8%E7%9A%84hexo%E5%87%A0%E4%B8%AA%E5%91%BD%E4%BB%A4/" class="archive-article-date">
+        <time datetime="2021-09-19T08:37:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-09-19</time>
+</a>
+
+  
+  
+    
+
+  
+  </header>
+  
+  <div class="article-entry" itemprop="articleBody">
+    
+    <h2 id="第一个命令"><a href="#第一个命令" class="headerlink" title="第一个命令"></a>第一个命令</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo s</span><br></pre></td></tr></table></figure>
+<p>启动本地服务器，用于预览主题。默认地址： <a target="_blank" rel="noopener" href="http://localhost:4000/">http://localhost:4000/</a></p>
+<ul>
+<li>hexo s 是 hexo server 的缩写，命令效果一致；</li>
+<li>预览的同时可以修改文章内容或主题代码，保存后刷新页面即可；</li>
+<li>对 Hexo 根目录 _config.yml 的修改，需要重启本地服务器后才能预览效果。</li>
+</ul>
+<h2 id="第二个命令"><a href="#第二个命令" class="headerlink" title="第二个命令"></a>第二个命令</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo n “我的第一篇博客”</span><br></pre></td></tr></table></figure>
+
+<p>hexo n是hexo new的缩写,用来建立博客文件的命令</p>
+<h2 id="第三个命令"><a href="#第三个命令" class="headerlink" title="第三个命令"></a>第三个命令</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo clean</span><br></pre></td></tr></table></figure>
+
+<p>清除缓存文件 db.json 和已生成的静态文件 public 。</p>
+<ul>
+<li>网站显示异常时可以执行这条命令试试。<h2 id="第四个命令"><a href="#第四个命令" class="headerlink" title="第四个命令"></a>第四个命令</h2></li>
+</ul>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo g</span><br></pre></td></tr></table></figure>
+
+<p>生成网站静态文件到默认设置的 public 文件夹。</p>
+<ul>
+<li>hexo g 是 hexo generate 的缩写，命令效果一致。</li>
+<li>便于查看网站生成的静态文件或者手动部署网站；</li>
+<li>如果使用自动部署，不需要先执行该命令；</li>
+</ul>
+<h2 id="第五个命令"><a href="#第五个命令" class="headerlink" title="第五个命令"></a>第五个命令</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo d</span><br></pre></td></tr></table></figure>
+
+<p>自动生成网站静态文件，并部署到设定的仓库。</p>
+<ul>
+<li>hexo d 是 hexo deploy 的缩写，命令效果一致。</li>
+</ul>
+<h3 id="hexo-clean-hexo-g-hexo-d三个命令接连使用，可将更改后的博客推到github上面。"><a href="#hexo-clean-hexo-g-hexo-d三个命令接连使用，可将更改后的博客推到github上面。" class="headerlink" title="hexo clean hexo g hexo d三个命令接连使用，可将更改后的博客推到github上面。"></a>hexo clean hexo g hexo d三个命令接连使用，可将更改后的博客推到github上面。</h3>
+    
+
+    
+
+    
+
+  </div>
+  <div class="article-info article-info-index">
+    
+    
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">hexo</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+    
+
+    
+    <p class="article-more-link">
+      <a class="article-more-a" href="/2021/09/19/%E6%9C%80%E5%B8%B8%E7%94%A8%E7%9A%84hexo%E5%87%A0%E4%B8%AA%E5%91%BD%E4%BB%A4/">展开全文 >></a>
+    </p>
+    
+
+    
+    <div class="clearfix"></div>
+  </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-手把手教你如何将博客部署到github上" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+  
+  
+    <h1 itemprop="name">
+	
+	  <a class="article-title" href="/2021/09/19/%E6%89%8B%E6%8A%8A%E6%89%8B%E6%95%99%E4%BD%A0%E5%A6%82%E4%BD%95%E5%B0%86%E5%8D%9A%E5%AE%A2%E9%83%A8%E7%BD%B2%E5%88%B0github%E4%B8%8A/">手把手教你如何将建好的博客部署到github上</a>
+	
+    </h1>
+  
+
+
+  
+  
+<a href="/2021/09/19/%E6%89%8B%E6%8A%8A%E6%89%8B%E6%95%99%E4%BD%A0%E5%A6%82%E4%BD%95%E5%B0%86%E5%8D%9A%E5%AE%A2%E9%83%A8%E7%BD%B2%E5%88%B0github%E4%B8%8A/" class="archive-article-date">
         <time datetime="2021-09-19T00:38:27.049Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-09-19</time>
 </a>
 
@@ -225,7 +340,7 @@
 <p><img src="/assets/img/2/WechatIMG23.png" alt="建立仓库"></p>
 <p>这里注意：<font color=#0099ff >仓库的名称一定要是git昵称.github.io</font></p>
     
-    <a class="article-more-a" href="/2021/09/19/%E6%89%8B%E6%8A%8A%E6%89%8B%E6%95%99%E4%BD%A0%E5%A6%82%E4%BD%95%E5%B0%86%E5%8D%9A%E5%AE%A2%E9%83%A8%E7%BD%B2%E5%88%B0github%E4%B8%8A-md/#more">more >></a>
+    <a class="article-more-a" href="/2021/09/19/%E6%89%8B%E6%8A%8A%E6%89%8B%E6%95%99%E4%BD%A0%E5%A6%82%E4%BD%95%E5%B0%86%E5%8D%9A%E5%AE%A2%E9%83%A8%E7%BD%B2%E5%88%B0github%E4%B8%8A/#more">more >></a>
     
     
 
@@ -241,7 +356,7 @@
 
     
     <p class="article-more-link">
-      <a class="article-more-a" href="/2021/09/19/%E6%89%8B%E6%8A%8A%E6%89%8B%E6%95%99%E4%BD%A0%E5%A6%82%E4%BD%95%E5%B0%86%E5%8D%9A%E5%AE%A2%E9%83%A8%E7%BD%B2%E5%88%B0github%E4%B8%8A-md/">展开全文 >></a>
+      <a class="article-more-a" href="/2021/09/19/%E6%89%8B%E6%8A%8A%E6%89%8B%E6%95%99%E4%BD%A0%E5%A6%82%E4%BD%95%E5%B0%86%E5%8D%9A%E5%AE%A2%E9%83%A8%E7%BD%B2%E5%88%B0github%E4%B8%8A/">展开全文 >></a>
     </p>
     
 
@@ -482,6 +597,10 @@
             <input type="checkbox" q-on="click:toggleTag(e)" q-attr="checked:showTags">
           </label>
           <ul class="article-tag-list" q-show="showTags">
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">hexo</a>
+              </li>
             
             <div class="clearfix"></div>
           </ul>
