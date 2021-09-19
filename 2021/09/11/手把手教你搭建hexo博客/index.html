@@ -18,7 +18,7 @@
 <meta property="og:description" content="第一步安装node.jsnode.js官网下载安装即可，点击此处：node官网 查看node是否安装成功： 1node -v  查看npm工具  1npm -v  npm安装过慢可使用淘宝镜像 1npm install cnpm -g --registry&#x3D;http:&#x2F;&#x2F;registry.npm.taobao.org">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2021-09-11T13:22:50.610Z">
-<meta property="article:modified_time" content="2021-09-13T14:40:15.629Z">
+<meta property="article:modified_time" content="2021-09-19T00:24:18.052Z">
 <meta property="article:author" content="white-Hang">
 <meta name="twitter:card" content="summary">
   
@@ -59,11 +59,11 @@
       
 
 
-<div class="overlay" style="background: #4d4d4d;"></div>
+<div class="overlay" style="background: #4d4d4d;background: url('/img/biubiubiu.gif') no-repeat ;"></div>
 <div class="intrude-less">
 	<header id="header" class="inner">
 		<a href="/" class="profilepic">
-			<img src="/assets/img/avaterimg.jpeg" class="js-avatar">
+			<img src="/assets/img/bg.webp" class="js-avatar">
 		</a>
 		<hgroup>
 			<h1 class="header-author"><a href="/">white-Hang</a></h1>
@@ -73,9 +73,9 @@
 		<nav class="header-menu">
 			<ul>
 			
-				<li><a href="/" target="_blank">主页</a></li>
+				<li><a href="/" >主页</a></li>
 			
-				<li><a href="/archives/index.html" target="_blank">归档</a></li>
+				<li><a href="/archives/index.html" >归档</a></li>
 			
 			</ul>
 		</nav>
@@ -98,8 +98,8 @@
 			<div class="social">
 				
 					
-						<a class="github" href="https://github.com/white-Hang" 
-												title="GitHub" target="_blank"><i class="icon-github"></i></a>
+						<a class="github" target="_blank" rel="noopener" href="https://github.com/white-Hang" 
+												title="GitHub" ><i class="icon-github"></i></a>
 					
 				
 			</div>
@@ -139,7 +139,7 @@
 		<header id="header" class="inner">
 			<div class="profilepic">
 				<a href="/">
-					<img src="/assets/img/avaterimg.jpeg" class="js-avatar">
+					<img src="/assets/img/bg.webp" class="js-avatar">
 				</a>
 			</div>
 			<hgroup>
@@ -301,11 +301,15 @@
 
 <nav id="article-nav">
   
-  
-    <a href="/2021/09/11/hello-world/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">Hello World</div>
-      <i class="icon-circle-right"></i>
+    <a href="/2021/09/19/%E6%89%8B%E6%8A%8A%E6%89%8B%E6%95%99%E4%BD%A0%E5%A6%82%E4%BD%95%E5%B0%86%E5%8D%9A%E5%AE%A2%E9%83%A8%E7%BD%B2%E5%88%B0github%E4%B8%8A-md/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          手把手教你如何将建好的博客部署到github上
+        
+      </div>
     </a>
+  
   
 </nav>
 
@@ -404,7 +408,7 @@
 		isArchive: false,
 		isTag: false,
 		isCategory: false,
-		open_in_new: true,
+		open_in_new: false,
 		toc_hide_index: true,
 		root: "/",
 		innerArchive: true,
@@ -678,6 +682,16 @@
 </script>
 
   
+  
+  <script type="text/javascript" src="/lib/snow.js"></script>
+  <script type="text/javascript" src="/lib/jquery-2.1.4.min.js"></script>
+  <script>
+    snow.down();
+    $(window).resize(function() {
+      $("canvas").css("z-index","500").remove();
+      snow.down();
+    });
+  </script>
   
 </body>
 
