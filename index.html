@@ -196,6 +196,99 @@
             
 
   
+    <article id="post-解决vuex页面刷新数据消失的问题" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+  
+  
+    <h1 itemprop="name">
+	
+	  <a class="article-title" href="/2021/09/20/%E8%A7%A3%E5%86%B3vuex%E9%A1%B5%E9%9D%A2%E5%88%B7%E6%96%B0%E6%95%B0%E6%8D%AE%E6%B6%88%E5%A4%B1%E7%9A%84%E9%97%AE%E9%A2%98/">解决vuex页面刷新数据消失的问题</a>
+	
+    </h1>
+  
+
+
+  
+  
+<a href="/2021/09/20/%E8%A7%A3%E5%86%B3vuex%E9%A1%B5%E9%9D%A2%E5%88%B7%E6%96%B0%E6%95%B0%E6%8D%AE%E6%B6%88%E5%A4%B1%E7%9A%84%E9%97%AE%E9%A2%98/" class="archive-article-date">
+        <time datetime="2021-09-20T13:31:18.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-09-20</time>
+</a>
+
+  
+  
+    
+
+  
+  </header>
+  
+  <div class="article-entry" itemprop="articleBody">
+    
+    <h2 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h2><p>一般在登录成功的时候需要把用户信息，菜单信息放置vuex中，作为全局的共享数据。但是在页面刷新的时候vuex里的数据会重新初始化，导致数据丢失。因为vuex里的数据是保存在运行内存中的，当页面刷新时，页面会重新加载vue实例，vuex里面的数据就会被重新赋值。</p>
+<h2 id="解决方法"><a href="#解决方法" class="headerlink" title="解决方法"></a>解决方法</h2><ol>
+<li>将vuex中的数据直接保存到浏览器缓存中（sessionStorage、localStorage、cookie）</li>
+<li>在页面刷新的时候再次请求远程数据，使之动态更新vuex数据</li>
+<li>在父页面向后台请求远程数据，并且在页面刷新前将vuex的数据先保存至sessionStorage（以防请求数据量过大页面加载时拿不到返回的数据）</li>
+</ol>
+<h2 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h2><p>办法一的缺点是不安全，不适用大数据量的存储；<br>办法二适用于少量的数据，并且不会出现网络延迟；<br>办法三是办法二和办法一一起使用，</p>
+<p>这里建议使用方法三，如果因为网络延迟，此时还没等vuex获取到后台返回的数据，页面就已经加载完成了，这样就会造成数据丢失。所以先从vuex取数据，如果vuex里取不到，再从浏览器缓存中取数据。</p>
+
+    
+
+    
+
+    
+
+  </div>
+  <div class="article-info article-info-index">
+    
+    
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">vue</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+    
+
+    
+    <p class="article-more-link">
+      <a class="article-more-a" href="/2021/09/20/%E8%A7%A3%E5%86%B3vuex%E9%A1%B5%E9%9D%A2%E5%88%B7%E6%96%B0%E6%95%B0%E6%8D%AE%E6%B6%88%E5%A4%B1%E7%9A%84%E9%97%AE%E9%A2%98/">展开全文 >></a>
+    </p>
+    
+
+    
+    <div class="clearfix"></div>
+  </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-vue数据更新视图不更新" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
