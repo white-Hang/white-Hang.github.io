@@ -196,6 +196,84 @@
             
 
   
+    <article id="post-防抖和节流" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+  
+  
+    <h1 itemprop="name">
+	
+	  <a class="article-title" href="/2021/09/23/%E9%98%B2%E6%8A%96%E5%92%8C%E8%8A%82%E6%B5%81/">防抖和节流</a>
+	
+    </h1>
+  
+
+
+  
+  
+<a href="/2021/09/23/%E9%98%B2%E6%8A%96%E5%92%8C%E8%8A%82%E6%B5%81/" class="archive-article-date">
+        <time datetime="2021-09-23T14:11:27.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-09-23</time>
+</a>
+
+  
+  
+    
+
+  
+  </header>
+  
+  <div class="article-entry" itemprop="articleBody">
+    
+    <h2 id="防抖"><a href="#防抖" class="headerlink" title="防抖"></a>防抖</h2><p>高频率触发的事件,在指定的单位时间内，只响应最后一次，如果在指定的时间在触发，则重新计算时间(后面触发的事件执行，替代了前面的事件)</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">debounce</span>(<span class="params">fn,time=<span class="number">200</span></span>) </span>&#123;</span><br><span class="line">      <span class="keyword">let</span> timeout = <span class="literal">null</span>; <span class="comment">// 创建一个标记用来存放定时器的返回值</span></span><br><span class="line">      <span class="keyword">return</span> <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="built_in">clearTimeout</span>(timeout); <span class="comment">// 每当用户输入的时候把前一个 setTimeout clear 掉</span></span><br><span class="line">        timeout = <span class="built_in">setTimeout</span>(<span class="function">() =&gt;</span> &#123; <span class="comment">// 然后又创建一个新的 setTimeout, 这样就能保证输入字符后的 interval 间隔内如果还有字符输入的话，就不会执行 fn 函数</span></span><br><span class="line">          fn.apply(<span class="built_in">this</span>, <span class="built_in">arguments</span>);<span class="comment">//arguments是传入的参数</span></span><br><span class="line">        &#125;, time);</span><br><span class="line">      &#125;;</span><br><span class="line">    &#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">sayHi</span>(<span class="params">e</span>) </span>&#123;</span><br><span class="line">      <span class="built_in">console</span>.log(e.target.innerWidth, e.target.innerHeight);</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">window</span>.addEventListener(<span class="string">&#x27;resize&#x27;</span>, debounce(sayHi,<span class="number">500</span>));</span><br></pre></td></tr></table></figure>
+    
+    <a class="article-more-a" href="/2021/09/23/%E9%98%B2%E6%8A%96%E5%92%8C%E8%8A%82%E6%B5%81/#more">more >></a>
+    
+    
+
+    
+
+    
+
+  </div>
+  <div class="article-info article-info-index">
+    
+    
+    
+
+    
+    <p class="article-more-link">
+      <a class="article-more-a" href="/2021/09/23/%E9%98%B2%E6%8A%96%E5%92%8C%E8%8A%82%E6%B5%81/">展开全文 >></a>
+    </p>
+    
+
+    
+    <div class="clearfix"></div>
+  </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-解决vuex页面刷新数据消失的问题" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     

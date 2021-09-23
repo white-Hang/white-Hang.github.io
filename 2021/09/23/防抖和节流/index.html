@@ -6,15 +6,19 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://white-hang.github.io">
-  <title>Archives | Hexo</title>
+  <title>防抖和节流 | Hexo</title>
   <meta name="generator" content="hexo-theme-yilia-plus">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Hexo">
-<meta property="og:url" content="https://white-hang.github.io/archives/index.html">
+  <meta name="description" content="防抖高频率触发的事件,在指定的单位时间内，只响应最后一次，如果在指定的时间在触发，则重新计算时间(后面触发的事件执行，替代了前面的事件) 12345678910111213function debounce(fn,time&#x3D;200) &amp;#123;      let timeout &#x3D; null; &#x2F;&#x2F; 创建一个标记用来存放定时器的返回值      return function () &amp;#123;">
+<meta property="og:type" content="article">
+<meta property="og:title" content="防抖和节流">
+<meta property="og:url" content="https://white-hang.github.io/2021/09/23/%E9%98%B2%E6%8A%96%E5%92%8C%E8%8A%82%E6%B5%81/index.html">
 <meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="防抖高频率触发的事件,在指定的单位时间内，只响应最后一次，如果在指定的时间在触发，则重新计算时间(后面触发的事件执行，替代了前面的事件) 12345678910111213function debounce(fn,time&#x3D;200) &amp;#123;      let timeout &#x3D; null; &#x2F;&#x2F; 创建一个标记用来存放定时器的返回值      return function () &amp;#123;">
 <meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2021-09-23T14:11:27.000Z">
+<meta property="article:modified_time" content="2021-09-23T14:14:16.075Z">
 <meta property="article:author" content="white-Hang">
 <meta name="twitter:card" content="summary">
   
@@ -189,312 +193,194 @@
               class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
+            <article id="post-防抖和节流" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
   
   
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2021" class="archive-year">2021</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
+    <h1 class="article-title" itemprop="name">
+      防抖和节流
+    </h1>
+  
+
+
+  
+  
+        
+        <span id="busuanzi_container_page_pv" style='display:none' class="archive-article-date">
+              <i class="icon-smile icon"></i> 阅读数：<span id="busuanzi_value_page_pv"></span>次
+        </span>
+
 <a href="/2021/09/23/%E9%98%B2%E6%8A%96%E5%92%8C%E8%8A%82%E6%B5%81/" class="archive-article-date">
         <time datetime="2021-09-23T14:11:27.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-09-23</time>
 </a>
 
-        </div>
-    	 
   
-    <h1 itemprop="name">
-	
-	  <a class="archive-article-title" href="/2021/09/23/%E9%98%B2%E6%8A%96%E5%92%8C%E8%8A%82%E6%B5%81/">防抖和节流</a>
-	
-    </h1>
   
+    
+<div style="margin-top:10px;">
+  <span class="post-time">
+    <span class="post-meta-item-icon">
+      <!-- fonts.scss -->
+      <!-- 百度字体平台:http://fontstore.baidu.com/static/editor/index.html -->
+      <i class="icon-statistics"></i>
+      <span class="post-meta-item-text"> 字数统计:</span>
+      <span class="post-count">1.1k字</span>
+    </span>
+  </span>
+
+  <span class="post-time">
+    &nbsp; | &nbsp;
+    <span class="post-meta-item-icon">
+      <i class="icon-book icon"></i>
+      <span class="post-meta-item-text"> 阅读时长≈</span>
+      <span class="post-count">5分</span>
+    </span>
+  </span>
+</div>
 
 
-        <div class="article-info info-on-right">
+  
+  </header>
+  
+  <div class="article-entry" itemprop="articleBody">
+    
+    <h2 id="防抖"><a href="#防抖" class="headerlink" title="防抖"></a>防抖</h2><p>高频率触发的事件,在指定的单位时间内，只响应最后一次，如果在指定的时间在触发，则重新计算时间(后面触发的事件执行，替代了前面的事件)</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">debounce</span>(<span class="params">fn,time=<span class="number">200</span></span>) </span>&#123;</span><br><span class="line">      <span class="keyword">let</span> timeout = <span class="literal">null</span>; <span class="comment">// 创建一个标记用来存放定时器的返回值</span></span><br><span class="line">      <span class="keyword">return</span> <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="built_in">clearTimeout</span>(timeout); <span class="comment">// 每当用户输入的时候把前一个 setTimeout clear 掉</span></span><br><span class="line">        timeout = <span class="built_in">setTimeout</span>(<span class="function">() =&gt;</span> &#123; <span class="comment">// 然后又创建一个新的 setTimeout, 这样就能保证输入字符后的 interval 间隔内如果还有字符输入的话，就不会执行 fn 函数</span></span><br><span class="line">          fn.apply(<span class="built_in">this</span>, <span class="built_in">arguments</span>);<span class="comment">//arguments是传入的参数</span></span><br><span class="line">        &#125;, time);</span><br><span class="line">      &#125;;</span><br><span class="line">    &#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">sayHi</span>(<span class="params">e</span>) </span>&#123;</span><br><span class="line">      <span class="built_in">console</span>.log(e.target.innerWidth, e.target.innerHeight);</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">window</span>.addEventListener(<span class="string">&#x27;resize&#x27;</span>, debounce(sayHi,<span class="number">500</span>));</span><br></pre></td></tr></table></figure>
+<span id="more"></span>
+<h2 id="节流"><a href="#节流" class="headerlink" title="节流"></a>节流</h2><p>高频率触发的事件,在指定的单位时间内，只响应第一次(前面触发的执行前，忽略后面的事件)</p>
+<h3 id="写法1-定时器"><a href="#写法1-定时器" class="headerlink" title="写法1(定时器)"></a>写法1(定时器)</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">throttle</span>(<span class="params">fn，time=<span class="number">200</span></span>) </span>&#123;</span><br><span class="line">      <span class="keyword">let</span> canRun = <span class="literal">true</span>; <span class="comment">// 通过闭包保存一个标记</span></span><br><span class="line">      <span class="keyword">return</span> <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (!canRun) <span class="keyword">return</span>; <span class="comment">// 在函数开头判断标记是否为true，不为true则return</span></span><br><span class="line">        canRun = <span class="literal">false</span>; <span class="comment">// 立即设置为false</span></span><br><span class="line">        <span class="built_in">setTimeout</span>(<span class="function">() =&gt;</span> &#123; <span class="comment">// 将外部传入的函数的执行放在setTimeout中</span></span><br><span class="line">          fn.apply(<span class="built_in">this</span>, <span class="built_in">arguments</span>);</span><br><span class="line">          <span class="comment">// 最后在setTimeout执行完毕后再把标记设置为true(关键)表示可以执行下一次循环了。当定时器没有执行的时候标记永远是false，在开头被return掉</span></span><br><span class="line">          canRun = <span class="literal">true</span>;</span><br><span class="line">        &#125;, time);</span><br><span class="line">      &#125;;</span><br><span class="line">    &#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">sayHi</span>(<span class="params">e</span>) </span>&#123;</span><br><span class="line">      <span class="built_in">console</span>.log(e.target.innerWidth, e.target.innerHeight);</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">window</span>.addEventListener(<span class="string">&#x27;resize&#x27;</span>, throttle(sayHi,<span class="number">500</span>));</span><br></pre></td></tr></table></figure>
+
+<h3 id="写法2（时间戳）"><a href="#写法2（时间戳）" class="headerlink" title="写法2（时间戳）"></a>写法2（时间戳）</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">throttle</span>(<span class="params">func, delay=<span class="number">200</span></span>) </span>&#123;            </span><br><span class="line">　　<span class="keyword">var</span> prev = <span class="built_in">Date</span>.now();<span class="comment">//获取开始当前时间            </span></span><br><span class="line">　　<span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;                              </span><br><span class="line">　　　　<span class="keyword">var</span> now = <span class="built_in">Date</span>.now(); <span class="comment">//获取当前时间               </span></span><br><span class="line">　　　　<span class="keyword">if</span> (now - prev &gt;= delay) &#123; <span class="comment">//当当前时间减去开始使用时间大于等于间隔时间，则执行函数</span></span><br><span class="line">　　　　　　func.apply(<span class="built_in">this</span>, <span class="built_in">arguments</span>);                    </span><br><span class="line">　　　　　　prev = <span class="built_in">Date</span>.now();                </span><br><span class="line">　　　　&#125;            </span><br><span class="line">　　&#125;        </span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">sayHi</span>(<span class="params">e</span>) </span>&#123;</span><br><span class="line">      <span class="built_in">console</span>.log(e.target.innerWidth, e.target.innerHeight);</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">window</span>.addEventListener(<span class="string">&#x27;resize&#x27;</span>, throttle(sayHi,<span class="number">500</span>));</span><br></pre></td></tr></table></figure>
+
+<h3 id="节流throttle代码（时间戳-定时器）"><a href="#节流throttle代码（时间戳-定时器）" class="headerlink" title="节流throttle代码（时间戳+定时器）"></a>节流throttle代码（时间戳+定时器）</h3><p>节流中用时间戳或定时器都是可以的。更精确地，可以用时间戳+定时器，当第一次触发事件时马上执行事件处理函数，最后一次触发事件后也还会执行一次事件处理函数。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">throttle</span>(<span class="params">fn, interval=<span class="number">200</span></span>) </span>&#123;     </span><br><span class="line">	<span class="keyword">var</span> last;</span><br><span class="line">    <span class="keyword">var</span> timer;</span><br><span class="line">    <span class="keyword">return</span> <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="keyword">var</span> now = <span class="built_in">Date</span>.now();</span><br><span class="line">        <span class="keyword">if</span> (last &amp;&amp; now - last &lt; interval) &#123;<span class="comment">//当当前时间减去上一次记录的时间，小于间隔时间则设定在间隔时间后触发事件，保证了每隔interval时间能执行一次事件处理函数</span></span><br><span class="line">            <span class="built_in">clearTimeout</span>(timer);</span><br><span class="line">            timer = <span class="built_in">setTimeout</span>(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">                last = now;</span><br><span class="line">                fn.apply(<span class="built_in">this</span>, <span class="built_in">arguments</span>);</span><br><span class="line">            &#125;, interval);</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            last = now;<span class="comment">//如果是第一次触发事件，则将当前时间赋值给last，并且立即执行函数</span></span><br><span class="line">            fn.apply(<span class="built_in">this</span>, <span class="built_in">arguments</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">sayHi</span>(<span class="params">e</span>) </span>&#123;</span><br><span class="line">      <span class="built_in">console</span>.log(e.target.innerWidth, e.target.innerHeight);</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">window</span>.addEventListener(<span class="string">&#x27;resize&#x27;</span>, throttle(sayHi,<span class="number">500</span>));</span><br></pre></td></tr></table></figure>
+
+<h3 id="防抖（debounce）"><a href="#防抖（debounce）" class="headerlink" title="防抖（debounce）"></a>防抖（debounce）</h3><p>1.search搜索联想，用户在不断输入值时，用防抖来节约请求资源。<br>2.window触发resize的时候，不断的调整浏览器窗口大小会不断的触发这个事件，用防抖来让其只触发一次</p>
+<h3 id="节流（throttle）"><a href="#节流（throttle）" class="headerlink" title="节流（throttle）"></a>节流（throttle）</h3><p>1.鼠标不断点击触发，mousedown(单位时间内只触发一次)<br>2.监听滚动事件，比如是否滑到底部自动加载更多，用throttle来判断</p>
+<h2 id="介绍在vue框架里如何使用防抖和节流"><a href="#介绍在vue框架里如何使用防抖和节流" class="headerlink" title="介绍在vue框架里如何使用防抖和节流"></a>介绍在vue框架里如何使用防抖和节流</h2><h3 id="1-自己封装防抖和节流函数"><a href="#1-自己封装防抖和节流函数" class="headerlink" title="1.自己封装防抖和节流函数"></a>1.自己封装防抖和节流函数</h3><p>在公共的js文件utils.js中添加防抖函数或节流函数如下：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">const</span> debounce=<span class="function">(<span class="params">fn, delay = <span class="number">200</span></span>)=&gt;</span> &#123;</span><br><span class="line">        <span class="comment">//代码上面有,请自行查看</span></span><br><span class="line">&#125;,</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">const</span> throttle=<span class="function">(<span class="params">fn, delay = <span class="number">200</span></span>)=&gt;</span> &#123;</span><br><span class="line">        <span class="comment">//代码上面有,请自行查看</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>在需要使用的组件引用</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; debounce,throttle &#125; <span class="keyword">from</span> <span class="string">&quot;@/libs/utils.js&quot;</span>;</span><br></pre></td></tr></table></figure>
+
+<p>在 <code>methods</code> 中使用</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">search: debounce(<span class="function"><span class="keyword">function</span>(<span class="params">query</span>) </span>&#123;</span><br><span class="line">        <span class="comment">// do something ...</span></span><br><span class="line">&#125;, <span class="number">200</span>),</span><br><span class="line"><span class="attr">search</span>: throttle(<span class="function"><span class="keyword">function</span>(<span class="params">query</span>) </span>&#123;</span><br><span class="line">        <span class="comment">// do something ...</span></span><br><span class="line">&#125;, <span class="number">200</span>)</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-使用lodash插件"><a href="#2-使用lodash插件" class="headerlink" title="2.使用lodash插件"></a>2.使用lodash插件</h3><p>1.下载lodash插件,查询更多api，请前往<a target="_blank" rel="noopener" href="https://www.lodashjs.com/">lodash官网</a></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install lodash --save</span><br></pre></td></tr></table></figure>
+
+<p>2.引入具体函数</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> _ <span class="keyword">from</span> <span class="string">&#x27;lodash&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<p>3.使用方式</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">&lt;el-input @input=<span class="string">&quot;(val) =&gt; &#123; checkSpellInitials(&#x27;P&#x27;,val,128) &#125;&quot;</span> v-model=<span class="string">&quot;name&quot;</span>&gt;&lt;/el-input&gt;</span><br><span class="line"></span><br><span class="line">checkSpellInitials: _.debounce(<span class="function"><span class="keyword">function</span> (<span class="params">chekType, obj, maxLen</span>) </span>&#123;</span><br><span class="line"> 	<span class="comment">// do something ... 如下：</span></span><br><span class="line">    <span class="comment">//   let query = &#123;</span></span><br><span class="line">    <span class="comment">//     name: obj,</span></span><br><span class="line">    <span class="comment">//     maxLen: maxLen</span></span><br><span class="line">    <span class="comment">//   &#125;</span></span><br><span class="line">    <span class="comment">//   postAxiosData(&#x27;/doctor/checkSpellInitials&#x27;, query).then(res =&gt; &#123;</span></span><br><span class="line">    <span class="comment">//     console.log(res)</span></span><br><span class="line">    <span class="comment">//     if (res.code === 200) &#123;</span></span><br><span class="line">    <span class="comment">//       this.formData.spellInitials = res.data.spellInitials ? res.data.spellInitials : &#x27;&#x27;</span></span><br><span class="line">    <span class="comment">//     &#125;</span></span><br><span class="line">    <span class="comment">//   &#125;)</span></span><br><span class="line">&#125;, <span class="number">1000</span>, &#123; <span class="string">&#x27;leading&#x27;</span>: <span class="literal">true</span>, <span class="string">&#x27;trailing&#x27;</span>: <span class="literal">false</span> &#125;),</span><br><span class="line"><span class="attr">checkSpellInitials</span>: _.throttle(<span class="function"><span class="keyword">function</span> (<span class="params">chekType, obj, maxLen</span>) </span>&#123;</span><br><span class="line"> 	<span class="comment">// do something ...</span></span><br><span class="line">&#125;, <span class="number">1000</span>, &#123; <span class="string">&#x27;leading&#x27;</span>: <span class="literal">true</span>, <span class="string">&#x27;trailing&#x27;</span>: <span class="literal">false</span> &#125;),</span><br></pre></td></tr></table></figure>
+
+
+
+    
+
+    
+
+    
+    <div class="declare"> 
+      <ul class="post-copyright">
+        <li>
+          <strong>本文作者：</strong>
+          white-Hang
+        </li>
+        <li>
+          <strong>本文链接：</strong>
+          <a href="https://white-hang.github.io/2021/09/23/防抖和节流/" title="防抖和节流" target="_blank">https://white-hang.github.io/2021/09/23/防抖和节流/</a>
+        </li>
+        
+        <li>
+          <strong>版权声明： </strong>
           
-          
+          本博客所有文章除特别声明外，均采用 <a href="https://github.com/JoeyBling/hexo-theme-yilia-plus/blob/master/LICENSE" rel="external nofollow" target="_blank">MIT</a> 许可协议。转载请注明出处！
+        </li>
+        
+      </ul>
+    </div>
+    
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
+  </div>
+  <div class="article-info article-info-index">
+    
+    
+    
+
+    
+
+    
+    <div class="clearfix"></div>
+  </div>
   </div>
 </article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/2021/09/20/%E8%A7%A3%E5%86%B3vuex%E9%A1%B5%E9%9D%A2%E5%88%B7%E6%96%B0%E6%95%B0%E6%8D%AE%E6%B6%88%E5%A4%B1%E7%9A%84%E9%97%AE%E9%A2%98/" class="archive-article-date">
-        <time datetime="2021-09-20T13:31:18.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-09-20</time>
-</a>
 
+
+<nav id="article-nav">
+  
+  
+    <a href="/2021/09/20/%E8%A7%A3%E5%86%B3vuex%E9%A1%B5%E9%9D%A2%E5%88%B7%E6%96%B0%E6%95%B0%E6%8D%AE%E6%B6%88%E5%A4%B1%E7%9A%84%E9%97%AE%E9%A2%98/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">解决vuex页面刷新数据消失的问题</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
+        
+        
+    </div>
+</aside>
+
+
+
+
+
+
+
+
+
+
+
   
-    <h1 itemprop="name">
-	
-	  <a class="archive-article-title" href="/2021/09/20/%E8%A7%A3%E5%86%B3vuex%E9%A1%B5%E9%9D%A2%E5%88%B7%E6%96%B0%E6%95%B0%E6%8D%AE%E6%B6%88%E5%A4%B1%E7%9A%84%E9%97%AE%E9%A2%98/">解决vuex页面刷新数据消失的问题</a>
-	
-    </h1>
+  <div id="gitment-ctn"></div>
   
-
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">vue</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
+    <!-- 中文 -->
+    <link rel="stylesheet" href="/lib/gitment.css">
+    <script src="/lib/gitment.js"></script>
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/2021/09/20/vue%E6%95%B0%E6%8D%AE%E6%9B%B4%E6%96%B0%E8%A7%86%E5%9B%BE%E4%B8%8D%E6%9B%B4%E6%96%B0/" class="archive-article-date">
-        <time datetime="2021-09-20T12:02:24.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-09-20</time>
-</a>
+  <script>
+    <!-- id: "防抖和节流" -->
+    var gitment = new Gitment({
+      id: "20210923221127",
+      owner: 'white-Hang',
+      repo: 'white-Hang.github.io',
+      oauth: {
+        client_id: '9dffa4894c387f84afc9',
+        client_secret: '8a8c5ae7adeee0705e331e28d94d3e11a9efe314',
+      },
+    })
+    gitment.render('gitment-ctn')
+  </script>
 
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-	
-	  <a class="archive-article-title" href="/2021/09/20/vue%E6%95%B0%E6%8D%AE%E6%9B%B4%E6%96%B0%E8%A7%86%E5%9B%BE%E4%B8%8D%E6%9B%B4%E6%96%B0/">vue数据更新视图不更新</a>
-	
-    </h1>
+
   
 
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">vue</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/2021/09/19/v-if%E5%92%8Cv-show%EF%BC%8Cvisibility:hidden%E5%92%8Cdisplay:none%E7%9A%84%E5%8C%BA%E5%88%AB/" class="archive-article-date">
-        <time datetime="2021-09-19T14:07:41.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-09-19</time>
-</a>
-
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-	
-	  <a class="archive-article-title" href="/2021/09/19/v-if%E5%92%8Cv-show%EF%BC%8Cvisibility:hidden%E5%92%8Cdisplay:none%E7%9A%84%E5%8C%BA%E5%88%AB/">v-if和v-show,visibility:hidden和display:none的区别</a>
-	
-    </h1>
-  
-
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">vue</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/2021/09/19/%E6%9C%80%E5%B8%B8%E7%94%A8%E7%9A%84hexo%E5%87%A0%E4%B8%AA%E5%91%BD%E4%BB%A4/" class="archive-article-date">
-        <time datetime="2021-09-19T08:37:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-09-19</time>
-</a>
-
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-	
-	  <a class="archive-article-title" href="/2021/09/19/%E6%9C%80%E5%B8%B8%E7%94%A8%E7%9A%84hexo%E5%87%A0%E4%B8%AA%E5%91%BD%E4%BB%A4/">最常用的hexo几个命令</a>
-	
-    </h1>
-  
-
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">hexo</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/2021/09/19/%E6%89%8B%E6%8A%8A%E6%89%8B%E6%95%99%E4%BD%A0%E5%A6%82%E4%BD%95%E5%B0%86%E5%8D%9A%E5%AE%A2%E9%83%A8%E7%BD%B2%E5%88%B0github%E4%B8%8A/" class="archive-article-date">
-        <time datetime="2021-09-19T00:38:27.049Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-09-19</time>
-</a>
-
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-	
-	  <a class="archive-article-title" href="/2021/09/19/%E6%89%8B%E6%8A%8A%E6%89%8B%E6%95%99%E4%BD%A0%E5%A6%82%E4%BD%95%E5%B0%86%E5%8D%9A%E5%AE%A2%E9%83%A8%E7%BD%B2%E5%88%B0github%E4%B8%8A/">手把手教你如何将建好的博客部署到github上</a>
-	
-    </h1>
-  
-
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">hexo</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/2021/09/11/%E6%89%8B%E6%8A%8A%E6%89%8B%E6%95%99%E4%BD%A0%E6%90%AD%E5%BB%BAhexo%E5%8D%9A%E5%AE%A2/" class="archive-article-date">
-        <time datetime="2021-09-11T13:22:50.610Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-09-11</time>
-</a>
-
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-	
-	  <a class="archive-article-title" href="/2021/09/11/%E6%89%8B%E6%8A%8A%E6%89%8B%E6%95%99%E4%BD%A0%E6%90%AD%E5%BB%BAhexo%E5%8D%9A%E5%AE%A2/">手把手教你搭建hexo博客</a>
-	
-    </h1>
-  
-
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">hexo</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
-
-    
 
 
           </div>
@@ -535,8 +421,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,
