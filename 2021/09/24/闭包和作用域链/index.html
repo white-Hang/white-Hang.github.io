@@ -6,26 +6,22 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://white-hang.github.io">
-  <title>v-if和v-show,visibility:hidden和display:none的区别 | Hexo</title>
+  <title>闭包和作用域链 | Hexo</title>
   <meta name="generator" content="hexo-theme-yilia-plus">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
-  <meta name="description" content="v-ifv-if 是动态的向DOM树内添加或者删除DOM元素； v-if 是惰性的，如果初始条件为假，则什么也不做；只有在条件第一次变为真时才开始局部编译（编译被缓存？编译被缓存后，然后再切换的时候进行局部卸载); v-if 有更高的切换消耗； v-if 适合运营条件不大可能改变；">
+  <meta name="description" content="闭包和作用域链作用域的生命周期  对于全局作用域：程序开始运行，全局作用域创建，程序结束时，全局作用域释放；  对于局部作用域：当函数调用时，作用域创建，函数执行完毕时，作用域释放；   一、变量的作用域：全局变量和局部变量要向理解闭包，必须要理解js特殊的变量作用域 1.在函数内部可以访问函数外部的变量—可以直接使用全局变量 12345var a &#x3D; 10;function f1()&amp;#123;">
 <meta property="og:type" content="article">
-<meta property="og:title" content="v-if和v-show,visibility:hidden和display:none的区别">
-<meta property="og:url" content="https://white-hang.github.io/2021/09/19/v-if%E5%92%8Cv-show%EF%BC%8Cvisibility:hidden%E5%92%8Cdisplay:none%E7%9A%84%E5%8C%BA%E5%88%AB/index.html">
+<meta property="og:title" content="闭包和作用域链">
+<meta property="og:url" content="https://white-hang.github.io/2021/09/24/%E9%97%AD%E5%8C%85%E5%92%8C%E4%BD%9C%E7%94%A8%E5%9F%9F%E9%93%BE/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="v-ifv-if 是动态的向DOM树内添加或者删除DOM元素； v-if 是惰性的，如果初始条件为假，则什么也不做；只有在条件第一次变为真时才开始局部编译（编译被缓存？编译被缓存后，然后再切换的时候进行局部卸载); v-if 有更高的切换消耗； v-if 适合运营条件不大可能改变；">
+<meta property="og:description" content="闭包和作用域链作用域的生命周期  对于全局作用域：程序开始运行，全局作用域创建，程序结束时，全局作用域释放；  对于局部作用域：当函数调用时，作用域创建，函数执行完毕时，作用域释放；   一、变量的作用域：全局变量和局部变量要向理解闭包，必须要理解js特殊的变量作用域 1.在函数内部可以访问函数外部的变量—可以直接使用全局变量 12345var a &#x3D; 10;function f1()&amp;#123;">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="https://white-hang.github.io/assets/vue/WechatIMG29.jpeg">
-<meta property="og:image" content="https://white-hang.github.io/assets/vue/WechatIMG28.jpeg">
-<meta property="og:image" content="https://white-hang.github.io/assets/vue/WechatIMG30.jpeg">
-<meta property="article:published_time" content="2021-09-19T14:07:41.000Z">
-<meta property="article:modified_time" content="2021-09-19T14:39:35.715Z">
+<meta property="article:published_time" content="2021-09-24T12:44:40.000Z">
+<meta property="article:modified_time" content="2021-09-24T12:53:08.276Z">
 <meta property="article:author" content="white-Hang">
-<meta property="article:tag" content="vue">
+<meta property="article:tag" content="js">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://white-hang.github.io/assets/vue/WechatIMG29.jpeg">
   
     <link rel="alternative" href="/atom.xml" title="Hexo" type="application/atom+xml">
   
@@ -204,14 +200,14 @@
               class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-v-if和v-show，visibility:hidden和display:none的区别" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-闭包和作用域链" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
   
   
     <h1 class="article-title" itemprop="name">
-      v-if和v-show,visibility:hidden和display:none的区别
+      闭包和作用域链
     </h1>
   
 
@@ -223,8 +219,8 @@
               <i class="icon-smile icon"></i> 阅读数：<span id="busuanzi_value_page_pv"></span>次
         </span>
 
-<a href="/2021/09/19/v-if%E5%92%8Cv-show%EF%BC%8Cvisibility:hidden%E5%92%8Cdisplay:none%E7%9A%84%E5%8C%BA%E5%88%AB/" class="archive-article-date">
-        <time datetime="2021-09-19T14:07:41.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-09-19</time>
+<a href="/2021/09/24/%E9%97%AD%E5%8C%85%E5%92%8C%E4%BD%9C%E7%94%A8%E5%9F%9F%E9%93%BE/" class="archive-article-date">
+        <time datetime="2021-09-24T12:44:40.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-09-24</time>
 </a>
 
   
@@ -237,7 +233,7 @@
       <!-- 百度字体平台:http://fontstore.baidu.com/static/editor/index.html -->
       <i class="icon-statistics"></i>
       <span class="post-meta-item-text"> 字数统计:</span>
-      <span class="post-count">278字</span>
+      <span class="post-count">1.6k字</span>
     </span>
   </span>
 
@@ -246,7 +242,7 @@
     <span class="post-meta-item-icon">
       <i class="icon-book icon"></i>
       <span class="post-meta-item-text"> 阅读时长≈</span>
-      <span class="post-count">1分</span>
+      <span class="post-count">6分</span>
     </span>
   </span>
 </div>
@@ -257,24 +253,74 @@
   
   <div class="article-entry" itemprop="articleBody">
     
-    <h2 id="v-if"><a href="#v-if" class="headerlink" title="v-if"></a>v-if</h2><p>v-if 是动态的向DOM树内添加或者删除DOM元素；</p>
-<p>v-if 是惰性的，如果初始条件为假，则什么也不做；只有在条件第一次变为真时才开始局部编译（编译被缓存？编译被缓存后，然后再切换的时候进行局部卸载);</p>
-<p>v-if 有更高的切换消耗；</p>
-<p>v-if 适合运营条件不大可能改变；</p>
+    <h2 id="闭包和作用域链"><a href="#闭包和作用域链" class="headerlink" title="闭包和作用域链"></a>闭包和作用域链</h2><h3 id="作用域的生命周期"><a href="#作用域的生命周期" class="headerlink" title="作用域的生命周期"></a>作用域的生命周期</h3><ol>
+<li><p> 对于全局作用域：程序开始运行，全局作用域创建，程序结束时，全局作用域释放；</p>
+</li>
+<li><p>对于局部作用域：当函数调用时，作用域创建，函数执行完毕时，作用域释放；</p>
+</li>
+</ol>
+<h3 id="一、变量的作用域：全局变量和局部变量"><a href="#一、变量的作用域：全局变量和局部变量" class="headerlink" title="一、变量的作用域：全局变量和局部变量"></a>一、变量的作用域：全局变量和局部变量</h3><p>要向理解闭包，必须要理解js特殊的变量作用域</p>
+<p>1.在函数内部可以访问函数外部的变量—可以直接使用全局变量</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a = <span class="number">10</span>;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">f1</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">	<span class="built_in">console</span>.log(a);<span class="comment">// 10</span></span><br><span class="line">&#125;</span><br><span class="line">f1();</span><br></pre></td></tr></table></figure>
+
+<p>2.在函数外部无法访问函数内部的局部变量</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">f1</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">var</span> a = <span class="number">10</span>;</span><br><span class="line">&#125;</span><br><span class="line">f1();</span><br><span class="line"><span class="built_in">console</span>.log(a);<span class="comment">// ReferenceError: a is not defined</span></span><br></pre></td></tr></table></figure>
+
+<p>3.在函数内部声明变量的时候要加var，如果不使用var，实际上是声明了一个全局变量</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">f1</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">      a = <span class="number">10</span>;</span><br><span class="line">&#125;</span><br><span class="line">f1();</span><br><span class="line"><span class="built_in">console</span>.log(a);<span class="comment">// 10</span></span><br></pre></td></tr></table></figure>
+
+<p>4.作用域链    </p>
+<p>在f2作用域中访问变量a</p>
+<p>​    1、先从f2作用域中查找，如果有，直接使用；</p>
+<p>​    2、如果f1作用域中没有，向上层f1作用域中查找，如果有，直接使用;</p>
+<p>​    3、如果f1作用域中没有，向上层的上层中查找，直至找到全局作用域，如果有，直接使用；</p>
+<p>​    4、如果全局作用域也没有，最后输出 a is not defined</p>
+<p>​    这就是作用域链</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">var a = 1; // ---1级作用域 全局作用域</span><br><span class="line">function f1()&#123; // --- 2级作用域 --- f1局部作用域</span><br><span class="line">	// var a = 2;</span><br><span class="line">    function f2()&#123; // --- 3级作用域 --- f2局部作用域</span><br><span class="line">       // var a = 3;</span><br><span class="line">       console.log(a);//1</span><br><span class="line">     &#125;</span><br><span class="line">	f2();</span><br><span class="line">&#125;</span><br><span class="line">f1();</span><br></pre></td></tr></table></figure>
 <span id="more"></span>
-<h2 id="v-show"><a href="#v-show" class="headerlink" title="v-show"></a>v-show</h2><p>v-show 是通过设置DOM元素的display样式属性控制显隐；</p>
-<p>v-show 是在任何条件下（首次条件是否为真）都被编译，然后被缓存，而且DOM元素保留；</p>
-<p>v-show 有更高的初始渲染消耗；</p>
-<p>v-show 适合频繁切换。</p>
-<h2 id="visibility-hidden"><a href="#visibility-hidden" class="headerlink" title="visibility:hidden"></a>visibility:hidden</h2><p>visibility:hidden是视觉上消失了，可以理解为透明度为0的效果，在文档中占位，浏览器会解析该元素</p>
-<h2 id="display-none"><a href="#display-none" class="headerlink" title="display:none"></a>display:none</h2><p>display:none是彻底的消失，不在文档流中占位，浏览器也不会解析该元素</p>
-<h2 id="图解"><a href="#图解" class="headerlink" title="图解"></a>图解</h2><p>以下是代码里运行后，页面展示的结果</p>
-<p>设置v-if=”false”</p>
-<p><img src="/assets/vue/WechatIMG29.jpeg" alt="配置"></p>
-<p>设置v-show=”false”</p>
-<p><img src="/assets/vue/WechatIMG28.jpeg" alt="配置"></p>
-<p>设置visibility:hidden</p>
-<p><img src="/assets/vue/WechatIMG30.jpeg" alt="配置"></p>
+<h3 id="二、如何从函数的外部访问局部变量"><a href="#二、如何从函数的外部访问局部变量" class="headerlink" title="二、如何从函数的外部访问局部变量"></a>二、如何从函数的外部访问局部变量</h3><p>有时候需要从函数的外部得到函数内部的局部变量，正常情况下，无法访问，通过变通的方法实现：在函数内部在定义一个函数</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">function f1()&#123;</span><br><span class="line">      var a = 2;</span><br><span class="line">      var b = 3;</span><br><span class="line">      function f2()&#123;</span><br><span class="line">           var c = a + b;</span><br><span class="line">           console.log(c);</span><br><span class="line">      &#125;</span><br><span class="line">      f2();</span><br><span class="line">&#125;</span><br><span class="line">f1();</span><br></pre></td></tr></table></figure>
+
+<p>在上述代码中，函数f2被包裹在函数f1中，此时，f1内部所有的局部变量对f2都是可见的，反之不行；f2的局部变量对f1是不可见的。这是应为js中特有的链式作用域结构</p>
+<p>子作用域可以一级一级的向上查找父作用域中的变量，父级作用域中所有的变量对子作用域都是可见的，反之不行</p>
+<p>既然f2可以访问f1中的变量，如果在函数f1中把函数f2 作为一个返回值，在函数f1外部不就可以访问f1中变量</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">f1</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">      <span class="keyword">var</span> a = <span class="number">2</span>;</span><br><span class="line">      <span class="keyword">var</span> b = <span class="number">3</span>;</span><br><span class="line">      <span class="function"><span class="keyword">function</span> <span class="title">f2</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">           <span class="keyword">var</span> c = a + b;</span><br><span class="line">           <span class="keyword">return</span> c;</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="comment">// 函数本身是一个对象，可以当做返回值</span></span><br><span class="line">      <span class="keyword">return</span> f2;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> fun = f1();<span class="comment">//调用f1函数得到的结果是一个函数f2：fun就是f2</span></span><br><span class="line"><span class="keyword">var</span> result = fun();<span class="comment">//调用fun函数得到的是函数f2的返回值</span></span><br><span class="line"><span class="built_in">console</span>.log(result);<span class="comment">// 结果是5</span></span><br></pre></td></tr></table></figure>
+
+<p>在函数f1中声明函数f2，函数f2中使用了函数f1作用域中变量，然后函数f1将函数f2作为返回值返回，那么当函数f1执行完毕时，函数f2会继续存在，</p>
+<p>由于函数f2使用了函数f1作用域中的变量—函数f2引用了函数f1中的变量，也就是函数f2引用了函数f1的作用域，所以当函数f1执行完毕时，函数f1的作用域不会被释放，而是被函数f2保留下来 — 这叫做函数f2闭包了函数f1的作用域，f2是一个闭包</p>
+<h3 id="三、闭包的概念："><a href="#三、闭包的概念：" class="headerlink" title="三、闭包的概念："></a>三、闭包的概念：</h3><p>上述代码中f2就是一个闭包</p>
+<p>闭包：是能够读取其他函数内部变量的函数</p>
+<p>在JS中，只有函数内部的子函数才能读取函数内部的局部变量，所以可以把闭包理解为“定义在一个函数内部的函数”</p>
+<p>本质上，闭包是将函数内部和外部连接起来的一座桥梁</p>
+<h3 id="四、闭包的作用："><a href="#四、闭包的作用：" class="headerlink" title="四、闭包的作用："></a>四、闭包的作用：</h3><p>闭包的作用一般有两点：</p>
+<p>​    1、在外部访问函数内部的变量；—上面的例子就是</p>
+<p>​    2、把函数内部的变量长时间存储在内存中—变量作用域的提升</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> add;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">f3</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">      <span class="keyword">var</span> a = <span class="number">2</span>;</span><br><span class="line">      add = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">             a += <span class="number">10</span>;</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="function"><span class="keyword">function</span> <span class="title">f4</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">             <span class="built_in">console</span>.log(<span class="string">&#x27;a=&#x27;</span>,a);</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="keyword">return</span> f4;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> fun4 = f3();<span class="comment">//f3执行完毕，f3作用域并没有释放(f4中引用了f3作用域)，f3中变量a也没被释放</span></span><br><span class="line">fun4();<span class="comment">//a的值为2</span></span><br><span class="line">add();<span class="comment">// 让变量a的值加10</span></span><br><span class="line">fun4();<span class="comment">//a的值为12</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="五：在闭包中使用this"><a href="#五：在闭包中使用this" class="headerlink" title="五：在闭包中使用this"></a>五：在闭包中使用this</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">var name = &#x27;the window&#x27;;</span><br><span class="line">var obj = &#123;</span><br><span class="line">    	name: &#x27;张三&#x27;,</span><br><span class="line">        getName: function () &#123;</span><br><span class="line">            return function () &#123;</span><br><span class="line">                   console.log(this,&#x27;this&#x27;)//Window</span><br><span class="line">                   return this.name;</span><br><span class="line">            &#125; </span><br><span class="line">        &#125;,</span><br><span class="line">        gettName: function () &#123;</span><br><span class="line">                return this.name;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line">console.log(obj.getName()());//the window</span><br><span class="line">console.log(obj.gettName());//张三</span><br></pre></td></tr></table></figure>
+
+<p>this对象是运行时基于函数的执行环境绑定的：在全局函数中，this等于window，而当函数被作为某个对象的方法调用时，this等于那个对象。</p>
+<p>如果把obj.getName()()拆成两个步骤执行</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">var first = obj.getName()</span><br><span class="line">var second = first()</span><br></pre></td></tr></table></figure>
+
+<p>其中第一步，获得的first<strong>为返回的匿名函数</strong>，此时的getName()作为obj的方法调用，如果在getName()中使用this，此时的this指向的是object对象。</p>
+<p>第二步，调用first函数，可以很清楚的发现，此时调用first函数，first函数没有在对象中调用，因此是<strong>作为函数调用的</strong>，是在全局作用域下，<strong>因此first函数中的this指向的是window</strong>。</p>
+<p>解决方法 :可以把外部作用域中的this保存在闭包可以访问到的变量里</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">var name = &#x27;the window&#x27;;</span><br><span class="line">var obj = &#123;</span><br><span class="line">       name: &#x27;张三&#x27;,</span><br><span class="line">       getName: function () &#123;</span><br><span class="line">             var that = this;</span><br><span class="line">             return function () &#123;</span><br><span class="line">                  return that.name;</span><br><span class="line">             &#125;</span><br><span class="line">       &#125;</span><br><span class="line">&#125;</span><br><span class="line">console.log(obj.getName()());//张三</span><br></pre></td></tr></table></figure>
+
+<h3 id="六：闭包的使用场景"><a href="#六：闭包的使用场景" class="headerlink" title="六：闭包的使用场景"></a>六：闭包的使用场景</h3><p>1.setTimeout</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">f1</span>(<span class="params">a</span>) </span>&#123;</span><br><span class="line">   <span class="function"><span class="keyword">function</span> <span class="title">f2</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="built_in">console</span>.log(a);</span><br><span class="line">   &#125;</span><br><span class="line">   <span class="keyword">return</span> f2;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> fun = f1(<span class="number">1</span>);</span><br><span class="line"><span class="built_in">setTimeout</span>(fun, <span class="number">5000</span>);</span><br></pre></td></tr></table></figure>
+
+<p>2.回调</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">&lt;ul&gt;</span><br><span class="line">    <span class="xml"><span class="tag">&lt;<span class="name">li</span>&gt;</span>1<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span></span><br><span class="line">    <span class="xml"><span class="tag">&lt;<span class="name">li</span>&gt;</span>2<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span></span><br><span class="line">    <span class="xml"><span class="tag">&lt;<span class="name">li</span>&gt;</span>3<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span></span><br><span class="line">&lt;/ul&gt;</span><br><span class="line"><span class="keyword">var</span> lis = <span class="built_in">document</span>.getElementsByTagName(<span class="string">&quot;li&quot;</span>);</span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; lis.length; i++) &#123;</span><br><span class="line">       (<span class="function"><span class="keyword">function</span> (<span class="params">i</span>) </span>&#123;</span><br><span class="line">            lis[i].onclick = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">                <span class="built_in">console</span>.log(i);</span><br><span class="line">            &#125;;</span><br><span class="line">       &#125;)(i);       <span class="comment">//事件处理函数中闭包的写法</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>3.防抖和节流，代码这里不做展示，具体代码可查看我写的防抖和节流的文章</p>
+<p>4.封装私有变量</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">f1</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">     <span class="keyword">var</span> sum = <span class="number">0</span>;</span><br><span class="line">     <span class="keyword">var</span> obj = &#123;</span><br><span class="line">         <span class="attr">inc</span>: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">             sum++;</span><br><span class="line">             <span class="keyword">return</span> sum;</span><br><span class="line">         &#125;</span><br><span class="line">     &#125;;</span><br><span class="line">     <span class="keyword">return</span> obj;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">let</span> result = f1();</span><br><span class="line"><span class="built_in">console</span>.log(result.inc());<span class="comment">//1</span></span><br><span class="line"><span class="built_in">console</span>.log(result.inc());<span class="comment">//2</span></span><br><span class="line"><span class="built_in">console</span>.log(result.inc());<span class="comment">//3</span></span><br></pre></td></tr></table></figure>
+
+
 
     
 
@@ -289,7 +335,7 @@
         </li>
         <li>
           <strong>本文链接：</strong>
-          <a href="https://white-hang.github.io/2021/09/19/v-if和v-show，visibility:hidden和display:none的区别/" title="v-if和v-show,visibility:hidden和display:none的区别" target="_blank">https://white-hang.github.io/2021/09/19/v-if和v-show，visibility:hidden和display:none的区别/</a>
+          <a href="https://white-hang.github.io/2021/09/24/闭包和作用域链/" title="闭包和作用域链" target="_blank">https://white-hang.github.io/2021/09/24/闭包和作用域链/</a>
         </li>
         
         <li>
@@ -311,7 +357,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">vue</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">js</a>
         		</li>
       		
 		</ul>
@@ -330,18 +376,9 @@
 
 <nav id="article-nav">
   
-    <a href="/2021/09/20/vue%E6%95%B0%E6%8D%AE%E6%9B%B4%E6%96%B0%E8%A7%86%E5%9B%BE%E4%B8%8D%E6%9B%B4%E6%96%B0/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          vue数据更新视图不更新
-        
-      </div>
-    </a>
   
-  
-    <a href="/2021/09/19/%E6%9C%80%E5%B8%B8%E7%94%A8%E7%9A%84hexo%E5%87%A0%E4%B8%AA%E5%91%BD%E4%BB%A4/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">最常用的hexo几个命令</div>
+    <a href="/2021/09/23/%E9%98%B2%E6%8A%96%E5%92%8C%E8%8A%82%E6%B5%81/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">防抖和节流</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -382,9 +419,9 @@
     <script src="/lib/gitment.js"></script>
   
   <script>
-    <!-- id: "v-if和v-show,visibility:hidden和display:none的区别" -->
+    <!-- id: "闭包和作用域链" -->
     var gitment = new Gitment({
-      id: "20210919220741",
+      id: "20210924204440",
       owner: 'white-Hang',
       repo: 'white-Hang.github.io',
       oauth: {
