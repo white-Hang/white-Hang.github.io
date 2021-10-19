@@ -214,6 +214,105 @@
             
 
   
+    <article id="post-react中的setState详解" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+  
+  
+    <h1 itemprop="name">
+	
+	  <a class="article-title" href="/2021/10/19/react%E4%B8%AD%E7%9A%84setState%E8%AF%A6%E8%A7%A3/">react中的setState详解</a>
+	
+    </h1>
+  
+
+
+  
+  
+<a href="/2021/10/19/react%E4%B8%AD%E7%9A%84setState%E8%AF%A6%E8%A7%A3/" class="archive-article-date">
+        <time datetime="2021-10-19T15:39:08.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-10-19</time>
+</a>
+
+  
+  
+    
+
+  
+  </header>
+  
+  <div class="article-entry" itemprop="articleBody">
+    
+    <h3 id="1-setState更新状态的2种写法"><a href="#1-setState更新状态的2种写法" class="headerlink" title="1.setState更新状态的2种写法"></a>1.setState更新状态的2种写法</h3><p>(1). setState(stateChange, [callback])——对象式的setState</p>
+<p>​      1.stateChange为状态改变对象(该对象可以体现出状态的更改)</p>
+<p>​      2.callback是可选的回调函数, 它在状态更新完毕、界面也更新后(render调用后)才被调用</p>
+<p>代码展示：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> React, &#123; Component &#125; <span class="keyword">from</span> <span class="string">&#x27;react&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="class"><span class="keyword">class</span> <span class="title">Demo</span> <span class="keyword">extends</span> <span class="title">Component</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">	state = &#123;<span class="attr">count</span>:<span class="number">0</span>&#125;</span><br><span class="line"></span><br><span class="line">	add = <span class="function">()=&gt;</span>&#123;</span><br><span class="line">		<span class="comment">//对象式的setState</span></span><br><span class="line">		<span class="comment">//更新状态</span></span><br><span class="line">		<span class="built_in">this</span>.setState(&#123;<span class="attr">count</span>:<span class="built_in">this</span>.state.count+<span class="number">1</span>&#125;,<span class="function">()=&gt;</span>&#123;</span><br><span class="line">			<span class="built_in">console</span>.log(<span class="built_in">this</span>.state.count);<span class="comment">//3</span></span><br><span class="line">		&#125;)</span><br><span class="line">		<span class="built_in">this</span>.setState(&#123;<span class="attr">count</span>:<span class="built_in">this</span>.state.count+<span class="number">2</span>&#125;,<span class="function">()=&gt;</span>&#123;</span><br><span class="line">			<span class="built_in">console</span>.log(<span class="built_in">this</span>.state.count);<span class="comment">//3</span></span><br><span class="line">		&#125;)</span><br><span class="line">		<span class="built_in">this</span>.setState(&#123;<span class="attr">count</span>:<span class="built_in">this</span>.state.count+<span class="number">3</span>&#125;,<span class="function">()=&gt;</span>&#123;</span><br><span class="line">			<span class="built_in">console</span>.log(<span class="built_in">this</span>.state.count);<span class="comment">//3</span></span><br><span class="line">		&#125;)</span><br><span class="line">		<span class="built_in">console</span>.log(<span class="string">&#x27;12行的输出&#x27;</span>,<span class="built_in">this</span>.state.count); <span class="comment">//0 </span></span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="title">render</span>(<span class="params"></span>)</span> &#123;</span><br><span class="line">		<span class="keyword">return</span> (</span><br><span class="line">			<span class="xml"><span class="tag">&lt;<span class="name">div</span>&gt;</span></span></span><br><span class="line"><span class="xml">				<span class="tag">&lt;<span class="name">h1</span>&gt;</span>当前求和为：&#123;this.state.count&#125;<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span></span><br><span class="line"><span class="xml">				<span class="tag">&lt;<span class="name">button</span> <span class="attr">onClick</span>=<span class="string">&#123;this.add&#125;</span>&gt;</span>点我+1<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span></span><br><span class="line"><span class="xml">			<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line">		)</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>相信小伙伴们发现了打印的结果的不同，如果在第二个参数里打印就能拿到最新的结果，如果在对象形式的setState外面打印，却只能拿到初始值，这里表示这种情况下setState是异步的，</p>
+<p>原因就是：</p>
+<p>在 React 的 setState 函数实现中，会根据一个变量 isBatchingUpdates 判断是直接更新 this.state 还是放到一个updateQueue中延时更新，而 isBatchingUpdates 默认是 false，表示 setState 会同步更新 this.state；但是，有一个函数 batchedUpdates，该函数会把 isBatchingUpdates 修改为 true，而当 React 在调用事件处理函数之前就会先调用这个 batchedUpdates将isBatchingUpdates修改为true，这样由 React 控制的事件处理过程 setState 不会同步更新 this.state，而是异步的。</p>
+<p>同样小伙伴们也发现了，明明调了三次的对象形式的setState却只取了最后一次修改的值，这是因为<span style="color:red">react内部为了优化setState()的批处理</span>,会对<span style="color:red">setState()进行合并</span>,并且对<span style="color:red">对相同属性的设置只保留最后一次的设置</span></p>
+<p><strong>总结：</strong><br>所以说setState本身是同步的，一旦走了react内部的合并逻辑，放入了updateQueue队列中就变成异步了，<strong>而代码中的函数是react控制的，内部会走合并逻辑，所以这里的setState 不但是合并的也是异步的</strong></p>
+<p>相信小伙伴们就会问了，那怎么才能在异步执行的情况下，让每一次的setState调用都起效果呢，别急第二种写法就可以解决这种问题</p>
+    
+    <a class="article-more-a" href="/2021/10/19/react%E4%B8%AD%E7%9A%84setState%E8%AF%A6%E8%A7%A3/#more">more >></a>
+    
+    
+
+    
+
+    
+
+  </div>
+  <div class="article-info article-info-index">
+    
+    
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">react</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+    
+
+    
+    <p class="article-more-link">
+      <a class="article-more-a" href="/2021/10/19/react%E4%B8%AD%E7%9A%84setState%E8%AF%A6%E8%A7%A3/">展开全文 >></a>
+    </p>
+    
+
+    
+    <div class="clearfix"></div>
+  </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-react脚手架配置代理总结" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -1072,97 +1171,6 @@
 
 
   
-    <article id="post-v-if和v-show，visibility:hidden和display:none的区别" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-  
-  
-    <h1 itemprop="name">
-	
-	  <a class="article-title" href="/2021/09/19/v-if%E5%92%8Cv-show%EF%BC%8Cvisibility:hidden%E5%92%8Cdisplay:none%E7%9A%84%E5%8C%BA%E5%88%AB/">v-if和v-show,visibility:hidden和display:none的区别</a>
-	
-    </h1>
-  
-
-
-  
-  
-<a href="/2021/09/19/v-if%E5%92%8Cv-show%EF%BC%8Cvisibility:hidden%E5%92%8Cdisplay:none%E7%9A%84%E5%8C%BA%E5%88%AB/" class="archive-article-date">
-        <time datetime="2021-09-19T14:07:41.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-09-19</time>
-</a>
-
-  
-  
-    
-
-  
-  </header>
-  
-  <div class="article-entry" itemprop="articleBody">
-    
-    <h2 id="v-if"><a href="#v-if" class="headerlink" title="v-if"></a>v-if</h2><p>v-if 是动态的向DOM树内添加或者删除DOM元素；</p>
-<p>v-if 是惰性的，如果初始条件为假，则什么也不做；只有在条件第一次变为真时才开始局部编译（编译被缓存？编译被缓存后，然后再切换的时候进行局部卸载);</p>
-<p>v-if 有更高的切换消耗；</p>
-<p>v-if 适合运营条件不大可能改变；</p>
-    
-    <a class="article-more-a" href="/2021/09/19/v-if%E5%92%8Cv-show%EF%BC%8Cvisibility:hidden%E5%92%8Cdisplay:none%E7%9A%84%E5%8C%BA%E5%88%AB/#more">more >></a>
-    
-    
-
-    
-
-    
-
-  </div>
-  <div class="article-info article-info-index">
-    
-    
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">vue</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-    
-
-    
-    <p class="article-more-link">
-      <a class="article-more-a" href="/2021/09/19/v-if%E5%92%8Cv-show%EF%BC%8Cvisibility:hidden%E5%92%8Cdisplay:none%E7%9A%84%E5%8C%BA%E5%88%AB/">展开全文 >></a>
-    </p>
-    
-
-    
-    <div class="clearfix"></div>
-  </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
       <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">Next &amp;raquo;</a>
@@ -1296,11 +1304,11 @@
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">react</a>
+                <a href="javascript:void(0)" class="js-tag color4">vue</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">vue</a>
+                <a href="javascript:void(0)" class="js-tag color1">react</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1308,11 +1316,11 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">js</a>
+                <a href="javascript:void(0)" class="js-tag color5">hexo</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">hexo</a>
+                <a href="javascript:void(0)" class="js-tag color3">js</a>
               </li>
             
             <div class="clearfix"></div>

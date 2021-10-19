@@ -6,16 +6,21 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://white-hang.github.io">
-  <title>Archives: 2021/10 | Hexo</title>
+  <title>react中的setState详解 | Hexo</title>
   <meta name="generator" content="hexo-theme-yilia-plus">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Hexo">
-<meta property="og:url" content="https://white-hang.github.io/archives/2021/10/index.html">
+  <meta name="description" content="1.setState更新状态的2种写法(1). setState(stateChange, [callback])——对象式的setState ​      1.stateChange为状态改变对象(该对象可以体现出状态的更改) ​      2.callback是可选的回调函数, 它在状态更新完毕、界面也更新后(render调用后)才被调用 代码展示： 123456789101112131415">
+<meta property="og:type" content="article">
+<meta property="og:title" content="react中的setState详解">
+<meta property="og:url" content="https://white-hang.github.io/2021/10/19/react%E4%B8%AD%E7%9A%84setState%E8%AF%A6%E8%A7%A3/index.html">
 <meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="1.setState更新状态的2种写法(1). setState(stateChange, [callback])——对象式的setState ​      1.stateChange为状态改变对象(该对象可以体现出状态的更改) ​      2.callback是可选的回调函数, 它在状态更新完毕、界面也更新后(render调用后)才被调用 代码展示： 123456789101112131415">
 <meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2021-10-19T15:39:08.000Z">
+<meta property="article:modified_time" content="2021-10-19T15:41:42.192Z">
 <meta property="article:author" content="white-Hang">
+<meta property="article:tag" content="react">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternative" href="/atom.xml" title="Hexo" type="application/atom+xml">
@@ -207,41 +212,126 @@
               class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
+            <article id="post-react中的setState详解" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
   
   
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2021" class="archive-year">2021</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
+    <h1 class="article-title" itemprop="name">
+      react中的setState详解
+    </h1>
+  
+
+
+  
+  
+        
+        <span id="busuanzi_container_page_pv" style='display:none' class="archive-article-date">
+              <i class="icon-smile icon"></i> 阅读数：<span id="busuanzi_value_page_pv"></span>次
+        </span>
+
 <a href="/2021/10/19/react%E4%B8%AD%E7%9A%84setState%E8%AF%A6%E8%A7%A3/" class="archive-article-date">
         <time datetime="2021-10-19T15:39:08.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-10-19</time>
 </a>
 
-        </div>
-    	 
   
-    <h1 itemprop="name">
-	
-	  <a class="archive-article-title" href="/2021/10/19/react%E4%B8%AD%E7%9A%84setState%E8%AF%A6%E8%A7%A3/">react中的setState详解</a>
-	
-    </h1>
   
+    
+<div style="margin-top:10px;">
+  <span class="post-time">
+    <span class="post-meta-item-icon">
+      <!-- fonts.scss -->
+      <!-- 百度字体平台:http://fontstore.baidu.com/static/editor/index.html -->
+      <i class="icon-statistics"></i>
+      <span class="post-meta-item-text"> 字数统计:</span>
+      <span class="post-count">1.4k字</span>
+    </span>
+  </span>
+
+  <span class="post-time">
+    &nbsp; | &nbsp;
+    <span class="post-meta-item-icon">
+      <i class="icon-book icon"></i>
+      <span class="post-meta-item-text"> 阅读时长≈</span>
+      <span class="post-count">5分</span>
+    </span>
+  </span>
+</div>
 
 
-        <div class="article-info info-on-right">
+  
+  </header>
+  
+  <div class="article-entry" itemprop="articleBody">
+    
+    <h3 id="1-setState更新状态的2种写法"><a href="#1-setState更新状态的2种写法" class="headerlink" title="1.setState更新状态的2种写法"></a>1.setState更新状态的2种写法</h3><p>(1). setState(stateChange, [callback])——对象式的setState</p>
+<p>​      1.stateChange为状态改变对象(该对象可以体现出状态的更改)</p>
+<p>​      2.callback是可选的回调函数, 它在状态更新完毕、界面也更新后(render调用后)才被调用</p>
+<p>代码展示：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> React, &#123; Component &#125; <span class="keyword">from</span> <span class="string">&#x27;react&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="class"><span class="keyword">class</span> <span class="title">Demo</span> <span class="keyword">extends</span> <span class="title">Component</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">	state = &#123;<span class="attr">count</span>:<span class="number">0</span>&#125;</span><br><span class="line"></span><br><span class="line">	add = <span class="function">()=&gt;</span>&#123;</span><br><span class="line">		<span class="comment">//对象式的setState</span></span><br><span class="line">		<span class="comment">//更新状态</span></span><br><span class="line">		<span class="built_in">this</span>.setState(&#123;<span class="attr">count</span>:<span class="built_in">this</span>.state.count+<span class="number">1</span>&#125;,<span class="function">()=&gt;</span>&#123;</span><br><span class="line">			<span class="built_in">console</span>.log(<span class="built_in">this</span>.state.count);<span class="comment">//3</span></span><br><span class="line">		&#125;)</span><br><span class="line">		<span class="built_in">this</span>.setState(&#123;<span class="attr">count</span>:<span class="built_in">this</span>.state.count+<span class="number">2</span>&#125;,<span class="function">()=&gt;</span>&#123;</span><br><span class="line">			<span class="built_in">console</span>.log(<span class="built_in">this</span>.state.count);<span class="comment">//3</span></span><br><span class="line">		&#125;)</span><br><span class="line">		<span class="built_in">this</span>.setState(&#123;<span class="attr">count</span>:<span class="built_in">this</span>.state.count+<span class="number">3</span>&#125;,<span class="function">()=&gt;</span>&#123;</span><br><span class="line">			<span class="built_in">console</span>.log(<span class="built_in">this</span>.state.count);<span class="comment">//3</span></span><br><span class="line">		&#125;)</span><br><span class="line">		<span class="built_in">console</span>.log(<span class="string">&#x27;12行的输出&#x27;</span>,<span class="built_in">this</span>.state.count); <span class="comment">//0 </span></span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="title">render</span>(<span class="params"></span>)</span> &#123;</span><br><span class="line">		<span class="keyword">return</span> (</span><br><span class="line">			<span class="xml"><span class="tag">&lt;<span class="name">div</span>&gt;</span></span></span><br><span class="line"><span class="xml">				<span class="tag">&lt;<span class="name">h1</span>&gt;</span>当前求和为：&#123;this.state.count&#125;<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span></span><br><span class="line"><span class="xml">				<span class="tag">&lt;<span class="name">button</span> <span class="attr">onClick</span>=<span class="string">&#123;this.add&#125;</span>&gt;</span>点我+1<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span></span><br><span class="line"><span class="xml">			<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line">		)</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>相信小伙伴们发现了打印的结果的不同，如果在第二个参数里打印就能拿到最新的结果，如果在对象形式的setState外面打印，却只能拿到初始值，这里表示这种情况下setState是异步的，</p>
+<p>原因就是：</p>
+<p>在 React 的 setState 函数实现中，会根据一个变量 isBatchingUpdates 判断是直接更新 this.state 还是放到一个updateQueue中延时更新，而 isBatchingUpdates 默认是 false，表示 setState 会同步更新 this.state；但是，有一个函数 batchedUpdates，该函数会把 isBatchingUpdates 修改为 true，而当 React 在调用事件处理函数之前就会先调用这个 batchedUpdates将isBatchingUpdates修改为true，这样由 React 控制的事件处理过程 setState 不会同步更新 this.state，而是异步的。</p>
+<p>同样小伙伴们也发现了，明明调了三次的对象形式的setState却只取了最后一次修改的值，这是因为<span style="color:red">react内部为了优化setState()的批处理</span>,会对<span style="color:red">setState()进行合并</span>,并且对<span style="color:red">对相同属性的设置只保留最后一次的设置</span></p>
+<p><strong>总结：</strong><br>所以说setState本身是同步的，一旦走了react内部的合并逻辑，放入了updateQueue队列中就变成异步了，<strong>而代码中的函数是react控制的，内部会走合并逻辑，所以这里的setState 不但是合并的也是异步的</strong></p>
+<p>相信小伙伴们就会问了，那怎么才能在异步执行的情况下，让每一次的setState调用都起效果呢，别急第二种写法就可以解决这种问题</p>
+<span id="more"></span>
+<p>(2). setState(updater, [callback])——函数式的setState</p>
+<p>​      1.updater为返回stateChange对象的函数。</p>
+<p>​      2.updater可以接收到state和props。</p>
+<p>​      4.callback是可选的回调函数, 它在状态更新、界面也更新后(render调用后)才被调用。</p>
+<p>代码展示：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> React, &#123; Component &#125; <span class="keyword">from</span> <span class="string">&#x27;react&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="class"><span class="keyword">class</span> <span class="title">Demo</span> <span class="keyword">extends</span> <span class="title">Component</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">	state = &#123;<span class="attr">count</span>:<span class="number">0</span>&#125;</span><br><span class="line"></span><br><span class="line">	add = <span class="function">()=&gt;</span>&#123;</span><br><span class="line">		<span class="comment">//对象式的setState</span></span><br><span class="line">		<span class="comment">//更新状态</span></span><br><span class="line">		<span class="comment">//函数式的setState</span></span><br><span class="line">		<span class="built_in">this</span>.setState( <span class="function"><span class="params">state</span> =&gt;</span> (&#123;<span class="attr">count</span>:state.count+<span class="number">1</span>&#125;))</span><br><span class="line">		<span class="built_in">this</span>.setState( <span class="function"><span class="params">state</span> =&gt;</span> (&#123;<span class="attr">count</span>:state.count+<span class="number">2</span>&#125;))</span><br><span class="line">		<span class="built_in">this</span>.setState( <span class="function"><span class="params">state</span> =&gt;</span> (&#123;<span class="attr">count</span>:state.count+<span class="number">3</span>&#125;))</span><br><span class="line">		<span class="built_in">console</span>.log(<span class="string">&#x27;12行的输出&#x27;</span>,<span class="built_in">this</span>.state.count); <span class="comment">//0 </span></span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="title">render</span>(<span class="params"></span>)</span> &#123;</span><br><span class="line">		<span class="keyword">return</span> (</span><br><span class="line">			<span class="xml"><span class="tag">&lt;<span class="name">div</span>&gt;</span></span></span><br><span class="line"><span class="xml">				<span class="tag">&lt;<span class="name">h1</span>&gt;</span>当前求和为：&#123;this.state.count&#125;<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span></span><br><span class="line"><span class="xml">				<span class="tag">&lt;<span class="name">button</span> <span class="attr">onClick</span>=<span class="string">&#123;this.add&#125;</span>&gt;</span>点我+1<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span></span><br><span class="line"><span class="xml">			<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line">		)</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>通过执行发现当前求和值变成了6，但是最终打印结果还是0，说明这种写法还是异步的。</p>
+<h3 id="2-利用setTimeout绕过react内部的合并逻辑"><a href="#2-利用setTimeout绕过react内部的合并逻辑" class="headerlink" title="2.利用setTimeout绕过react内部的合并逻辑"></a>2.利用setTimeout绕过react内部的合并逻辑</h3><p>代码展示：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> React, &#123; Component &#125; <span class="keyword">from</span> <span class="string">&#x27;react&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="class"><span class="keyword">class</span> <span class="title">Demo</span> <span class="keyword">extends</span> <span class="title">Component</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">	state = &#123;<span class="attr">count</span>:<span class="number">0</span>&#125;</span><br><span class="line"></span><br><span class="line">	add = <span class="function">()=&gt;</span>&#123;</span><br><span class="line">		<span class="comment">//对象式的setState</span></span><br><span class="line">		<span class="comment">//更新状态</span></span><br><span class="line">		<span class="built_in">setTimeout</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">			<span class="built_in">this</span>.setState(&#123;<span class="attr">count</span>:<span class="built_in">this</span>.state.count+<span class="number">1</span>&#125;,<span class="function">()=&gt;</span>&#123;</span><br><span class="line">			<span class="built_in">console</span>.log(<span class="built_in">this</span>.state.count);<span class="comment">//1</span></span><br><span class="line">			&#125;)</span><br><span class="line">			<span class="built_in">this</span>.setState(&#123;<span class="attr">count</span>:<span class="built_in">this</span>.state.count+<span class="number">2</span>&#125;,<span class="function">()=&gt;</span>&#123;</span><br><span class="line">				<span class="built_in">console</span>.log(<span class="built_in">this</span>.state.count);<span class="comment">//3</span></span><br><span class="line">			&#125;)</span><br><span class="line">			<span class="built_in">this</span>.setState(&#123;<span class="attr">count</span>:<span class="built_in">this</span>.state.count+<span class="number">3</span>&#125;,<span class="function">()=&gt;</span>&#123;</span><br><span class="line">				<span class="built_in">console</span>.log(<span class="built_in">this</span>.state.count);<span class="comment">//6</span></span><br><span class="line">			&#125;)</span><br><span class="line">			<span class="built_in">console</span>.log(<span class="string">&#x27;12行的输出&#x27;</span>,<span class="built_in">this</span>.state.count); <span class="comment">//6</span></span><br><span class="line">		&#125;, <span class="number">100</span>);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="title">render</span>(<span class="params"></span>)</span> &#123;</span><br><span class="line">		<span class="keyword">return</span> (</span><br><span class="line">			<span class="xml"><span class="tag">&lt;<span class="name">div</span>&gt;</span></span></span><br><span class="line"><span class="xml">				<span class="tag">&lt;<span class="name">h1</span>&gt;</span>当前求和为：&#123;this.state.count&#125;<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span></span><br><span class="line"><span class="xml">				<span class="tag">&lt;<span class="name">button</span> <span class="attr">onClick</span>=<span class="string">&#123;this.add&#125;</span>&gt;</span>点我+1<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span></span><br><span class="line"><span class="xml">			<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line">		)</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>通过运行发现，成功绕开了合并逻辑，打印出了6。</p>
+<h3 id="3-总结："><a href="#3-总结：" class="headerlink" title="3.总结："></a>3.总结：</h3><p><strong>异步的情况：</strong><br>由React控制的事件处理函数，以及生命周期函数调用setState时表现为异步 。大部分开发中用到的都是React封装的事件，比如onChange、onClick、onTouchMove等（合成事件中），这些事件处理函数中的setState都是异步处理的。</p>
+<p><strong>同步的情况：</strong><br>React控制之外的事件中调用setState是同步更新的。比如原生js绑定的事件，setTimeout/setInterval，ajax，promise.then内等 React 无法掌控的 APIs情况下，setState是同步更新state的</p>
+<p><strong>对象形式</strong>：</p>
+<p>1.函数式的setState的简写方式(语法糖)</p>
+<p>2.批处理，对相同变量进行的多次处理会合并为一个，并以最后一次的处理结果为准</p>
+<p><strong>函数形式：</strong></p>
+<p>链式调用，React 会把我们更新 state 的函数加入到一个队列里面，然后，<strong>按照函数的顺序依次调用</strong>。同时，<strong>为每个函数传入 state 的前一个状态</strong></p>
+<p><strong>使用原则：</strong></p>
+<p>(1).如果新状态不依赖于原状态 ===&gt; 使用对象方式</p>
+<p>(2).如果新状态依赖于原状态 ===&gt; 使用函数方式</p>
+<p>(3).如果需要在setState()执行后获取最新的状态数据, 要在第二个callback函数中读取</p>
+
+    
+
+    
+
+    
+    <div class="declare"> 
+      <ul class="post-copyright">
+        <li>
+          <strong>本文作者：</strong>
+          white-Hang
+        </li>
+        <li>
+          <strong>本文链接：</strong>
+          <a href="https://white-hang.github.io/2021/10/19/react中的setState详解/" title="react中的setState详解" target="_blank">https://white-hang.github.io/2021/10/19/react中的setState详解/</a>
+        </li>
+        
+        <li>
+          <strong>版权声明： </strong>
           
+          本博客所有文章除特别声明外，均采用 <a href="https://github.com/JoeyBling/hexo-theme-yilia-plus/blob/master/LICENSE" rel="external nofollow" target="_blank">MIT</a> 许可协议。转载请注明出处！
+        </li>
+        
+      </ul>
+    </div>
+    
+
+  </div>
+  <div class="article-info article-info-index">
+    
+    
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -253,234 +343,78 @@
 		</ul>
 	</div>
 
-          
+    
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
+    
+
+    
+    <div class="clearfix"></div>
+  </div>
   </div>
 </article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/2021/10/18/react%E8%84%9A%E6%89%8B%E6%9E%B6%E9%85%8D%E7%BD%AE%E4%BB%A3%E7%90%86%E6%80%BB%E7%BB%93/" class="archive-article-date">
-        <time datetime="2021-10-18T15:18:44.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-10-18</time>
-</a>
 
+
+<nav id="article-nav">
+  
+  
+    <a href="/2021/10/18/react%E8%84%9A%E6%89%8B%E6%9E%B6%E9%85%8D%E7%BD%AE%E4%BB%A3%E7%90%86%E6%80%BB%E7%BB%93/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">react脚手架配置代理总结</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
+        
+        
+    </div>
+</aside>
+
+
+
+
+
+
+
+
+
+
+
   
-    <h1 itemprop="name">
-	
-	  <a class="archive-article-title" href="/2021/10/18/react%E8%84%9A%E6%89%8B%E6%9E%B6%E9%85%8D%E7%BD%AE%E4%BB%A3%E7%90%86%E6%80%BB%E7%BB%93/">react脚手架配置代理总结</a>
-	
-    </h1>
+  <div id="gitment-ctn"></div>
   
-
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">react</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
+    <!-- 中文 -->
+    <link rel="stylesheet" href="/lib/gitment.css">
+    <script src="/lib/gitment.js"></script>
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/2021/10/16/H5-VUE%E5%88%A9%E7%94%A8canvas%E5%AE%9E%E7%8E%B0%E6%89%8B%E6%9C%BA%E7%AD%BE%E5%90%8D%E5%B9%B6%E4%B8%94%E5%8F%AF%E6%97%8B%E8%BD%AC%E5%8A%9F%E8%83%BD/" class="archive-article-date">
-        <time datetime="2021-10-16T12:37:59.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-10-16</time>
-</a>
+  <script>
+    <!-- id: "react中的setState详解" -->
+    var gitment = new Gitment({
+      id: "20211019233908",
+      owner: 'white-Hang',
+      repo: 'white-Hang.github.io',
+      oauth: {
+        client_id: '9dffa4894c387f84afc9',
+        client_secret: '8a8c5ae7adeee0705e331e28d94d3e11a9efe314',
+      },
+    })
+    gitment.render('gitment-ctn')
+  </script>
 
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-	
-	  <a class="archive-article-title" href="/2021/10/16/H5-VUE%E5%88%A9%E7%94%A8canvas%E5%AE%9E%E7%8E%B0%E6%89%8B%E6%9C%BA%E7%AD%BE%E5%90%8D%E5%B9%B6%E4%B8%94%E5%8F%AF%E6%97%8B%E8%BD%AC%E5%8A%9F%E8%83%BD/">H5 VUE利用canvas实现手机签名并且可旋转功能</a>
-	
-    </h1>
+
   
 
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">h5</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/2021/10/16/%E5%89%8D%E7%AB%AF%E5%A4%84%E7%90%86%E5%90%8E%E5%8F%B0%E4%BC%A0%E8%BF%87%E6%9D%A5%E7%9A%84%E4%BA%8C%E8%BF%9B%E5%88%B6%E6%B5%81%E8%BF%9B%E8%A1%8C%E4%B8%8B%E8%BD%BD%EF%BC%8C%E5%B9%B6%E5%A4%84%E7%90%86%E4%B9%B1%E7%A0%81/" class="archive-article-date">
-        <time datetime="2021-10-16T12:16:26.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-10-16</time>
-</a>
-
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-	
-	  <a class="archive-article-title" href="/2021/10/16/%E5%89%8D%E7%AB%AF%E5%A4%84%E7%90%86%E5%90%8E%E5%8F%B0%E4%BC%A0%E8%BF%87%E6%9D%A5%E7%9A%84%E4%BA%8C%E8%BF%9B%E5%88%B6%E6%B5%81%E8%BF%9B%E8%A1%8C%E4%B8%8B%E8%BD%BD%EF%BC%8C%E5%B9%B6%E5%A4%84%E7%90%86%E4%B9%B1%E7%A0%81/">前端处理后台传过来的二进制流进行下载，并处理乱码</a>
-	
-    </h1>
-  
-
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">vue</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/2021/10/13/vue%E5%AE%9E%E7%8E%B0%E7%A7%BB%E5%8A%A8%E7%AB%AF%E9%80%82%E9%85%8D%E6%96%B9%E6%A1%88-%EF%BC%88amfe-flexible%E5%92%8Cpostcss-pxtorem%E7%BB%93%E5%90%88%EF%BC%89/" class="archive-article-date">
-        <time datetime="2021-10-13T14:21:41.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-10-13</time>
-</a>
-
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-	
-	  <a class="archive-article-title" href="/2021/10/13/vue%E5%AE%9E%E7%8E%B0%E7%A7%BB%E5%8A%A8%E7%AB%AF%E9%80%82%E9%85%8D%E6%96%B9%E6%A1%88-%EF%BC%88amfe-flexible%E5%92%8Cpostcss-pxtorem%E7%BB%93%E5%90%88%EF%BC%89/">vue实现移动端适配方案 （amfe-flexible和postcss-pxtorem结合）</a>
-	
-    </h1>
-  
-
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">h5</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/2021/10/02/%E5%8F%98%E9%87%8F%E6%8F%90%E5%8D%87%E5%92%8C%E5%87%BD%E6%95%B0%E6%8F%90%E5%8D%87/" class="archive-article-date">
-        <time datetime="2021-10-02T12:13:08.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-10-02</time>
-</a>
-
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-	
-	  <a class="archive-article-title" href="/2021/10/02/%E5%8F%98%E9%87%8F%E6%8F%90%E5%8D%87%E5%92%8C%E5%87%BD%E6%95%B0%E6%8F%90%E5%8D%87/">变量提升和函数提升</a>
-	
-    </h1>
-  
-
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">js</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
-
-    
 
 
           </div>
@@ -521,8 +455,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,
