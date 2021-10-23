@@ -6,22 +6,25 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://white-hang.github.io">
-  <title>react脚手架配置代理总结 | Hexo</title>
+  <title>react三大属性之ref | Hexo</title>
   <meta name="generator" content="hexo-theme-yilia-plus">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
-  <meta name="description" content="方法一在package.json中追加如下配置 1&quot;proxy&quot;:&quot;http:&#x2F;&#x2F;localhost:5000&quot;  说明：  优点：配置简单，前端请求资源时可以不加任何前缀。  缺点：不能配置多个代理。  工作方式：上述方式配置代理，当请求了3000不存在的资源时，那么该请求会转发给5000 （优先匹配前端资源）   方法二第一步：创建代理配置文件在src下">
+  <meta name="description" content="ref是React提供的用来操纵React组件实例或者DOM元素的接口。 1.字符串形式的ref类似于vue中的ref绑定方式，可以通过this.refs.绑定的ref的名字获取到节点dom 注意的是 这种方式已经不被最新版的react推荐使用，有可能会在未来版本中遗弃 代码展示： 12345678910111213141516class Demo extends React.Component&amp;">
 <meta property="og:type" content="article">
-<meta property="og:title" content="react脚手架配置代理总结">
-<meta property="og:url" content="https://white-hang.github.io/2021/10/18/react%E8%84%9A%E6%89%8B%E6%9E%B6%E9%85%8D%E7%BD%AE%E4%BB%A3%E7%90%86%E6%80%BB%E7%BB%93/index.html">
+<meta property="og:title" content="react三大属性之ref">
+<meta property="og:url" content="https://white-hang.github.io/2021/10/23/react%E4%B8%89%E5%A4%A7%E5%B1%9E%E6%80%A7%E4%B9%8Bref/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="方法一在package.json中追加如下配置 1&quot;proxy&quot;:&quot;http:&#x2F;&#x2F;localhost:5000&quot;  说明：  优点：配置简单，前端请求资源时可以不加任何前缀。  缺点：不能配置多个代理。  工作方式：上述方式配置代理，当请求了3000不存在的资源时，那么该请求会转发给5000 （优先匹配前端资源）   方法二第一步：创建代理配置文件在src下">
+<meta property="og:description" content="ref是React提供的用来操纵React组件实例或者DOM元素的接口。 1.字符串形式的ref类似于vue中的ref绑定方式，可以通过this.refs.绑定的ref的名字获取到节点dom 注意的是 这种方式已经不被最新版的react推荐使用，有可能会在未来版本中遗弃 代码展示： 12345678910111213141516class Demo extends React.Component&amp;">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2021-10-18T15:18:44.000Z">
-<meta property="article:modified_time" content="2021-10-18T15:19:28.735Z">
+<meta property="og:image" content="https://white-hang.github.io/assets/react/WechatIMG67.png">
+<meta property="og:image" content="https://white-hang.github.io/assets/react/WechatIMG66.png">
+<meta property="article:published_time" content="2021-10-23T11:55:03.000Z">
+<meta property="article:modified_time" content="2021-10-23T12:04:06.772Z">
 <meta property="article:author" content="white-Hang">
 <meta property="article:tag" content="react">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://white-hang.github.io/assets/react/WechatIMG67.png">
   
     <link rel="alternative" href="/atom.xml" title="Hexo" type="application/atom+xml">
   
@@ -212,14 +215,14 @@
               class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-react脚手架配置代理总结" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-react三大属性之ref" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
   
   
     <h1 class="article-title" itemprop="name">
-      react脚手架配置代理总结
+      react三大属性之ref
     </h1>
   
 
@@ -231,8 +234,8 @@
               <i class="icon-smile icon"></i> 阅读数：<span id="busuanzi_value_page_pv"></span>次
         </span>
 
-<a href="/2021/10/18/react%E8%84%9A%E6%89%8B%E6%9E%B6%E9%85%8D%E7%BD%AE%E4%BB%A3%E7%90%86%E6%80%BB%E7%BB%93/" class="archive-article-date">
-        <time datetime="2021-10-18T15:18:44.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-10-18</time>
+<a href="/2021/10/23/react%E4%B8%89%E5%A4%A7%E5%B1%9E%E6%80%A7%E4%B9%8Bref/" class="archive-article-date">
+        <time datetime="2021-10-23T11:55:03.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-10-23</time>
 </a>
 
   
@@ -245,7 +248,7 @@
       <!-- 百度字体平台:http://fontstore.baidu.com/static/editor/index.html -->
       <i class="icon-statistics"></i>
       <span class="post-meta-item-text"> 字数统计:</span>
-      <span class="post-count">455字</span>
+      <span class="post-count">1.1k字</span>
     </span>
   </span>
 
@@ -254,7 +257,7 @@
     <span class="post-meta-item-icon">
       <i class="icon-book icon"></i>
       <span class="post-meta-item-text"> 阅读时长≈</span>
-      <span class="post-count">1分</span>
+      <span class="post-count">4分</span>
     </span>
   </span>
 </div>
@@ -265,32 +268,37 @@
   
   <div class="article-entry" itemprop="articleBody">
     
-    <h3 id="方法一"><a href="#方法一" class="headerlink" title="方法一"></a>方法一</h3><p>在package.json中追加如下配置</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">&quot;proxy&quot;</span>:<span class="string">&quot;http://localhost:5000&quot;</span></span><br></pre></td></tr></table></figure>
+    <p>ref是React提供的用来操纵React组件实例或者DOM元素的接口。</p>
+<h3 id="1-字符串形式的ref"><a href="#1-字符串形式的ref" class="headerlink" title="1.字符串形式的ref"></a>1.字符串形式的ref</h3><p>类似于vue中的ref绑定方式，可以通过this.refs.绑定的ref的名字获取到节点dom</p>
+<p>注意的是 这种方式已经不被最新版的react推荐使用，有可能会在未来版本中遗弃</p>
+<p>代码展示：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Demo</span> <span class="keyword">extends</span> <span class="title">React</span>.<span class="title">Component</span></span>&#123;</span><br><span class="line">    <span class="comment">//展示左侧输入框的数据</span></span><br><span class="line">    showData = <span class="function">()=&gt;</span>&#123;</span><br><span class="line">        <span class="keyword">const</span> &#123;input1&#125; = <span class="built_in">this</span>.refs</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="built_in">this</span>.refs,input1,<span class="string">&#x27;refs&#x27;</span>)</span><br><span class="line">        alert(input1.value)</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="title">render</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="keyword">return</span>(</span><br><span class="line">            <span class="xml"><span class="tag">&lt;<span class="name">div</span>&gt;</span></span></span><br><span class="line"><span class="xml">                <span class="tag">&lt;<span class="name">input</span> <span class="attr">ref</span>=<span class="string">&quot;input1&quot;</span> <span class="attr">type</span>=<span class="string">&quot;text&quot;</span> <span class="attr">placeholder</span>=<span class="string">&quot;点击按钮提示数据&quot;</span>/&gt;</span></span></span><br><span class="line"><span class="xml">                <span class="tag">&lt;<span class="name">button</span> <span class="attr">onClick</span>=<span class="string">&#123;this.showData&#125;</span>&gt;</span>点我提示左侧的数据<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span></span><br><span class="line"><span class="xml">            <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line">        )</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<p>说明：</p>
-<ol>
-<li><p>优点：配置简单，前端请求资源时可以不加任何前缀。</p>
-</li>
-<li><p>缺点：不能配置多个代理。</p>
-</li>
-<li><p>工作方式：上述方式配置代理，当请求了3000不存在的资源时，那么该请求会转发给5000 （优先匹配前端资源）</p>
-</li>
-</ol>
-<h3 id="方法二"><a href="#方法二" class="headerlink" title="方法二"></a>方法二</h3><h4 id="第一步：创建代理配置文件"><a href="#第一步：创建代理配置文件" class="headerlink" title="第一步：创建代理配置文件"></a>第一步：创建代理配置文件</h4><p>在src下创建配置文件：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">setupProxy.js</span><br></pre></td></tr></table></figure>
+<span id="more"></span>
+<h3 id="2-回调函数形式的ref"><a href="#2-回调函数形式的ref" class="headerlink" title="2.回调函数形式的ref"></a>2.回调函数形式的ref</h3><p>使用这种方法可以将子组件暴露给父组件以使得父组件能够调用子组件的方法</p>
+<p>代码展示如下：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Demo</span> <span class="keyword">extends</span> <span class="title">React</span>.<span class="title">Component</span></span>&#123;</span><br><span class="line">    <span class="comment">//展示左侧输入框的数据</span></span><br><span class="line">    showData = <span class="function">()=&gt;</span>&#123;</span><br><span class="line">        <span class="keyword">const</span> &#123;input1&#125; = <span class="built_in">this</span></span><br><span class="line">        <span class="built_in">console</span>.log(<span class="built_in">this</span>,<span class="built_in">this</span>.input1,input1,<span class="string">&#x27;this&#x27;</span>)</span><br><span class="line">        alert(input1.value)</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="title">render</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="keyword">return</span>(</span><br><span class="line">            <span class="xml"><span class="tag">&lt;<span class="name">div</span>&gt;</span></span></span><br><span class="line"><span class="xml">                <span class="tag">&lt;<span class="name">input</span> <span class="attr">ref</span>=<span class="string">&#123;c</span> =&gt;</span> this.input1 = c &#125; type=&quot;text&quot; placeholder=&quot;点击按钮提示数据&quot;/&gt;</span></span><br><span class="line"><span class="xml">                <span class="tag">&lt;<span class="name">button</span> <span class="attr">onClick</span>=<span class="string">&#123;this.showData&#125;</span>&gt;</span>点我提示左侧的数据<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span></span><br><span class="line"><span class="xml">            <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line">        )</span><br><span class="line">      &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<h4 id="第二步编写setupProxy-js配置具体代理规则："><a href="#第二步编写setupProxy-js配置具体代理规则：" class="headerlink" title="第二步编写setupProxy.js配置具体代理规则："></a>第二步编写setupProxy.js配置具体代理规则：</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> proxy = <span class="built_in">require</span>(<span class="string">&#x27;http-proxy-middleware&#x27;</span>)</span><br><span class="line">   </span><br><span class="line">   <span class="built_in">module</span>.exports = <span class="function"><span class="keyword">function</span>(<span class="params">app</span>) </span>&#123;</span><br><span class="line">     app.use(</span><br><span class="line">       proxy(<span class="string">&#x27;/api1&#x27;</span>, &#123;  <span class="comment">//api1是需要转发的请求(所有带有/api1前缀的请求都会转发给5000)</span></span><br><span class="line">         <span class="attr">target</span>: <span class="string">&#x27;http://localhost:5000&#x27;</span>, <span class="comment">//配置转发目标地址(能返回数据的服务器地址),如果是域名需要额外添加一个参数changeOrigin: true，否则会代理失败。</span></span><br><span class="line">         <span class="attr">changeOrigin</span>: <span class="literal">true</span>, <span class="comment">//控制服务器接收到的请求头中host字段的值,这个参数可以让target参数是域名</span></span><br><span class="line">         <span class="comment">/*</span></span><br><span class="line"><span class="comment">         	changeOrigin设置为true时，服务器收到的请求头中的host为：localhost:5000</span></span><br><span class="line"><span class="comment">         	changeOrigin设置为false时，服务器收到的请求头中的host为：localhost:3000</span></span><br><span class="line"><span class="comment">         	changeOrigin默认值为false，但我们一般将changeOrigin值设为true</span></span><br><span class="line"><span class="comment">         */</span></span><br><span class="line">         <span class="attr">pathRewrite</span>: &#123;<span class="string">&#x27;^/api1&#x27;</span>: <span class="string">&#x27;&#x27;</span>&#125; <span class="comment">//去除请求前缀，保证交给后台服务器的是正常请求地址(必须配置),比如访问的API路径：/api1/users,设置pathRewrite: &#123;&#x27;^/api1&#x27; : &#x27;&#x27;&#125;后，最终代理访问的路径：http://localhost:5000/users</span></span><br><span class="line">       &#125;),</span><br><span class="line">       proxy(<span class="string">&#x27;/api2&#x27;</span>, &#123; </span><br><span class="line">         <span class="attr">target</span>: <span class="string">&#x27;http://localhost:5001&#x27;</span>,</span><br><span class="line">         <span class="attr">changeOrigin</span>: <span class="literal">true</span>,</span><br><span class="line">         <span class="attr">pathRewrite</span>: &#123;<span class="string">&#x27;^/api2&#x27;</span>: <span class="string">&#x27;&#x27;</span>&#125;</span><br><span class="line">       &#125;)</span><br><span class="line">     )</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+<p>这里提一下，官方文档说，以内联方式定义的回调形式的ref在更新的会被调用两次</p>
+<p><img src="/assets/react/WechatIMG67.png" alt="执行结果"></p>
+<p>如下代码所示：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Demo</span> <span class="keyword">extends</span> <span class="title">React</span>.<span class="title">Component</span></span>&#123;</span><br><span class="line"></span><br><span class="line">			state = &#123;<span class="attr">isHot</span>:<span class="literal">false</span>&#125;</span><br><span class="line"></span><br><span class="line">			showInfo = <span class="function">()=&gt;</span>&#123;</span><br><span class="line">				<span class="keyword">const</span> &#123;input1&#125; = <span class="built_in">this</span></span><br><span class="line">				alert(input1.value)</span><br><span class="line">			&#125;</span><br><span class="line"></span><br><span class="line">			changeWeather = <span class="function">()=&gt;</span>&#123;</span><br><span class="line">				<span class="comment">//获取原来的状态</span></span><br><span class="line">				<span class="keyword">const</span> &#123;isHot&#125; = <span class="built_in">this</span>.state</span><br><span class="line">				<span class="comment">//更新状态</span></span><br><span class="line">				<span class="built_in">this</span>.setState(&#123;<span class="attr">isHot</span>:!isHot&#125;)</span><br><span class="line">			&#125;</span><br><span class="line"></span><br><span class="line">			saveInput = <span class="function">(<span class="params">c</span>)=&gt;</span>&#123;</span><br><span class="line">				<span class="built_in">this</span>.input1 = c;</span><br><span class="line">				<span class="built_in">console</span>.log(<span class="string">&#x27;@&#x27;</span>,c,<span class="built_in">this</span>.input1.value);</span><br><span class="line">			&#125;</span><br><span class="line"></span><br><span class="line">			<span class="function"><span class="title">render</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">				<span class="keyword">const</span> &#123;isHot&#125; = <span class="built_in">this</span>.state</span><br><span class="line">				<span class="keyword">return</span>(</span><br><span class="line">					<span class="xml"><span class="tag">&lt;<span class="name">div</span>&gt;</span></span></span><br><span class="line"><span class="xml">						<span class="tag">&lt;<span class="name">h2</span>&gt;</span>今天天气很&#123;isHot ? &#x27;炎热&#x27;:&#x27;凉爽&#x27;&#125;<span class="tag">&lt;/<span class="name">h2</span>&gt;</span></span></span><br><span class="line"><span class="xml">						<span class="tag">&lt;<span class="name">input</span> <span class="attr">ref</span>=<span class="string">&#123;(c)</span>=&gt;</span>&#123;this.input1 = c;console.log(&#x27;@12&#x27;,c);&#125;&#125; type=&quot;text&quot;/&gt;<span class="tag">&lt;<span class="name">br</span>/&gt;</span><span class="tag">&lt;<span class="name">br</span>/&gt;</span></span></span><br><span class="line"><span class="xml">						<span class="tag">&lt;<span class="name">input</span> <span class="attr">ref</span>=<span class="string">&#123;this.saveInput&#125;</span> <span class="attr">type</span>=<span class="string">&quot;text&quot;</span>/&gt;</span><span class="tag">&lt;<span class="name">br</span>/&gt;</span><span class="tag">&lt;<span class="name">br</span>/&gt;</span></span></span><br><span class="line"><span class="xml">						<span class="tag">&lt;<span class="name">button</span> <span class="attr">onClick</span>=<span class="string">&#123;this.showInfo&#125;</span>&gt;</span>点我提示输入的数据<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span></span><br><span class="line"><span class="xml">						<span class="tag">&lt;<span class="name">button</span> <span class="attr">onClick</span>=<span class="string">&#123;this.changeWeather&#125;</span>&gt;</span>点我切换天气<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span></span><br><span class="line"><span class="xml">					<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line">				)</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br></pre></td></tr></table></figure>
+
+<p>点击切换天气，触发render更新，打印出来的结果如图所示</p>
+<p><img src="/assets/react/WechatIMG66.png" alt="执行结果"></p>
+<p>结果显示内联写法确实打印两次，但是class里定义的函数写法就不存在这种问题。</p>
+<h3 id="3-React-createRef-的使用"><a href="#3-React-createRef-的使用" class="headerlink" title="3.React.createRef()的使用"></a>3.React.createRef()的使用</h3><p>React.createRef调用后可以返回一个容器，该容器可以存储被ref所标识的节点,该容器是“专人专用”的</p>
+<p>代码如下：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Demo</span> <span class="keyword">extends</span> <span class="title">React</span>.<span class="title">Component</span></span>&#123;</span><br><span class="line">			myRef = React.createRef()</span><br><span class="line">			myRef2 = React.createRef()</span><br><span class="line">			<span class="comment">//展示左侧输入框的数据</span></span><br><span class="line">			showData = <span class="function">()=&gt;</span>&#123;</span><br><span class="line">				<span class="built_in">console</span>.log(<span class="built_in">this</span>.myRef.current,<span class="string">&#x27;myref&#x27;</span>)</span><br><span class="line">				alert(<span class="built_in">this</span>.myRef.current.value);</span><br><span class="line">			&#125;</span><br><span class="line">			<span class="comment">//展示右侧输入框的数据</span></span><br><span class="line">			showData2 = <span class="function">()=&gt;</span>&#123;</span><br><span class="line">				alert(<span class="built_in">this</span>.myRef2.current.value);</span><br><span class="line">			&#125;</span><br><span class="line">			<span class="function"><span class="title">render</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">				<span class="keyword">return</span>(</span><br><span class="line">					<span class="xml"><span class="tag">&lt;<span class="name">div</span>&gt;</span></span></span><br><span class="line"><span class="xml">						<span class="tag">&lt;<span class="name">input</span> <span class="attr">ref</span>=<span class="string">&#123;this.myRef&#125;</span> <span class="attr">type</span>=<span class="string">&quot;text&quot;</span> <span class="attr">placeholder</span>=<span class="string">&quot;点击按钮提示数据&quot;</span>/&gt;</span><span class="symbol">&amp;nbsp;</span></span></span><br><span class="line"><span class="xml">						<span class="tag">&lt;<span class="name">button</span> <span class="attr">onClick</span>=<span class="string">&#123;this.showData&#125;</span>&gt;</span>点我提示左侧的数据<span class="tag">&lt;/<span class="name">button</span>&gt;</span><span class="symbol">&amp;nbsp;</span></span></span><br><span class="line"><span class="xml">						<span class="tag">&lt;<span class="name">input</span> <span class="attr">onBlur</span>=<span class="string">&#123;this.showData2&#125;</span> <span class="attr">ref</span>=<span class="string">&#123;this.myRef2&#125;</span> <span class="attr">type</span>=<span class="string">&quot;text&quot;</span> <span class="attr">placeholder</span>=<span class="string">&quot;失去焦点提示数据&quot;</span>/&gt;</span><span class="symbol">&amp;nbsp;</span></span></span><br><span class="line"><span class="xml">					<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line">				)</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br></pre></td></tr></table></figure>
+
+<p>想信大家都发现了，上述三种方法都是在class类式组件中使用，这是因为用class定义的组件由于可以获取组件实例，因此ref函数会在组件挂载的时候将实例传递给组件，但是使用function定义的函数并没有实例。那么函数式组件就不能获取到dom元素了吗？答案肯定是否定的，接下来介绍函数组件获取dom元素方法。</p>
+<h3 id="4-React-useRef"><a href="#4-React-useRef" class="headerlink" title="4.React.useRef()"></a>4.React.useRef()</h3><p>(1). Ref Hook可以在函数组件中存储/查找组件内的标签或任意其它数据</p>
+<p>(2). 语法: const refContainer = useRef()</p>
+<p>(3). 作用:保存标签对象,功能与React.createRef()一样</p>
+<p>代码展示如下：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Demo</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">const</span> myRef = React.useRef()</span><br><span class="line">     <span class="comment">//提示输入的回调</span></span><br><span class="line">    <span class="keyword">const</span> show = <span class="function">() =&gt;</span> &#123;</span><br><span class="line">        <span class="built_in">console</span>.log(myRef.current, <span class="string">&#x27;myRef&#x27;</span>)</span><br><span class="line">        alert(myRef.current.value)</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span>(</span><br><span class="line">        <span class="xml"><span class="tag">&lt;<span class="name">div</span>&gt;</span></span></span><br><span class="line"><span class="xml">            <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;text&quot;</span> <span class="attr">ref</span>=<span class="string">&#123;myRef&#125;</span> /&gt;</span></span></span><br><span class="line"><span class="xml">            <span class="tag">&lt;<span class="name">button</span> <span class="attr">onClick</span>=<span class="string">&#123;show&#125;</span>&gt;</span>点我提示数据<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span></span><br><span class="line"><span class="xml">        <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line">    )</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 
-
-<p>说明：</p>
-<ol>
-<li><p>优点：可以配置多个代理，可以灵活的控制请求是否走代理。</p>
-</li>
-<li><p>缺点：配置繁琐，前端请求资源时必须加前缀。</p>
-</li>
-</ol>
 
     
 
@@ -305,7 +313,7 @@
         </li>
         <li>
           <strong>本文链接：</strong>
-          <a href="https://white-hang.github.io/2021/10/18/react脚手架配置代理总结/" title="react脚手架配置代理总结" target="_blank">https://white-hang.github.io/2021/10/18/react脚手架配置代理总结/</a>
+          <a href="https://white-hang.github.io/2021/10/23/react三大属性之ref/" title="react三大属性之ref" target="_blank">https://white-hang.github.io/2021/10/23/react三大属性之ref/</a>
         </li>
         
         <li>
@@ -346,18 +354,18 @@
 
 <nav id="article-nav">
   
-    <a href="/2021/10/19/react%E4%B8%AD%E7%9A%84setState%E8%AF%A6%E8%A7%A3/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2021/10/23/react%E4%B8%AD%E7%9A%84%E8%B7%AF%E7%94%B1%E4%BC%A0%E5%8F%82%E6%96%B9%E5%BC%8F%E6%80%BB%E7%BB%93/" id="article-nav-newer" class="article-nav-link-wrap">
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
-          react中的setState详解
+          react中的路由传参方式总结
         
       </div>
     </a>
   
   
-    <a href="/2021/10/16/H5-VUE%E5%88%A9%E7%94%A8canvas%E5%AE%9E%E7%8E%B0%E6%89%8B%E6%9C%BA%E7%AD%BE%E5%90%8D%E5%B9%B6%E4%B8%94%E5%8F%AF%E6%97%8B%E8%BD%AC%E5%8A%9F%E8%83%BD/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">H5 VUE利用canvas实现手机签名并且可旋转功能</div>
+    <a href="/2021/10/23/react%E4%B8%89%E5%A4%A7%E5%B1%9E%E6%80%A7%E4%B9%8Bprops%E8%AF%A6%E8%A7%A3/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">react三大属性之props详解</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -398,9 +406,9 @@
     <script src="/lib/gitment.js"></script>
   
   <script>
-    <!-- id: "react脚手架配置代理总结" -->
+    <!-- id: "react三大属性之ref" -->
     var gitment = new Gitment({
-      id: "20211018231844",
+      id: "20211023195503",
       owner: 'white-Hang',
       repo: 'white-Hang.github.io',
       oauth: {

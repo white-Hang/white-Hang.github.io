@@ -214,6 +214,187 @@
             
 
   
+    <article id="post-react中的路由传参方式总结" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+  
+  
+    <h1 itemprop="name">
+	
+	  <a class="article-title" href="/2021/10/23/react%E4%B8%AD%E7%9A%84%E8%B7%AF%E7%94%B1%E4%BC%A0%E5%8F%82%E6%96%B9%E5%BC%8F%E6%80%BB%E7%BB%93/">react中的路由传参方式总结</a>
+	
+    </h1>
+  
+
+
+  
+  
+<a href="/2021/10/23/react%E4%B8%AD%E7%9A%84%E8%B7%AF%E7%94%B1%E4%BC%A0%E5%8F%82%E6%96%B9%E5%BC%8F%E6%80%BB%E7%BB%93/" class="archive-article-date">
+        <time datetime="2021-10-23T12:05:04.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-10-23</time>
+</a>
+
+  
+  
+    
+
+  
+  </header>
+  
+  <div class="article-entry" itemprop="articleBody">
+    
+    <h3 id="1-params传参-刷新页面后参数不消失，参数会在地址栏显示"><a href="#1-params传参-刷新页面后参数不消失，参数会在地址栏显示" class="headerlink" title="1.params传参(刷新页面后参数不消失，参数会在地址栏显示)"></a>1.params传参(刷新页面后参数不消失，参数会在地址栏显示)</h3><p>代码展示：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* 向路由组件传递params参数 */</span></span><br><span class="line"><span class="comment">//声明式路由跳转：</span></span><br><span class="line">&lt;Link to=&#123;<span class="string">`/home/message/detail/<span class="subst">$&#123;id&#125;</span>/<span class="subst">$&#123;title&#125;</span>`</span>&#125;&gt;&#123;title&#125;&lt;/Link&gt;</span><br><span class="line"><span class="comment">//或</span></span><br><span class="line"><span class="xml"><span class="tag">&lt;<span class="name">Link</span> <span class="attr">to</span>=<span class="string">&#123;&#123;pathname:</span>`/<span class="attr">home</span>/<span class="attr">message</span>/<span class="attr">detail</span>/$&#123;<span class="attr">id</span>&#125;/$&#123;<span class="attr">title</span>&#125;`&#125;&#125;&gt;</span>&#123;title&#125;<span class="tag">&lt;/<span class="name">Link</span>&gt;</span></span></span><br><span class="line"><span class="comment">//编程式路由跳转：</span></span><br><span class="line"><span class="built_in">this</span>.props.history.push(<span class="string">`/home/message/detail/<span class="subst">$&#123;id&#125;</span>/<span class="subst">$&#123;title&#125;</span>`</span>)</span><br><span class="line"><span class="comment">//或</span></span><br><span class="line"><span class="built_in">this</span>.props.history.push(&#123;<span class="attr">pathname</span>:<span class="string">`/home/message/detail/<span class="subst">$&#123;id&#125;</span>/<span class="subst">$&#123;title&#125;</span>`</span>&#125;)</span><br><span class="line"><span class="comment">/* 声明接收params参数 */</span></span><br><span class="line">&lt;Route path=<span class="string">&quot;/home/message/detail/:id/:title&quot;</span> component=&#123;Detail&#125;/&gt;</span><br><span class="line"><span class="comment">// 接收params参数</span></span><br><span class="line"><span class="keyword">const</span> &#123;id,title&#125; = <span class="built_in">this</span>.props.match.params</span><br></pre></td></tr></table></figure>
+    
+    <a class="article-more-a" href="/2021/10/23/react%E4%B8%AD%E7%9A%84%E8%B7%AF%E7%94%B1%E4%BC%A0%E5%8F%82%E6%96%B9%E5%BC%8F%E6%80%BB%E7%BB%93/#more">more >></a>
+    
+    
+
+    
+
+    
+
+  </div>
+  <div class="article-info article-info-index">
+    
+    
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">react</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+    
+
+    
+    <p class="article-more-link">
+      <a class="article-more-a" href="/2021/10/23/react%E4%B8%AD%E7%9A%84%E8%B7%AF%E7%94%B1%E4%BC%A0%E5%8F%82%E6%96%B9%E5%BC%8F%E6%80%BB%E7%BB%93/">展开全文 >></a>
+    </p>
+    
+
+    
+    <div class="clearfix"></div>
+  </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-react三大属性之ref" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+  
+  
+    <h1 itemprop="name">
+	
+	  <a class="article-title" href="/2021/10/23/react%E4%B8%89%E5%A4%A7%E5%B1%9E%E6%80%A7%E4%B9%8Bref/">react三大属性之ref</a>
+	
+    </h1>
+  
+
+
+  
+  
+<a href="/2021/10/23/react%E4%B8%89%E5%A4%A7%E5%B1%9E%E6%80%A7%E4%B9%8Bref/" class="archive-article-date">
+        <time datetime="2021-10-23T11:55:03.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-10-23</time>
+</a>
+
+  
+  
+    
+
+  
+  </header>
+  
+  <div class="article-entry" itemprop="articleBody">
+    
+    <p>ref是React提供的用来操纵React组件实例或者DOM元素的接口。</p>
+<h3 id="1-字符串形式的ref"><a href="#1-字符串形式的ref" class="headerlink" title="1.字符串形式的ref"></a>1.字符串形式的ref</h3><p>类似于vue中的ref绑定方式，可以通过this.refs.绑定的ref的名字获取到节点dom</p>
+<p>注意的是 这种方式已经不被最新版的react推荐使用，有可能会在未来版本中遗弃</p>
+<p>代码展示：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Demo</span> <span class="keyword">extends</span> <span class="title">React</span>.<span class="title">Component</span></span>&#123;</span><br><span class="line">    <span class="comment">//展示左侧输入框的数据</span></span><br><span class="line">    showData = <span class="function">()=&gt;</span>&#123;</span><br><span class="line">        <span class="keyword">const</span> &#123;input1&#125; = <span class="built_in">this</span>.refs</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="built_in">this</span>.refs,input1,<span class="string">&#x27;refs&#x27;</span>)</span><br><span class="line">        alert(input1.value)</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="title">render</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="keyword">return</span>(</span><br><span class="line">            <span class="xml"><span class="tag">&lt;<span class="name">div</span>&gt;</span></span></span><br><span class="line"><span class="xml">                <span class="tag">&lt;<span class="name">input</span> <span class="attr">ref</span>=<span class="string">&quot;input1&quot;</span> <span class="attr">type</span>=<span class="string">&quot;text&quot;</span> <span class="attr">placeholder</span>=<span class="string">&quot;点击按钮提示数据&quot;</span>/&gt;</span></span></span><br><span class="line"><span class="xml">                <span class="tag">&lt;<span class="name">button</span> <span class="attr">onClick</span>=<span class="string">&#123;this.showData&#125;</span>&gt;</span>点我提示左侧的数据<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span></span><br><span class="line"><span class="xml">            <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line">        )</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+    
+    <a class="article-more-a" href="/2021/10/23/react%E4%B8%89%E5%A4%A7%E5%B1%9E%E6%80%A7%E4%B9%8Bref/#more">more >></a>
+    
+    
+
+    
+
+    
+
+  </div>
+  <div class="article-info article-info-index">
+    
+    
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">react</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+    
+
+    
+    <p class="article-more-link">
+      <a class="article-more-a" href="/2021/10/23/react%E4%B8%89%E5%A4%A7%E5%B1%9E%E6%80%A7%E4%B9%8Bref/">展开全文 >></a>
+    </p>
+    
+
+    
+    <div class="clearfix"></div>
+  </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-react三大属性之props详解" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -994,213 +1175,6 @@
 
 
   
-    <article id="post-变量提升和函数提升" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-  
-  
-    <h1 itemprop="name">
-	
-	  <a class="article-title" href="/2021/10/02/%E5%8F%98%E9%87%8F%E6%8F%90%E5%8D%87%E5%92%8C%E5%87%BD%E6%95%B0%E6%8F%90%E5%8D%87/">变量提升和函数提升</a>
-	
-    </h1>
-  
-
-
-  
-  
-<a href="/2021/10/02/%E5%8F%98%E9%87%8F%E6%8F%90%E5%8D%87%E5%92%8C%E5%87%BD%E6%95%B0%E6%8F%90%E5%8D%87/" class="archive-article-date">
-        <time datetime="2021-10-02T12:13:08.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-10-02</time>
-</a>
-
-  
-  
-    
-
-  
-  </header>
-  
-  <div class="article-entry" itemprop="articleBody">
-    
-    <h2 id="变量提升"><a href="#变量提升" class="headerlink" title="变量提升"></a>变量提升</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">a = <span class="number">2</span>;</span><br><span class="line"><span class="keyword">var</span> a;</span><br><span class="line"><span class="built_in">console</span>.log(a);<span class="comment">//2</span></span><br></pre></td></tr></table></figure>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">console</span>.log(a);<span class="comment">//undefined</span></span><br><span class="line"><span class="keyword">var</span> a = <span class="number">2</span>;</span><br></pre></td></tr></table></figure>
-<p>这里当你看到 var a = 2;时，可能会认为这是一个声明，但javascript实际上会将其看成两个声明：var a;和a = 2;.第一个定义声明是在编译阶段进行的，第二个赋值声明会被留在原地等待执行阶段。</p>
-<p>第一个代码片段会被以如下形式进行处理：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a;</span><br><span class="line">a = <span class="number">2</span>;</span><br><span class="line"><span class="built_in">console</span>.log(a);<span class="comment">//2</span></span><br></pre></td></tr></table></figure>
-<p>第二个代码片段则是按照以下流程处理的：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a;</span><br><span class="line"><span class="built_in">console</span>.log(a);<span class="comment">//undefined</span></span><br><span class="line">a = <span class="number">2</span>;</span><br></pre></td></tr></table></figure>
-
-<p>只有声明本身会被提升，而赋值或其他运行逻辑会留在原地</p>
-    
-    <a class="article-more-a" href="/2021/10/02/%E5%8F%98%E9%87%8F%E6%8F%90%E5%8D%87%E5%92%8C%E5%87%BD%E6%95%B0%E6%8F%90%E5%8D%87/#more">more >></a>
-    
-    
-
-    
-
-    
-
-  </div>
-  <div class="article-info article-info-index">
-    
-    
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">js</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-    
-
-    
-    <p class="article-more-link">
-      <a class="article-more-a" href="/2021/10/02/%E5%8F%98%E9%87%8F%E6%8F%90%E5%8D%87%E5%92%8C%E5%87%BD%E6%95%B0%E6%8F%90%E5%8D%87/">展开全文 >></a>
-    </p>
-    
-
-    
-    <div class="clearfix"></div>
-  </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-闭包和作用域链" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-  
-  
-    <h1 itemprop="name">
-	
-	  <a class="article-title" href="/2021/09/24/%E9%97%AD%E5%8C%85%E5%92%8C%E4%BD%9C%E7%94%A8%E5%9F%9F%E9%93%BE/">闭包和作用域链</a>
-	
-    </h1>
-  
-
-
-  
-  
-<a href="/2021/09/24/%E9%97%AD%E5%8C%85%E5%92%8C%E4%BD%9C%E7%94%A8%E5%9F%9F%E9%93%BE/" class="archive-article-date">
-        <time datetime="2021-09-24T12:44:40.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-09-24</time>
-</a>
-
-  
-  
-    
-
-  
-  </header>
-  
-  <div class="article-entry" itemprop="articleBody">
-    
-    <h3 id="作用域的生命周期"><a href="#作用域的生命周期" class="headerlink" title="作用域的生命周期"></a>作用域的生命周期</h3><ol>
-<li><p> 对于全局作用域：程序开始运行，全局作用域创建，程序结束时，全局作用域释放；</p>
-</li>
-<li><p>对于局部作用域：当函数调用时，作用域创建，函数执行完毕时，作用域释放；</p>
-</li>
-</ol>
-<h3 id="一、变量的作用域：全局变量和局部变量"><a href="#一、变量的作用域：全局变量和局部变量" class="headerlink" title="一、变量的作用域：全局变量和局部变量"></a>一、变量的作用域：全局变量和局部变量</h3><p>要向理解闭包，必须要理解js特殊的变量作用域</p>
-<p>1.在函数内部可以访问函数外部的变量—可以直接使用全局变量</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a = <span class="number">10</span>;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">f1</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">	<span class="built_in">console</span>.log(a);<span class="comment">// 10</span></span><br><span class="line">&#125;</span><br><span class="line">f1();</span><br></pre></td></tr></table></figure>
-
-<p>2.在函数外部无法访问函数内部的局部变量</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">f1</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">var</span> a = <span class="number">10</span>;</span><br><span class="line">&#125;</span><br><span class="line">f1();</span><br><span class="line"><span class="built_in">console</span>.log(a);<span class="comment">// ReferenceError: a is not defined</span></span><br></pre></td></tr></table></figure>
-
-<p>3.在函数内部声明变量的时候要加var，如果不使用var，实际上是声明了一个全局变量</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">f1</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">      a = <span class="number">10</span>;</span><br><span class="line">&#125;</span><br><span class="line">f1();</span><br><span class="line"><span class="built_in">console</span>.log(a);<span class="comment">// 10</span></span><br></pre></td></tr></table></figure>
-
-<p>4.作用域链    </p>
-<p>在f2作用域中访问变量a</p>
-<p>​    1、先从f2作用域中查找，如果有，直接使用；</p>
-<p>​    2、如果f1作用域中没有，向上层f1作用域中查找，如果有，直接使用;</p>
-<p>​    3、如果f1作用域中没有，向上层的上层中查找，直至找到全局作用域，如果有，直接使用；</p>
-<p>​    4、如果全局作用域也没有，最后输出 a is not defined</p>
-<p>​    这就是作用域链</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">var a = 1; // ---1级作用域 全局作用域</span><br><span class="line">function f1()&#123; // --- 2级作用域 --- f1局部作用域</span><br><span class="line">	// var a = 2;</span><br><span class="line">    function f2()&#123; // --- 3级作用域 --- f2局部作用域</span><br><span class="line">       // var a = 3;</span><br><span class="line">       console.log(a);//1</span><br><span class="line">     &#125;</span><br><span class="line">	f2();</span><br><span class="line">&#125;</span><br><span class="line">f1();</span><br></pre></td></tr></table></figure>
-    
-    <a class="article-more-a" href="/2021/09/24/%E9%97%AD%E5%8C%85%E5%92%8C%E4%BD%9C%E7%94%A8%E5%9F%9F%E9%93%BE/#more">more >></a>
-    
-    
-
-    
-
-    
-
-  </div>
-  <div class="article-info article-info-index">
-    
-    
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">js</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-    
-
-    
-    <p class="article-more-link">
-      <a class="article-more-a" href="/2021/09/24/%E9%97%AD%E5%8C%85%E5%92%8C%E4%BD%9C%E7%94%A8%E5%9F%9F%E9%93%BE/">展开全文 >></a>
-    </p>
-    
-
-    
-    <div class="clearfix"></div>
-  </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
       <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">Next &amp;raquo;</a>
@@ -1346,11 +1320,11 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">js</a>
+                <a href="javascript:void(0)" class="js-tag color5">hexo</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">hexo</a>
+                <a href="javascript:void(0)" class="js-tag color3">js</a>
               </li>
             
             <div class="clearfix"></div>
