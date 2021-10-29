@@ -214,6 +214,109 @@
             
 
   
+    <article id="post-React-Hooks之useState的详解" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+  
+  
+    <h1 itemprop="name">
+	
+	  <a class="article-title" href="/2021/10/29/React-Hooks%E4%B9%8BuseState%E7%9A%84%E8%AF%A6%E8%A7%A3/">React-Hooks之useState的详解</a>
+	
+    </h1>
+  
+
+
+  
+  
+<a href="/2021/10/29/React-Hooks%E4%B9%8BuseState%E7%9A%84%E8%AF%A6%E8%A7%A3/" class="archive-article-date">
+        <time datetime="2021-10-29T14:40:51.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-10-29</time>
+</a>
+
+  
+  
+    
+
+  
+  </header>
+  
+  <div class="article-entry" itemprop="articleBody">
+    
+    <h4 id="useState的定义"><a href="#useState的定义" class="headerlink" title="useState的定义"></a>useState的定义</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> [state, setState] = useState(initialState);</span><br></pre></td></tr></table></figure>
+
+<p>返回一个 state，以及更新 state 的函数。</p>
+<p>在初始渲染期间，返回的状态 (<code>state</code>) 与传入的第一个参数 (<code>initialState</code>) 值相同。</p>
+<p><code>setState</code> 函数用于更新 state。它接收一个新的 state 值并将组件的一次重新渲染加入队列。</p>
+<h4 id="useState的定义初始值的两种写法"><a href="#useState的定义初始值的两种写法" class="headerlink" title="useState的定义初始值的两种写法"></a>useState的定义初始值的两种写法</h4><p>写法一：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> [count, setCount] = useState(<span class="number">0</span>);</span><br></pre></td></tr></table></figure>
+
+<p>写法二：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> [user, setUser] = React.useState(<span class="function">() =&gt;</span> (&#123; <span class="attr">name</span>: <span class="string">&#x27;张三&#x27;</span>, <span class="attr">age</span>: <span class="string">&#x27;18&#x27;</span> &#125;))</span><br></pre></td></tr></table></figure>
+
+<p>两种写法的区别如下：  </p>
+<p>useState可以传入对象，但是js引擎会解析这个对象，计算9+9，造成多余的运算</p>
+<p>useState可以传入一个函数，函数并不会执行</p>
+<p>这样写的好处是js只会在初始化值的时候执行一次函数</p>
+<p>之后就不会再查看这个函数</p>
+    
+    <a class="article-more-a" href="/2021/10/29/React-Hooks%E4%B9%8BuseState%E7%9A%84%E8%AF%A6%E8%A7%A3/#more">more >></a>
+    
+    
+
+    
+
+    
+
+  </div>
+  <div class="article-info article-info-index">
+    
+    
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">react</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+    
+
+    
+    <p class="article-more-link">
+      <a class="article-more-a" href="/2021/10/29/React-Hooks%E4%B9%8BuseState%E7%9A%84%E8%AF%A6%E8%A7%A3/">展开全文 >></a>
+    </p>
+    
+
+    
+    <div class="clearfix"></div>
+  </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-vue-H5实现调用手机摄像头" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -243,7 +346,7 @@
   
   <div class="article-entry" itemprop="articleBody">
     
-    <h3 id="vue-H5实现调用手机摄像头"><a href="#vue-H5实现调用手机摄像头" class="headerlink" title="vue H5实现调用手机摄像头"></a>vue H5实现调用手机摄像头</h3><p>本篇文章分享一下在使用vue编写h5时，调用摄像头遇到的坑，和解决的写法。</p>
+    <p>本篇文章分享一下在使用vue编写h5时，调用摄像头遇到的坑，和解决的写法。</p>
 <h4 id="首先说坑："><a href="#首先说坑：" class="headerlink" title="首先说坑："></a>首先说坑：</h4><p>一开始用的<a target="_blank" rel="noopener" href="https://youzan.github.io/vant-weapp/#/uploader">vant</a>的uploader组件，代码如下;</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&lt;van-uploader :after-read=<span class="string">&quot;afterRead&quot;</span></span><br><span class="line">                <span class="class"><span class="keyword">class</span></span>=<span class="string">&quot;uploader&quot;</span></span><br><span class="line">                accept=<span class="string">&quot;video&quot;</span></span><br><span class="line">                capture=<span class="string">&quot;camera&quot;</span>&gt;</span><br><span class="line">    <span class="xml"><span class="tag">&lt;<span class="name">van-button</span> <span class="attr">round</span></span></span></span><br><span class="line"><span class="tag"><span class="xml">                <span class="attr">block</span></span></span></span><br><span class="line"><span class="tag"><span class="xml">                <span class="attr">type</span>=<span class="string">&quot;info&quot;</span>&gt;</span>开始录制<span class="tag">&lt;/<span class="name">van-button</span>&gt;</span></span></span><br><span class="line">  &lt;/van-uploader&gt;</span><br></pre></td></tr></table></figure>
 
@@ -1093,97 +1196,9 @@
 
 
   
-    <article id="post-前端处理后台传过来的二进制流进行下载，并处理乱码" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-  
-  
-    <h1 itemprop="name">
-	
-	  <a class="article-title" href="/2021/10/16/%E5%89%8D%E7%AB%AF%E5%A4%84%E7%90%86%E5%90%8E%E5%8F%B0%E4%BC%A0%E8%BF%87%E6%9D%A5%E7%9A%84%E4%BA%8C%E8%BF%9B%E5%88%B6%E6%B5%81%E8%BF%9B%E8%A1%8C%E4%B8%8B%E8%BD%BD%EF%BC%8C%E5%B9%B6%E5%A4%84%E7%90%86%E4%B9%B1%E7%A0%81/">前端处理后台传过来的二进制流进行下载，并处理乱码</a>
-	
-    </h1>
-  
-
-
-  
-  
-<a href="/2021/10/16/%E5%89%8D%E7%AB%AF%E5%A4%84%E7%90%86%E5%90%8E%E5%8F%B0%E4%BC%A0%E8%BF%87%E6%9D%A5%E7%9A%84%E4%BA%8C%E8%BF%9B%E5%88%B6%E6%B5%81%E8%BF%9B%E8%A1%8C%E4%B8%8B%E8%BD%BD%EF%BC%8C%E5%B9%B6%E5%A4%84%E7%90%86%E4%B9%B1%E7%A0%81/" class="archive-article-date">
-        <time datetime="2021-10-16T12:16:26.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-10-16</time>
-</a>
-
-  
-  
-    
-
-  
-  </header>
-  
-  <div class="article-entry" itemprop="articleBody">
-    
-    <h3 id="话不多说，直接上代码"><a href="#话不多说，直接上代码" class="headerlink" title="话不多说，直接上代码"></a>话不多说，直接上代码</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> axios <span class="keyword">from</span> <span class="string">&#x27;axios&#x27;</span></span><br><span class="line"><span class="keyword">import</span> &#123; message &#125; <span class="keyword">from</span> <span class="string">&#x27;ant-design-vue&#x27;</span><span class="comment">//设置下载完成后message提示</span></span><br><span class="line"><span class="keyword">import</span> &#123; getToken &#125; <span class="keyword">from</span> <span class="string">&#x27;@/views/user-defined/util/index&#x27;</span><span class="comment">//这是你自己项目里的token</span></span><br><span class="line"><span class="comment">//下载函数</span></span><br><span class="line"><span class="keyword">const</span> downLoad = <span class="function">(<span class="params">url, data, method</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">const</span> axiosObj = &#123;</span><br><span class="line">    <span class="attr">method</span>: (method ? method : <span class="string">&#x27;get&#x27;</span>),</span><br><span class="line">    <span class="attr">url</span>: url,</span><br><span class="line">    <span class="attr">responseType</span>: <span class="string">&#x27;blob&#x27;</span>,</span><br><span class="line">    <span class="attr">headers</span>: &#123; <span class="attr">Authorization</span>: getToken() &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">if</span> (axiosObj.method == <span class="string">&#x27;get&#x27;</span> || axiosObj.method == <span class="string">&#x27;GET&#x27;</span>) &#123;</span><br><span class="line">    axiosObj[<span class="string">&#x27;params&#x27;</span>] = data</span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    axiosObj[<span class="string">&#x27;data&#x27;</span>] = data</span><br><span class="line">  &#125;</span><br><span class="line">  axios(axiosObj)</span><br><span class="line">    .then(<span class="function"><span class="params">data</span> =&gt;</span> &#123;</span><br><span class="line">      <span class="keyword">if</span> (!data) &#123;</span><br><span class="line">        message.error(&#123;</span><br><span class="line">          <span class="attr">content</span>: <span class="string">&#x27;数据导出失败&#x27;</span>,</span><br><span class="line">          <span class="attr">duration</span>: <span class="number">2</span>, <span class="comment">// 提示时常单位为s</span></span><br><span class="line">          <span class="attr">top</span>: <span class="string">&#x27;40px&#x27;</span>, <span class="comment">// 距离顶部的位置</span></span><br><span class="line">          <span class="attr">maxCount</span>: <span class="number">3</span> <span class="comment">// 最多显示提示信息条数(后面的会替换前面的提示)</span></span><br><span class="line">        &#125;)</span><br><span class="line">        <span class="keyword">return</span></span><br><span class="line">      &#125;</span><br><span class="line">      <span class="built_in">console</span>.log(data, <span class="string">&#x27;data&#x27;</span>)</span><br><span class="line">      <span class="keyword">const</span> blob = <span class="keyword">new</span> Blob([data.data])</span><br><span class="line">      <span class="built_in">console</span>.log(blob, <span class="string">&#x27;blob&#x27;</span>)</span><br><span class="line">      <span class="keyword">var</span> reader = <span class="keyword">new</span> FileReader()</span><br><span class="line">      reader.readAsDataURL(blob) <span class="comment">// 转换为base64，可以直接放入a标签href</span></span><br><span class="line">      reader.onload = <span class="function"><span class="keyword">function</span>(<span class="params">e</span>) </span>&#123;</span><br><span class="line">        <span class="comment">// 转换完成，创建一个a标签用于下载</span></span><br><span class="line">        <span class="keyword">var</span> a = <span class="built_in">document</span>.createElement(<span class="string">&#x27;a&#x27;</span>)</span><br><span class="line">          <span class="keyword">try</span> &#123;</span><br><span class="line">            <span class="keyword">var</span> newString = data.headers[<span class="string">&#x27;content-disposition&#x27;</span>]</span><br><span class="line">              .split(<span class="string">&#x27;;&#x27;</span>)[<span class="number">1</span>]</span><br><span class="line">              .split(<span class="string">&#x27;=&#x27;</span>)[<span class="number">1</span>] <span class="comment">//文件名字截取，可以根据后台反参写</span></span><br><span class="line">          &#125; <span class="keyword">catch</span> &#123;</span><br><span class="line">            message.error(&#123;</span><br><span class="line">              <span class="attr">content</span>: <span class="string">&#x27;数据导出失败&#x27;</span>,</span><br><span class="line">              <span class="attr">duration</span>: <span class="number">2</span>, <span class="comment">// 提示时常单位为s</span></span><br><span class="line">              <span class="attr">top</span>: <span class="string">&#x27;40px&#x27;</span>, <span class="comment">// 距离顶部的位置</span></span><br><span class="line">              <span class="attr">maxCount</span>: <span class="number">3</span> <span class="comment">// 最多显示提示信息条数(后面的会替换前面的提示)</span></span><br><span class="line">            &#125;)</span><br><span class="line">            <span class="keyword">return</span></span><br><span class="line">          &#125;</span><br><span class="line">        <span class="keyword">let</span> fileName = <span class="built_in">decodeURI</span>(<span class="built_in">escape</span>(newString)) <span class="comment">// 如果导出的文件名乱码，这是处理文件名乱码问题,记住如果不乱码，可以不用</span></span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">&#x27;文件名：&#x27;</span>, fileName)</span><br><span class="line">        a.download = fileName</span><br><span class="line">        a.href = e.target.result</span><br><span class="line">        <span class="built_in">document</span>.body.appendChild(a) <span class="comment">// 修复firefox中无法触发click</span></span><br><span class="line">        a.click()</span><br><span class="line">        <span class="built_in">document</span>.body.removeChild(a)</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;)</span><br><span class="line">    .catch(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">      message.error(&#123;</span><br><span class="line">        <span class="attr">content</span>: <span class="string">&#x27;数据导出失败&#x27;</span>,</span><br><span class="line">        <span class="attr">duration</span>: <span class="number">2</span>, <span class="comment">// 提示时常单位为s</span></span><br><span class="line">        <span class="attr">top</span>: <span class="string">&#x27;40px&#x27;</span>, <span class="comment">// 距离顶部的位置</span></span><br><span class="line">        <span class="attr">maxCount</span>: <span class="number">3</span> <span class="comment">// 最多显示提示信息条数(后面的会替换前面的提示)</span></span><br><span class="line">      &#125;)</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> downLoad</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<p>上述代码可全局封装，使用时调用即可</p>
-
-    
-
-    
-
-    
-
-  </div>
-  <div class="article-info article-info-index">
-    
-    
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">vue</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-    
-
-    
-    <p class="article-more-link">
-      <a class="article-more-a" href="/2021/10/16/%E5%89%8D%E7%AB%AF%E5%A4%84%E7%90%86%E5%90%8E%E5%8F%B0%E4%BC%A0%E8%BF%87%E6%9D%A5%E7%9A%84%E4%BA%8C%E8%BF%9B%E5%88%B6%E6%B5%81%E8%BF%9B%E8%A1%8C%E4%B8%8B%E8%BD%BD%EF%BC%8C%E5%B9%B6%E5%A4%84%E7%90%86%E4%B9%B1%E7%A0%81/">展开全文 >></a>
-    </p>
-    
-
-    
-    <div class="clearfix"></div>
-  </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
-      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">Next &amp;raquo;</a>
+      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/">Next &amp;raquo;</a>
     </nav>
   
 

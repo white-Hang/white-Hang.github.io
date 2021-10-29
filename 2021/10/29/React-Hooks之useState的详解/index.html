@@ -6,16 +6,21 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://white-hang.github.io">
-  <title>Archives | Hexo</title>
+  <title>React-Hooks之useState的详解 | Hexo</title>
   <meta name="generator" content="hexo-theme-yilia-plus">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Hexo">
-<meta property="og:url" content="https://white-hang.github.io/archives/index.html">
+  <meta name="description" content="useState的定义1const [state, setState] &#x3D; useState(initialState);  返回一个 state，以及更新 state 的函数。 在初始渲染期间，返回的状态 (state) 与传入的第一个参数 (initialState) 值相同。 setState 函数用于更新 state。它接收一个新的 state 值并将组件的一次重新渲染加入队列。 useS">
+<meta property="og:type" content="article">
+<meta property="og:title" content="React-Hooks之useState的详解">
+<meta property="og:url" content="https://white-hang.github.io/2021/10/29/React-Hooks%E4%B9%8BuseState%E7%9A%84%E8%AF%A6%E8%A7%A3/index.html">
 <meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="useState的定义1const [state, setState] &#x3D; useState(initialState);  返回一个 state，以及更新 state 的函数。 在初始渲染期间，返回的状态 (state) 与传入的第一个参数 (initialState) 值相同。 setState 函数用于更新 state。它接收一个新的 state 值并将组件的一次重新渲染加入队列。 useS">
 <meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2021-10-29T14:40:51.000Z">
+<meta property="article:modified_time" content="2021-10-29T14:42:48.038Z">
 <meta property="article:author" content="white-Hang">
+<meta property="article:tag" content="react">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternative" href="/atom.xml" title="Hexo" type="application/atom+xml">
@@ -207,41 +212,119 @@
               class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
+            <article id="post-React-Hooks之useState的详解" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
   
   
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2021" class="archive-year">2021</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
+    <h1 class="article-title" itemprop="name">
+      React-Hooks之useState的详解
+    </h1>
+  
+
+
+  
+  
+        
+        <span id="busuanzi_container_page_pv" style='display:none' class="archive-article-date">
+              <i class="icon-smile icon"></i> 阅读数：<span id="busuanzi_value_page_pv"></span>次
+        </span>
+
 <a href="/2021/10/29/React-Hooks%E4%B9%8BuseState%E7%9A%84%E8%AF%A6%E8%A7%A3/" class="archive-article-date">
         <time datetime="2021-10-29T14:40:51.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-10-29</time>
 </a>
 
-        </div>
-    	 
   
-    <h1 itemprop="name">
-	
-	  <a class="archive-article-title" href="/2021/10/29/React-Hooks%E4%B9%8BuseState%E7%9A%84%E8%AF%A6%E8%A7%A3/">React-Hooks之useState的详解</a>
-	
-    </h1>
   
+    
+<div style="margin-top:10px;">
+  <span class="post-time">
+    <span class="post-meta-item-icon">
+      <!-- fonts.scss -->
+      <!-- 百度字体平台:http://fontstore.baidu.com/static/editor/index.html -->
+      <i class="icon-statistics"></i>
+      <span class="post-meta-item-text"> 字数统计:</span>
+      <span class="post-count">606字</span>
+    </span>
+  </span>
+
+  <span class="post-time">
+    &nbsp; | &nbsp;
+    <span class="post-meta-item-icon">
+      <i class="icon-book icon"></i>
+      <span class="post-meta-item-text"> 阅读时长≈</span>
+      <span class="post-count">2分</span>
+    </span>
+  </span>
+</div>
 
 
-        <div class="article-info info-on-right">
+  
+  </header>
+  
+  <div class="article-entry" itemprop="articleBody">
+    
+    <h4 id="useState的定义"><a href="#useState的定义" class="headerlink" title="useState的定义"></a>useState的定义</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> [state, setState] = useState(initialState);</span><br></pre></td></tr></table></figure>
+
+<p>返回一个 state，以及更新 state 的函数。</p>
+<p>在初始渲染期间，返回的状态 (<code>state</code>) 与传入的第一个参数 (<code>initialState</code>) 值相同。</p>
+<p><code>setState</code> 函数用于更新 state。它接收一个新的 state 值并将组件的一次重新渲染加入队列。</p>
+<h4 id="useState的定义初始值的两种写法"><a href="#useState的定义初始值的两种写法" class="headerlink" title="useState的定义初始值的两种写法"></a>useState的定义初始值的两种写法</h4><p>写法一：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> [count, setCount] = useState(<span class="number">0</span>);</span><br></pre></td></tr></table></figure>
+
+<p>写法二：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> [user, setUser] = React.useState(<span class="function">() =&gt;</span> (&#123; <span class="attr">name</span>: <span class="string">&#x27;张三&#x27;</span>, <span class="attr">age</span>: <span class="string">&#x27;18&#x27;</span> &#125;))</span><br></pre></td></tr></table></figure>
+
+<p>两种写法的区别如下：  </p>
+<p>useState可以传入对象，但是js引擎会解析这个对象，计算9+9，造成多余的运算</p>
+<p>useState可以传入一个函数，函数并不会执行</p>
+<p>这样写的好处是js只会在初始化值的时候执行一次函数</p>
+<p>之后就不会再查看这个函数</p>
+<span id="more"></span>
+<h4 id="setState的两种写法"><a href="#setState的两种写法" class="headerlink" title="setState的两种写法"></a>setState的两种写法</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> UseState = <span class="function">(<span class="params">props</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">const</span> [count, setCount] = React.useState(<span class="number">0</span>)</span><br><span class="line">  <span class="comment">//写法一：直接修改值</span></span><br><span class="line">  <span class="keyword">const</span> add = <span class="function">() =&gt;</span> &#123;</span><br><span class="line">     setCount(count+<span class="number">1</span>) <span class="comment">//第一种写法</span></span><br><span class="line">     setCount(count+<span class="number">1</span>) <span class="comment">//第一种写法，不能加2</span></span><br><span class="line">  &#125;</span><br><span class="line">  <span class="comment">//写法二：函数式更新</span></span><br><span class="line">  <span class="keyword">const</span> addFn = <span class="function">() =&gt;</span> &#123;</span><br><span class="line">     setCount(<span class="function">(<span class="params">count</span>) =&gt;</span> count + <span class="number">1</span>)</span><br><span class="line">     setCount(<span class="function">(<span class="params">count</span>) =&gt;</span> count + <span class="number">1</span>)</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> (</span><br><span class="line">    <span class="xml"><span class="tag">&lt;<span class="name">div</span>&gt;</span></span></span><br><span class="line"><span class="xml">      <span class="tag">&lt;<span class="name">h2</span>&gt;</span>当前求和为：&#123;count&#125;<span class="tag">&lt;/<span class="name">h2</span>&gt;</span></span></span><br><span class="line"><span class="xml">      <span class="tag">&lt;<span class="name">button</span> <span class="attr">onClick</span>=<span class="string">&#123;add&#125;</span>&gt;</span>点我+1<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span></span><br><span class="line"><span class="xml">      <span class="tag">&lt;<span class="name">button</span> <span class="attr">onClick</span>=<span class="string">&#123;addFn&#125;</span>&gt;</span>点我+1<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span></span><br><span class="line"><span class="xml">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line">  )</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>通过执行以上函数可以发现，函数式更新点击+1是可以直接+2的，但是直接修改值则只能+1</p>
+<p>对state进行多次操作，建议使用函数写法,因为函数里的count始终是最新的值。</p>
+<p>这里有个小知识点，setState是不可以局部更新的，如果对象里的属性只改了一个，那么会覆盖所有的属性</p>
+<p>如下：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> UseState = <span class="function">(<span class="params">props</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">const</span> [user, setUser] = React.useState(<span class="function">() =&gt;</span> (&#123; <span class="attr">name</span>: <span class="string">&#x27;张三&#x27;</span>, <span class="attr">age</span>: <span class="string">&#x27;18&#x27;</span> &#125;))</span><br><span class="line">  <span class="keyword">const</span> changeUser = <span class="function">() =&gt;</span> &#123;</span><br><span class="line">    <span class="comment">//setUser不可以局部更新，如果只改变其中一个，那么整个数据都会被覆盖,如下age会被覆盖掉</span></span><br><span class="line">    setUser(&#123;</span><br><span class="line">      <span class="attr">name</span>: <span class="string">&#x27;王五&#x27;</span>, <span class="comment">//这里的name覆盖之前的name</span></span><br><span class="line">    &#125;)</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> (</span><br><span class="line">    <span class="xml"><span class="tag">&lt;<span class="name">div</span>&gt;</span></span></span><br><span class="line"><span class="xml">      <span class="tag">&lt;<span class="name">button</span> <span class="attr">onClick</span>=<span class="string">&#123;changeUser&#125;</span>&gt;</span>点我修改人员<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span></span><br><span class="line"><span class="xml">      <span class="tag">&lt;<span class="name">h1</span>&gt;</span></span></span><br><span class="line"><span class="xml">        &#123;user.name&#125; 年龄：&#123;user.age&#125;</span></span><br><span class="line"><span class="xml">      <span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span></span><br><span class="line"><span class="xml">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line">  )</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>通过执行发现，age消失了，可以使用如下写法</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">setUser(&#123;</span><br><span class="line">  ...user, <span class="comment">//拷贝之前的所有属性</span></span><br><span class="line">  <span class="attr">name</span>: <span class="string">&#x27;王五&#x27;</span>, <span class="comment">//这里的name覆盖之前的name</span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+
+
+    
+
+    
+
+    
+    <div class="declare"> 
+      <ul class="post-copyright">
+        <li>
+          <strong>本文作者：</strong>
+          white-Hang
+        </li>
+        <li>
+          <strong>本文链接：</strong>
+          <a href="https://white-hang.github.io/2021/10/29/React-Hooks之useState的详解/" title="React-Hooks之useState的详解" target="_blank">https://white-hang.github.io/2021/10/29/React-Hooks之useState的详解/</a>
+        </li>
+        
+        <li>
+          <strong>版权声明： </strong>
           
+          本博客所有文章除特别声明外，均采用 <a href="https://github.com/JoeyBling/hexo-theme-yilia-plus/blob/master/LICENSE" rel="external nofollow" target="_blank">MIT</a> 许可协议。转载请注明出处！
+        </li>
+        
+      </ul>
+    </div>
+    
+
+  </div>
+  <div class="article-info article-info-index">
+    
+    
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -253,410 +336,78 @@
 		</ul>
 	</div>
 
-          
+    
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
+    
+
+    
+    <div class="clearfix"></div>
+  </div>
   </div>
 </article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/2021/10/29/vue-H5%E5%AE%9E%E7%8E%B0%E8%B0%83%E7%94%A8%E6%89%8B%E6%9C%BA%E6%91%84%E5%83%8F%E5%A4%B4/" class="archive-article-date">
-        <time datetime="2021-10-29T14:31:28.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-10-29</time>
-</a>
 
+
+<nav id="article-nav">
+  
+  
+    <a href="/2021/10/29/vue-H5%E5%AE%9E%E7%8E%B0%E8%B0%83%E7%94%A8%E6%89%8B%E6%9C%BA%E6%91%84%E5%83%8F%E5%A4%B4/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">vue H5实现调用手机摄像头</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
+        
+        
+    </div>
+</aside>
+
+
+
+
+
+
+
+
+
+
+
   
-    <h1 itemprop="name">
-	
-	  <a class="archive-article-title" href="/2021/10/29/vue-H5%E5%AE%9E%E7%8E%B0%E8%B0%83%E7%94%A8%E6%89%8B%E6%9C%BA%E6%91%84%E5%83%8F%E5%A4%B4/">vue H5实现调用手机摄像头</a>
-	
-    </h1>
+  <div id="gitment-ctn"></div>
   
-
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">h5</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
+    <!-- 中文 -->
+    <link rel="stylesheet" href="/lib/gitment.css">
+    <script src="/lib/gitment.js"></script>
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/2021/10/23/react%E4%B8%AD%E7%9A%84%E8%B7%AF%E7%94%B1%E4%BC%A0%E5%8F%82%E6%96%B9%E5%BC%8F%E6%80%BB%E7%BB%93/" class="archive-article-date">
-        <time datetime="2021-10-23T12:05:04.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-10-23</time>
-</a>
+  <script>
+    <!-- id: "React-Hooks之useState的详解" -->
+    var gitment = new Gitment({
+      id: "20211029224051",
+      owner: 'white-Hang',
+      repo: 'white-Hang.github.io',
+      oauth: {
+        client_id: '9dffa4894c387f84afc9',
+        client_secret: '8a8c5ae7adeee0705e331e28d94d3e11a9efe314',
+      },
+    })
+    gitment.render('gitment-ctn')
+  </script>
 
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-	
-	  <a class="archive-article-title" href="/2021/10/23/react%E4%B8%AD%E7%9A%84%E8%B7%AF%E7%94%B1%E4%BC%A0%E5%8F%82%E6%96%B9%E5%BC%8F%E6%80%BB%E7%BB%93/">react中的路由传参方式总结</a>
-	
-    </h1>
+
   
 
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">react</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/2021/10/23/react%E4%B8%89%E5%A4%A7%E5%B1%9E%E6%80%A7%E4%B9%8Bref/" class="archive-article-date">
-        <time datetime="2021-10-23T11:55:03.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-10-23</time>
-</a>
-
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-	
-	  <a class="archive-article-title" href="/2021/10/23/react%E4%B8%89%E5%A4%A7%E5%B1%9E%E6%80%A7%E4%B9%8Bref/">react三大属性之ref</a>
-	
-    </h1>
-  
-
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">react</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/2021/10/23/react%E4%B8%89%E5%A4%A7%E5%B1%9E%E6%80%A7%E4%B9%8Bprops%E8%AF%A6%E8%A7%A3/" class="archive-article-date">
-        <time datetime="2021-10-23T11:42:10.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-10-23</time>
-</a>
-
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-	
-	  <a class="archive-article-title" href="/2021/10/23/react%E4%B8%89%E5%A4%A7%E5%B1%9E%E6%80%A7%E4%B9%8Bprops%E8%AF%A6%E8%A7%A3/">react三大属性之props详解</a>
-	
-    </h1>
-  
-
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">react</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/2021/10/23/vue%E4%B8%AD%E5%9C%A8%E5%AD%97%E7%AC%A6%E4%B8%B2%E4%B8%AD%E6%B7%BB%E5%8A%A0%E7%82%B9%E5%87%BB%E4%BA%8B%E4%BB%B6/" class="archive-article-date">
-        <time datetime="2021-10-23T11:34:24.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-10-23</time>
-</a>
-
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-	
-	  <a class="archive-article-title" href="/2021/10/23/vue%E4%B8%AD%E5%9C%A8%E5%AD%97%E7%AC%A6%E4%B8%B2%E4%B8%AD%E6%B7%BB%E5%8A%A0%E7%82%B9%E5%87%BB%E4%BA%8B%E4%BB%B6/">vue中在字符串中添加点击事件</a>
-	
-    </h1>
-  
-
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">vue</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/2021/10/21/vue%E4%B8%AD%E4%BD%BF%E7%94%A8swiper%E6%8F%92%E4%BB%B6/" class="archive-article-date">
-        <time datetime="2021-10-21T14:51:44.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-10-21</time>
-</a>
-
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-	
-	  <a class="archive-article-title" href="/2021/10/21/vue%E4%B8%AD%E4%BD%BF%E7%94%A8swiper%E6%8F%92%E4%BB%B6/">vue中使用swiper插件</a>
-	
-    </h1>
-  
-
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">vue</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/2021/10/19/react%E4%B8%AD%E7%9A%84setState%E8%AF%A6%E8%A7%A3/" class="archive-article-date">
-        <time datetime="2021-10-19T15:39:08.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-10-19</time>
-</a>
-
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-	
-	  <a class="archive-article-title" href="/2021/10/19/react%E4%B8%AD%E7%9A%84setState%E8%AF%A6%E8%A7%A3/">react中的setState详解</a>
-	
-    </h1>
-  
-
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">react</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/2021/10/18/react%E8%84%9A%E6%89%8B%E6%9E%B6%E9%85%8D%E7%BD%AE%E4%BB%A3%E7%90%86%E6%80%BB%E7%BB%93/" class="archive-article-date">
-        <time datetime="2021-10-18T15:18:44.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-10-18</time>
-</a>
-
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-	
-	  <a class="archive-article-title" href="/2021/10/18/react%E8%84%9A%E6%89%8B%E6%9E%B6%E9%85%8D%E7%BD%AE%E4%BB%A3%E7%90%86%E6%80%BB%E7%BB%93/">react脚手架配置代理总结</a>
-	
-    </h1>
-  
-
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">react</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/2021/10/16/H5-VUE%E5%88%A9%E7%94%A8canvas%E5%AE%9E%E7%8E%B0%E6%89%8B%E6%9C%BA%E7%AD%BE%E5%90%8D%E5%B9%B6%E4%B8%94%E5%8F%AF%E6%97%8B%E8%BD%AC%E5%8A%9F%E8%83%BD/" class="archive-article-date">
-        <time datetime="2021-10-16T12:37:59.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-10-16</time>
-</a>
-
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-	
-	  <a class="archive-article-title" href="/2021/10/16/H5-VUE%E5%88%A9%E7%94%A8canvas%E5%AE%9E%E7%8E%B0%E6%89%8B%E6%9C%BA%E7%AD%BE%E5%90%8D%E5%B9%B6%E4%B8%94%E5%8F%AF%E6%97%8B%E8%BD%AC%E5%8A%9F%E8%83%BD/">H5 VUE利用canvas实现手机签名并且可旋转功能</a>
-	
-    </h1>
-  
-
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">h5</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
-
-    
-    <nav id="page-nav">
-      <span class="page-number current">1</span><a class="page-number" href="/archives/page/2/">2</a><a class="page-number" href="/archives/page/3/">3</a><a class="extend next" rel="next" href="/archives/page/2/">Next &amp;raquo;</a>
-    </nav>
-  
 
 
           </div>
@@ -697,8 +448,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,

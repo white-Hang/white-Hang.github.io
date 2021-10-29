@@ -214,6 +214,94 @@
             
 
   
+    <article id="post-前端处理后台传过来的二进制流进行下载，并处理乱码" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+  
+  
+    <h1 itemprop="name">
+	
+	  <a class="article-title" href="/2021/10/16/%E5%89%8D%E7%AB%AF%E5%A4%84%E7%90%86%E5%90%8E%E5%8F%B0%E4%BC%A0%E8%BF%87%E6%9D%A5%E7%9A%84%E4%BA%8C%E8%BF%9B%E5%88%B6%E6%B5%81%E8%BF%9B%E8%A1%8C%E4%B8%8B%E8%BD%BD%EF%BC%8C%E5%B9%B6%E5%A4%84%E7%90%86%E4%B9%B1%E7%A0%81/">前端处理后台传过来的二进制流进行下载，并处理乱码</a>
+	
+    </h1>
+  
+
+
+  
+  
+<a href="/2021/10/16/%E5%89%8D%E7%AB%AF%E5%A4%84%E7%90%86%E5%90%8E%E5%8F%B0%E4%BC%A0%E8%BF%87%E6%9D%A5%E7%9A%84%E4%BA%8C%E8%BF%9B%E5%88%B6%E6%B5%81%E8%BF%9B%E8%A1%8C%E4%B8%8B%E8%BD%BD%EF%BC%8C%E5%B9%B6%E5%A4%84%E7%90%86%E4%B9%B1%E7%A0%81/" class="archive-article-date">
+        <time datetime="2021-10-16T12:16:26.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-10-16</time>
+</a>
+
+  
+  
+    
+
+  
+  </header>
+  
+  <div class="article-entry" itemprop="articleBody">
+    
+    <h3 id="话不多说，直接上代码"><a href="#话不多说，直接上代码" class="headerlink" title="话不多说，直接上代码"></a>话不多说，直接上代码</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> axios <span class="keyword">from</span> <span class="string">&#x27;axios&#x27;</span></span><br><span class="line"><span class="keyword">import</span> &#123; message &#125; <span class="keyword">from</span> <span class="string">&#x27;ant-design-vue&#x27;</span><span class="comment">//设置下载完成后message提示</span></span><br><span class="line"><span class="keyword">import</span> &#123; getToken &#125; <span class="keyword">from</span> <span class="string">&#x27;@/views/user-defined/util/index&#x27;</span><span class="comment">//这是你自己项目里的token</span></span><br><span class="line"><span class="comment">//下载函数</span></span><br><span class="line"><span class="keyword">const</span> downLoad = <span class="function">(<span class="params">url, data, method</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">const</span> axiosObj = &#123;</span><br><span class="line">    <span class="attr">method</span>: (method ? method : <span class="string">&#x27;get&#x27;</span>),</span><br><span class="line">    <span class="attr">url</span>: url,</span><br><span class="line">    <span class="attr">responseType</span>: <span class="string">&#x27;blob&#x27;</span>,</span><br><span class="line">    <span class="attr">headers</span>: &#123; <span class="attr">Authorization</span>: getToken() &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">if</span> (axiosObj.method == <span class="string">&#x27;get&#x27;</span> || axiosObj.method == <span class="string">&#x27;GET&#x27;</span>) &#123;</span><br><span class="line">    axiosObj[<span class="string">&#x27;params&#x27;</span>] = data</span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    axiosObj[<span class="string">&#x27;data&#x27;</span>] = data</span><br><span class="line">  &#125;</span><br><span class="line">  axios(axiosObj)</span><br><span class="line">    .then(<span class="function"><span class="params">data</span> =&gt;</span> &#123;</span><br><span class="line">      <span class="keyword">if</span> (!data) &#123;</span><br><span class="line">        message.error(&#123;</span><br><span class="line">          <span class="attr">content</span>: <span class="string">&#x27;数据导出失败&#x27;</span>,</span><br><span class="line">          <span class="attr">duration</span>: <span class="number">2</span>, <span class="comment">// 提示时常单位为s</span></span><br><span class="line">          <span class="attr">top</span>: <span class="string">&#x27;40px&#x27;</span>, <span class="comment">// 距离顶部的位置</span></span><br><span class="line">          <span class="attr">maxCount</span>: <span class="number">3</span> <span class="comment">// 最多显示提示信息条数(后面的会替换前面的提示)</span></span><br><span class="line">        &#125;)</span><br><span class="line">        <span class="keyword">return</span></span><br><span class="line">      &#125;</span><br><span class="line">      <span class="built_in">console</span>.log(data, <span class="string">&#x27;data&#x27;</span>)</span><br><span class="line">      <span class="keyword">const</span> blob = <span class="keyword">new</span> Blob([data.data])</span><br><span class="line">      <span class="built_in">console</span>.log(blob, <span class="string">&#x27;blob&#x27;</span>)</span><br><span class="line">      <span class="keyword">var</span> reader = <span class="keyword">new</span> FileReader()</span><br><span class="line">      reader.readAsDataURL(blob) <span class="comment">// 转换为base64，可以直接放入a标签href</span></span><br><span class="line">      reader.onload = <span class="function"><span class="keyword">function</span>(<span class="params">e</span>) </span>&#123;</span><br><span class="line">        <span class="comment">// 转换完成，创建一个a标签用于下载</span></span><br><span class="line">        <span class="keyword">var</span> a = <span class="built_in">document</span>.createElement(<span class="string">&#x27;a&#x27;</span>)</span><br><span class="line">          <span class="keyword">try</span> &#123;</span><br><span class="line">            <span class="keyword">var</span> newString = data.headers[<span class="string">&#x27;content-disposition&#x27;</span>]</span><br><span class="line">              .split(<span class="string">&#x27;;&#x27;</span>)[<span class="number">1</span>]</span><br><span class="line">              .split(<span class="string">&#x27;=&#x27;</span>)[<span class="number">1</span>] <span class="comment">//文件名字截取，可以根据后台反参写</span></span><br><span class="line">          &#125; <span class="keyword">catch</span> &#123;</span><br><span class="line">            message.error(&#123;</span><br><span class="line">              <span class="attr">content</span>: <span class="string">&#x27;数据导出失败&#x27;</span>,</span><br><span class="line">              <span class="attr">duration</span>: <span class="number">2</span>, <span class="comment">// 提示时常单位为s</span></span><br><span class="line">              <span class="attr">top</span>: <span class="string">&#x27;40px&#x27;</span>, <span class="comment">// 距离顶部的位置</span></span><br><span class="line">              <span class="attr">maxCount</span>: <span class="number">3</span> <span class="comment">// 最多显示提示信息条数(后面的会替换前面的提示)</span></span><br><span class="line">            &#125;)</span><br><span class="line">            <span class="keyword">return</span></span><br><span class="line">          &#125;</span><br><span class="line">        <span class="keyword">let</span> fileName = <span class="built_in">decodeURI</span>(<span class="built_in">escape</span>(newString)) <span class="comment">// 如果导出的文件名乱码，这是处理文件名乱码问题,记住如果不乱码，可以不用</span></span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">&#x27;文件名：&#x27;</span>, fileName)</span><br><span class="line">        a.download = fileName</span><br><span class="line">        a.href = e.target.result</span><br><span class="line">        <span class="built_in">document</span>.body.appendChild(a) <span class="comment">// 修复firefox中无法触发click</span></span><br><span class="line">        a.click()</span><br><span class="line">        <span class="built_in">document</span>.body.removeChild(a)</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;)</span><br><span class="line">    .catch(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">      message.error(&#123;</span><br><span class="line">        <span class="attr">content</span>: <span class="string">&#x27;数据导出失败&#x27;</span>,</span><br><span class="line">        <span class="attr">duration</span>: <span class="number">2</span>, <span class="comment">// 提示时常单位为s</span></span><br><span class="line">        <span class="attr">top</span>: <span class="string">&#x27;40px&#x27;</span>, <span class="comment">// 距离顶部的位置</span></span><br><span class="line">        <span class="attr">maxCount</span>: <span class="number">3</span> <span class="comment">// 最多显示提示信息条数(后面的会替换前面的提示)</span></span><br><span class="line">      &#125;)</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> downLoad</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>上述代码可全局封装，使用时调用即可</p>
+
+    
+
+    
+
+    
+
+  </div>
+  <div class="article-info article-info-index">
+    
+    
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">vue</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+    
+
+    
+    <p class="article-more-link">
+      <a class="article-more-a" href="/2021/10/16/%E5%89%8D%E7%AB%AF%E5%A4%84%E7%90%86%E5%90%8E%E5%8F%B0%E4%BC%A0%E8%BF%87%E6%9D%A5%E7%9A%84%E4%BA%8C%E8%BF%9B%E5%88%B6%E6%B5%81%E8%BF%9B%E8%A1%8C%E4%B8%8B%E8%BD%BD%EF%BC%8C%E5%B9%B6%E5%A4%84%E7%90%86%E4%B9%B1%E7%A0%81/">展开全文 >></a>
+    </p>
+    
+
+    
+    <div class="clearfix"></div>
+  </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-vue实现移动端适配方案-（amfe-flexible和postcss-pxtorem结合）" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -1068,104 +1156,9 @@
 
 
   
-    <article id="post-手把手教你搭建hexo博客" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-  
-  
-    <h1 itemprop="name">
-	
-	  <a class="article-title" href="/2021/09/11/%E6%89%8B%E6%8A%8A%E6%89%8B%E6%95%99%E4%BD%A0%E6%90%AD%E5%BB%BAhexo%E5%8D%9A%E5%AE%A2/">手把手教你搭建hexo博客</a>
-	
-    </h1>
-  
-
-
-  
-  
-<a href="/2021/09/11/%E6%89%8B%E6%8A%8A%E6%89%8B%E6%95%99%E4%BD%A0%E6%90%AD%E5%BB%BAhexo%E5%8D%9A%E5%AE%A2/" class="archive-article-date">
-        <time datetime="2021-09-11T13:22:50.610Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-09-11</time>
-</a>
-
-  
-  
-    
-
-  
-  </header>
-  
-  <div class="article-entry" itemprop="articleBody">
-    
-    <h2 id="第一步"><a href="#第一步" class="headerlink" title="第一步"></a>第一步</h2><h3 id="安装node-js"><a href="#安装node-js" class="headerlink" title="安装node.js"></a>安装node.js</h3><p>node.js官网下载安装即可，点击此处：<a target="_blank" rel="noopener" href="https://nodejs.org/zh-cn/">node官网</a></p>
-<p>查看node是否安装成功：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">node -v </span><br></pre></td></tr></table></figure>
-<p>查看npm工具 </p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm -v</span><br></pre></td></tr></table></figure>
-
-<p>npm安装过慢可使用淘宝镜像</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install cnpm -g --registry=http://registry.npm.taobao.org</span><br></pre></td></tr></table></figure>
-    
-    <a class="article-more-a" href="/2021/09/11/%E6%89%8B%E6%8A%8A%E6%89%8B%E6%95%99%E4%BD%A0%E6%90%AD%E5%BB%BAhexo%E5%8D%9A%E5%AE%A2/#more">more >></a>
-    
-    
-
-    
-
-    
-
-  </div>
-  <div class="article-info article-info-index">
-    
-    
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">hexo</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-    
-
-    
-    <p class="article-more-link">
-      <a class="article-more-a" href="/2021/09/11/%E6%89%8B%E6%8A%8A%E6%89%8B%E6%95%99%E4%BD%A0%E6%90%AD%E5%BB%BAhexo%E5%8D%9A%E5%AE%A2/">展开全文 >></a>
-    </p>
-    
-
-    
-    <div class="clearfix"></div>
-  </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/">&amp;laquo; Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span>
+      <a class="extend prev" rel="prev" href="/">&amp;laquo; Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/3/">Next &amp;raquo;</a>
     </nav>
   
 
