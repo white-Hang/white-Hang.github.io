@@ -6,17 +6,24 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://white-hang.github.io">
-  <title>Tag: react | Hexo</title>
+  <title>h5上传图片进行图片压缩 | Hexo</title>
   <meta name="generator" content="hexo-theme-yilia-plus">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Hexo">
-<meta property="og:url" content="https://white-hang.github.io/tags/react/index.html">
+  <meta name="description" content="使用场景：公司要求做身份证正反面上传，但是后台对照片的大小做了限制，超过规定大小则上传不成功，如图所示：  这时候就需要前端来对拍照的图片做压缩，然后上传给后台 具体代码:1.在公共js文件util.js里封装图片压缩方法： 123456789101112131415161718192021222324252627282930313233343536373839404142434445464748">
+<meta property="og:type" content="article">
+<meta property="og:title" content="h5上传图片进行图片压缩">
+<meta property="og:url" content="https://white-hang.github.io/2021/11/07/h5%E4%B8%8A%E4%BC%A0%E5%9B%BE%E7%89%87%E8%BF%9B%E8%A1%8C%E5%9B%BE%E7%89%87%E5%8E%8B%E7%BC%A9/index.html">
 <meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="使用场景：公司要求做身份证正反面上传，但是后台对照片的大小做了限制，超过规定大小则上传不成功，如图所示：  这时候就需要前端来对拍照的图片做压缩，然后上传给后台 具体代码:1.在公共js文件util.js里封装图片压缩方法： 123456789101112131415161718192021222324252627282930313233343536373839404142434445464748">
 <meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://white-hang.github.io/assets/h5/WechatIMG91.jpeg">
+<meta property="article:published_time" content="2021-11-07T08:22:44.000Z">
+<meta property="article:modified_time" content="2021-11-07T08:24:49.909Z">
 <meta property="article:author" content="white-Hang">
+<meta property="article:tag" content="h5">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://white-hang.github.io/assets/h5/WechatIMG91.jpeg">
   
     <link rel="alternative" href="/atom.xml" title="Hexo" type="application/atom+xml">
   
@@ -207,280 +214,183 @@
               class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
+            <article id="post-h5上传图片进行图片压缩" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
   
   
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2021" class="archive-year">2021</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/2021/10/29/React-Hooks%E4%B9%8BuseState%E7%9A%84%E8%AF%A6%E8%A7%A3/" class="archive-article-date">
-        <time datetime="2021-10-29T14:40:51.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-10-29</time>
-</a>
-
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-	
-	  <a class="archive-article-title" href="/2021/10/29/React-Hooks%E4%B9%8BuseState%E7%9A%84%E8%AF%A6%E8%A7%A3/">React-Hooks之useState的详解</a>
-	
+    <h1 class="article-title" itemprop="name">
+      h5上传图片进行图片压缩
     </h1>
   
 
 
-        <div class="article-info info-on-right">
+  
+  
+        
+        <span id="busuanzi_container_page_pv" style='display:none' class="archive-article-date">
+              <i class="icon-smile icon"></i> 阅读数：<span id="busuanzi_value_page_pv"></span>次
+        </span>
+
+<a href="/2021/11/07/h5%E4%B8%8A%E4%BC%A0%E5%9B%BE%E7%89%87%E8%BF%9B%E8%A1%8C%E5%9B%BE%E7%89%87%E5%8E%8B%E7%BC%A9/" class="archive-article-date">
+        <time datetime="2021-11-07T08:22:44.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-11-07</time>
+</a>
+
+  
+  
+    
+<div style="margin-top:10px;">
+  <span class="post-time">
+    <span class="post-meta-item-icon">
+      <!-- fonts.scss -->
+      <!-- 百度字体平台:http://fontstore.baidu.com/static/editor/index.html -->
+      <i class="icon-statistics"></i>
+      <span class="post-meta-item-text"> 字数统计:</span>
+      <span class="post-count">672字</span>
+    </span>
+  </span>
+
+  <span class="post-time">
+    &nbsp; | &nbsp;
+    <span class="post-meta-item-icon">
+      <i class="icon-book icon"></i>
+      <span class="post-meta-item-text"> 阅读时长≈</span>
+      <span class="post-count">3分</span>
+    </span>
+  </span>
+</div>
+
+
+  
+  </header>
+  
+  <div class="article-entry" itemprop="articleBody">
+    
+    <h4 id="使用场景："><a href="#使用场景：" class="headerlink" title="使用场景："></a>使用场景：</h4><p>公司要求做身份证正反面上传，但是后台对照片的大小做了限制，超过规定大小则上传不成功，如图所示：</p>
+<p><img src="/assets/h5/WechatIMG91.jpeg" alt="错误"></p>
+<p>这时候就需要前端来对拍照的图片做压缩，然后上传给后台</p>
+<h4 id="具体代码"><a href="#具体代码" class="headerlink" title="具体代码:"></a>具体代码:</h4><p>1.在公共js文件util.js里封装图片压缩方法：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 图片压缩</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">const</span> imgPreview = <span class="function">(<span class="params">file, callback</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="comment">//将base64转换为文件</span></span><br><span class="line">  <span class="function"><span class="keyword">function</span> <span class="title">dataURLtoFile</span>(<span class="params">dataurl, file</span>) </span>&#123;</span><br><span class="line">      <span class="keyword">var</span> arr = dataurl.split(<span class="string">&quot;,&quot;</span>),</span><br><span class="line">          bstr = atob(arr[<span class="number">1</span>]),</span><br><span class="line">          n = bstr.length,</span><br><span class="line">          u8arr = <span class="keyword">new</span> <span class="built_in">Uint8Array</span>(n);</span><br><span class="line">      <span class="keyword">while</span> (n--) &#123;</span><br><span class="line">          u8arr[n] = bstr.charCodeAt(n);</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="keyword">return</span> <span class="keyword">new</span> File([u8arr], file.name, &#123;</span><br><span class="line">          <span class="attr">type</span>: file.type</span><br><span class="line">      &#125;);</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="comment">// 压缩图片</span></span><br><span class="line">  <span class="function"><span class="keyword">function</span> <span class="title">compress</span>(<span class="params">img</span>) </span>&#123;</span><br><span class="line">      <span class="keyword">let</span> canvas = <span class="built_in">document</span>.createElement(<span class="string">&quot;canvas&quot;</span>);</span><br><span class="line">      <span class="keyword">let</span> ctx = canvas.getContext(<span class="string">&quot;2d&quot;</span>);</span><br><span class="line">      <span class="comment">//瓦片canvas</span></span><br><span class="line">      <span class="keyword">let</span> tCanvas = <span class="built_in">document</span>.createElement(<span class="string">&quot;canvas&quot;</span>);</span><br><span class="line">      <span class="keyword">let</span> tctx = tCanvas.getContext(<span class="string">&quot;2d&quot;</span>);</span><br><span class="line">      <span class="comment">// let initSize = img.src.length;</span></span><br><span class="line">      <span class="keyword">let</span> width = img.width;</span><br><span class="line">      <span class="keyword">let</span> height = img.height;</span><br><span class="line">      <span class="comment">//如果图片大于四百万像素，计算压缩比并将大小压至400万以下</span></span><br><span class="line">      <span class="keyword">let</span> ratio;</span><br><span class="line">      <span class="keyword">if</span> ((ratio = (width * height) / <span class="number">4000000</span>) &gt; <span class="number">1</span>) &#123;</span><br><span class="line">          <span class="comment">// console.log(&quot;大于400万像素&quot;);</span></span><br><span class="line">          ratio = <span class="built_in">Math</span>.sqrt(ratio);</span><br><span class="line">          width /= ratio;</span><br><span class="line">          height /= ratio;</span><br><span class="line">      &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">          ratio = <span class="number">1</span>;</span><br><span class="line">      &#125;</span><br><span class="line">      canvas.width = width;</span><br><span class="line">      canvas.height = height;</span><br><span class="line">      <span class="comment">//    铺底色</span></span><br><span class="line">      ctx.fillStyle = <span class="string">&quot;#fff&quot;</span>;</span><br><span class="line">      ctx.fillRect(<span class="number">0</span>, <span class="number">0</span>, canvas.width, canvas.height);</span><br><span class="line">      <span class="comment">//如果图片像素大于100万则使用瓦片绘制</span></span><br><span class="line">      <span class="keyword">let</span> count;</span><br><span class="line">      <span class="keyword">if</span> ((count = (width * height) / <span class="number">1000000</span>) &gt; <span class="number">1</span>) &#123;</span><br><span class="line">          <span class="comment">// console.log(&quot;超过100W像素&quot;);</span></span><br><span class="line">          count = ~~(<span class="built_in">Math</span>.sqrt(count) + <span class="number">1</span>); <span class="comment">//计算要分成多少块瓦片</span></span><br><span class="line">          <span class="comment">//      计算每块瓦片的宽和高</span></span><br><span class="line">          <span class="keyword">let</span> nw = ~~(width / count);</span><br><span class="line">          <span class="keyword">let</span> nh = ~~(height / count);</span><br><span class="line">          tCanvas.width = nw;</span><br><span class="line">          tCanvas.height = nh;</span><br><span class="line">          <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; count; i++) &#123;</span><br><span class="line">              <span class="keyword">for</span> (<span class="keyword">let</span> j = <span class="number">0</span>; j &lt; count; j++) &#123;</span><br><span class="line">                  tctx.drawImage(</span><br><span class="line">                      img,</span><br><span class="line">                      i * nw * ratio,</span><br><span class="line">                      j * nh * ratio,</span><br><span class="line">                      nw * ratio,</span><br><span class="line">                      nh * ratio,</span><br><span class="line">                      <span class="number">0</span>,</span><br><span class="line">                      <span class="number">0</span>,</span><br><span class="line">                      nw,</span><br><span class="line">                      nh</span><br><span class="line">                  );</span><br><span class="line">                  ctx.drawImage(tCanvas, i * nw, j * nh, nw, nh);</span><br><span class="line">              &#125;</span><br><span class="line">          &#125;</span><br><span class="line">      &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">          ctx.drawImage(img, <span class="number">0</span>, <span class="number">0</span>, width, height);</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="comment">//进行最小压缩</span></span><br><span class="line">      <span class="keyword">let</span> ndata = canvas.toDataURL(<span class="string">&quot;image/jpeg&quot;</span>, <span class="number">0.3</span>);</span><br><span class="line">      tCanvas.width = tCanvas.height = canvas.width = canvas.height = <span class="number">0</span>;</span><br><span class="line">      <span class="keyword">return</span> ndata;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="comment">// 看支持不支持FileReader</span></span><br><span class="line">  <span class="keyword">if</span> (!file || !<span class="built_in">window</span>.FileReader) &#123;</span><br><span class="line">      <span class="keyword">return</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">if</span> (<span class="regexp">/^image/</span>.test(file.type)) &#123;</span><br><span class="line">      <span class="comment">// 创建一个reader</span></span><br><span class="line">      <span class="keyword">let</span> reader = <span class="keyword">new</span> FileReader();</span><br><span class="line">      <span class="comment">// 将图片转成 base64 格式</span></span><br><span class="line">      reader.readAsDataURL(file);</span><br><span class="line">      <span class="comment">// 读取成功后的回调</span></span><br><span class="line">      reader.onloadend = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">          <span class="keyword">let</span> result = <span class="built_in">this</span>.result;</span><br><span class="line">          <span class="keyword">let</span> img = <span class="keyword">new</span> Image();</span><br><span class="line">          img.src = result;</span><br><span class="line">          <span class="comment">//判断图片是否小于500K,是就直接上传，反之压缩图片</span></span><br><span class="line">          <span class="keyword">if</span> (<span class="built_in">this</span> .result.length &lt;= <span class="number">100</span> * <span class="number">1024</span>) &#123;</span><br><span class="line">              <span class="comment">// 上传图片</span></span><br><span class="line">              <span class="keyword">let</span> imageFile = dataURLtoFile(<span class="built_in">this</span>.result, file);</span><br><span class="line">              callback(imageFile);</span><br><span class="line">          &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">              img.onload = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">                  <span class="keyword">let</span> data = compress(img);</span><br><span class="line">                  <span class="comment">// 上传图片</span></span><br><span class="line">                  <span class="keyword">let</span> imageFile = dataURLtoFile(data, file);</span><br><span class="line">                  callback(imageFile);</span><br><span class="line">              &#125;;</span><br><span class="line">          &#125;</span><br><span class="line">      &#125;;</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+
+<p>2.使用方法：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; imgPreview &#125; <span class="keyword">from</span> <span class="string">&quot;@/libs/util.js&quot;</span>;</span><br><span class="line">afterReadz (event) &#123;</span><br><span class="line">  <span class="built_in">this</span>.cardimgz = event.content</span><br><span class="line">  imgPreview(event.file,<span class="function">(<span class="params">files</span>)=&gt;</span>&#123;</span><br><span class="line">    <span class="built_in">this</span>.frontFile = files<span class="comment">//压缩后的文件流</span></span><br><span class="line">  &#125;)</span><br><span class="line">&#125;,</span><br><span class="line">afterReadf (event) &#123;</span><br><span class="line">  <span class="built_in">this</span>.cardimgf = event.content</span><br><span class="line">  imgPreview(event.file,<span class="function">(<span class="params">files</span>)=&gt;</span>&#123;</span><br><span class="line">    <span class="built_in">this</span>.backFile = files<span class="comment">//压缩后的文件流</span></span><br><span class="line">  &#125;)</span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure>
+
+<p>通过以上写法拿到压缩后的文件流，然后通过formData传参给后台就行了。</p>
+
+    
+
+    
+
+    
+    <div class="declare"> 
+      <ul class="post-copyright">
+        <li>
+          <strong>本文作者：</strong>
+          white-Hang
+        </li>
+        <li>
+          <strong>本文链接：</strong>
+          <a href="https://white-hang.github.io/2021/11/07/h5上传图片进行图片压缩/" title="h5上传图片进行图片压缩" target="_blank">https://white-hang.github.io/2021/11/07/h5上传图片进行图片压缩/</a>
+        </li>
+        
+        <li>
+          <strong>版权声明： </strong>
           
+          本博客所有文章除特别声明外，均采用 <a href="https://github.com/JoeyBling/hexo-theme-yilia-plus/blob/master/LICENSE" rel="external nofollow" target="_blank">MIT</a> 许可协议。转载请注明出处！
+        </li>
+        
+      </ul>
+    </div>
+    
+
+  </div>
+  <div class="article-info article-info-index">
+    
+    
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">react</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">h5</a>
         		</li>
       		
 		</ul>
 	</div>
 
-          
+    
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
+    
+
+    
+    <div class="clearfix"></div>
+  </div>
   </div>
 </article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/2021/10/23/react%E4%B8%AD%E7%9A%84%E8%B7%AF%E7%94%B1%E4%BC%A0%E5%8F%82%E6%96%B9%E5%BC%8F%E6%80%BB%E7%BB%93/" class="archive-article-date">
-        <time datetime="2021-10-23T12:05:04.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-10-23</time>
-</a>
 
+
+<nav id="article-nav">
+  
+  
+    <a href="/2021/11/07/%E7%A7%BB%E5%8A%A8%E7%AB%AF%E8%B0%83%E8%AF%95vConsole/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">移动端调试vConsole</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
+        
+        
+    </div>
+</aside>
+
+
+
+
+
+
+
+
+
+
+
   
-    <h1 itemprop="name">
-	
-	  <a class="archive-article-title" href="/2021/10/23/react%E4%B8%AD%E7%9A%84%E8%B7%AF%E7%94%B1%E4%BC%A0%E5%8F%82%E6%96%B9%E5%BC%8F%E6%80%BB%E7%BB%93/">react中的路由传参方式总结</a>
-	
-    </h1>
+  <div id="gitment-ctn"></div>
   
-
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">react</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
+    <!-- 中文 -->
+    <link rel="stylesheet" href="/lib/gitment.css">
+    <script src="/lib/gitment.js"></script>
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/2021/10/23/react%E4%B8%89%E5%A4%A7%E5%B1%9E%E6%80%A7%E4%B9%8Bref/" class="archive-article-date">
-        <time datetime="2021-10-23T11:55:03.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-10-23</time>
-</a>
+  <script>
+    <!-- id: "h5上传图片进行图片压缩" -->
+    var gitment = new Gitment({
+      id: "20211107162244",
+      owner: 'white-Hang',
+      repo: 'white-Hang.github.io',
+      oauth: {
+        client_id: '9dffa4894c387f84afc9',
+        client_secret: '8a8c5ae7adeee0705e331e28d94d3e11a9efe314',
+      },
+    })
+    gitment.render('gitment-ctn')
+  </script>
 
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-	
-	  <a class="archive-article-title" href="/2021/10/23/react%E4%B8%89%E5%A4%A7%E5%B1%9E%E6%80%A7%E4%B9%8Bref/">react三大属性之ref</a>
-	
-    </h1>
+
   
 
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">react</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/2021/10/23/react%E4%B8%89%E5%A4%A7%E5%B1%9E%E6%80%A7%E4%B9%8Bprops%E8%AF%A6%E8%A7%A3/" class="archive-article-date">
-        <time datetime="2021-10-23T11:42:10.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-10-23</time>
-</a>
-
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-	
-	  <a class="archive-article-title" href="/2021/10/23/react%E4%B8%89%E5%A4%A7%E5%B1%9E%E6%80%A7%E4%B9%8Bprops%E8%AF%A6%E8%A7%A3/">react三大属性之props详解</a>
-	
-    </h1>
-  
-
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">react</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/2021/10/19/react%E4%B8%AD%E7%9A%84setState%E8%AF%A6%E8%A7%A3/" class="archive-article-date">
-        <time datetime="2021-10-19T15:39:08.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-10-19</time>
-</a>
-
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-	
-	  <a class="archive-article-title" href="/2021/10/19/react%E4%B8%AD%E7%9A%84setState%E8%AF%A6%E8%A7%A3/">react中的setState详解</a>
-	
-    </h1>
-  
-
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">react</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/2021/10/18/react%E8%84%9A%E6%89%8B%E6%9E%B6%E9%85%8D%E7%BD%AE%E4%BB%A3%E7%90%86%E6%80%BB%E7%BB%93/" class="archive-article-date">
-        <time datetime="2021-10-18T15:18:44.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-10-18</time>
-</a>
-
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-	
-	  <a class="archive-article-title" href="/2021/10/18/react%E8%84%9A%E6%89%8B%E6%9E%B6%E9%85%8D%E7%BD%AE%E4%BB%A3%E7%90%86%E6%80%BB%E7%BB%93/">react脚手架配置代理总结</a>
-	
-    </h1>
-  
-
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">react</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
-
-    
 
 
           </div>
@@ -521,9 +431,9 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
-		isTag: true,
+		isTag: false,
 		isCategory: false,
 		open_in_new: false,
 		toc_hide_index: true,
