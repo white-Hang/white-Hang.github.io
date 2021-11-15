@@ -6,16 +6,21 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://white-hang.github.io">
-  <title>Archives: 2021/11 | Hexo</title>
+  <title>React-Hooks之useMemo和useCallback详解 | Hexo</title>
   <meta name="generator" content="hexo-theme-yilia-plus">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Hexo">
-<meta property="og:url" content="https://white-hang.github.io/archives/2021/11/index.html">
+  <meta name="description" content="要想学习useMemo必须要先知道React.memo,这两者都有一定的优化作用 memo的作用当数据变化时，代码会重新执行一遍，但是子组件数据没有变化也会执行，这个时候可以使用memo将子组件封装起来，让子组件的数据只在发生改变时才会执行 案例父组件点击countOne+1，子组件的入参countTwo不变，验证程序会不会执行子组件的代码 不使用memo的情况只改变countOne的值时，虽然说">
+<meta property="og:type" content="article">
+<meta property="og:title" content="React-Hooks之useMemo和useCallback详解">
+<meta property="og:url" content="https://white-hang.github.io/2021/11/11/React-Hooks%E4%B9%8BuseMemo%E5%92%8CuseCallback%E8%AF%A6%E8%A7%A3/index.html">
 <meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="要想学习useMemo必须要先知道React.memo,这两者都有一定的优化作用 memo的作用当数据变化时，代码会重新执行一遍，但是子组件数据没有变化也会执行，这个时候可以使用memo将子组件封装起来，让子组件的数据只在发生改变时才会执行 案例父组件点击countOne+1，子组件的入参countTwo不变，验证程序会不会执行子组件的代码 不使用memo的情况只改变countOne的值时，虽然说">
 <meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2021-11-11T12:47:56.000Z">
+<meta property="article:modified_time" content="2021-11-15T12:49:30.770Z">
 <meta property="article:author" content="white-Hang">
+<meta property="article:tag" content="react">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternative" href="/atom.xml" title="Hexo" type="application/atom+xml">
@@ -207,84 +212,128 @@
               class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
+            <article id="post-React-Hooks之useMemo和useCallback详解" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
   
   
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2021" class="archive-year">2021</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/2021/11/15/vue%E9%A1%B9%E7%9B%AE%E9%87%8C%E4%BD%BF%E7%94%A8scss%E5%85%A8%E5%B1%80%E5%8F%98%E9%87%8F/" class="archive-article-date">
-        <time datetime="2021-11-15T12:41:10.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-11-15</time>
-</a>
-
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-	
-	  <a class="archive-article-title" href="/2021/11/15/vue%E9%A1%B9%E7%9B%AE%E9%87%8C%E4%BD%BF%E7%94%A8scss%E5%85%A8%E5%B1%80%E5%8F%98%E9%87%8F/">vue项目里使用scss全局变量</a>
-	
+    <h1 class="article-title" itemprop="name">
+      React-Hooks之useMemo和useCallback详解
     </h1>
   
 
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">vue</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
+  
+        
+        <span id="busuanzi_container_page_pv" style='display:none' class="archive-article-date">
+              <i class="icon-smile icon"></i> 阅读数：<span id="busuanzi_value_page_pv"></span>次
+        </span>
+
 <a href="/2021/11/11/React-Hooks%E4%B9%8BuseMemo%E5%92%8CuseCallback%E8%AF%A6%E8%A7%A3/" class="archive-article-date">
         <time datetime="2021-11-11T12:47:56.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-11-11</time>
 </a>
 
-        </div>
-    	 
   
-    <h1 itemprop="name">
-	
-	  <a class="archive-article-title" href="/2021/11/11/React-Hooks%E4%B9%8BuseMemo%E5%92%8CuseCallback%E8%AF%A6%E8%A7%A3/">React-Hooks之useMemo和useCallback详解</a>
-	
-    </h1>
   
+    
+<div style="margin-top:10px;">
+  <span class="post-time">
+    <span class="post-meta-item-icon">
+      <!-- fonts.scss -->
+      <!-- 百度字体平台:http://fontstore.baidu.com/static/editor/index.html -->
+      <i class="icon-statistics"></i>
+      <span class="post-meta-item-text"> 字数统计:</span>
+      <span class="post-count">1.4k字</span>
+    </span>
+  </span>
+
+  <span class="post-time">
+    &nbsp; | &nbsp;
+    <span class="post-meta-item-icon">
+      <i class="icon-book icon"></i>
+      <span class="post-meta-item-text"> 阅读时长≈</span>
+      <span class="post-count">6分</span>
+    </span>
+  </span>
+</div>
 
 
-        <div class="article-info info-on-right">
+  
+  </header>
+  
+  <div class="article-entry" itemprop="articleBody">
+    
+    <p>要想学习useMemo必须要先知道React.memo,这两者都有一定的优化作用</p>
+<h4 id="memo的作用"><a href="#memo的作用" class="headerlink" title="memo的作用"></a>memo的作用</h4><p>当数据变化时，代码会重新执行一遍，但是<strong>子组件数据没有变化也会执行</strong>，这个时候可以使用<code>memo</code>将子组件封装起来，让子组件的数据只在发生改变时才会执行</p>
+<h4 id="案例"><a href="#案例" class="headerlink" title="案例"></a>案例</h4><p>父组件点击countOne+1，子组件的入参countTwo不变，验证程序会不会执行子组件的代码</p>
+<h4 id="不使用memo的情况"><a href="#不使用memo的情况" class="headerlink" title="不使用memo的情况"></a>不使用memo的情况</h4><p>只改变countOne的值时，虽然说countTwo的值没变，但是也执行了Child的打印语句</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> UseMemo = <span class="function">() =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">const</span> [countOne, setOne] = useState(<span class="function">() =&gt;</span> <span class="number">0</span>)</span><br><span class="line">  <span class="keyword">const</span> [countTwo, setTwo] = useState(<span class="function">() =&gt;</span> <span class="number">0</span>)</span><br><span class="line">  <span class="keyword">return</span> (</span><br><span class="line">    <span class="xml"><span class="tag">&lt;<span class="name">div</span>&gt;</span></span></span><br><span class="line"><span class="xml">      <span class="tag">&lt;<span class="name">h1</span>&gt;</span>&#123;countOne&#125;<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span></span><br><span class="line"><span class="xml">      <span class="tag">&lt;<span class="name">button</span> <span class="attr">onClick</span>=<span class="string">&#123;()</span> =&gt;</span> setOne((countOne) =&gt; countOne + 1)&#125;&gt;</span></span><br><span class="line"><span class="xml">        +countOne</span></span><br><span class="line"><span class="xml">      <span class="tag">&lt;/<span class="name">button</span>&gt;</span></span></span><br><span class="line"><span class="xml">      <span class="tag">&lt;<span class="name">button</span> <span class="attr">onClick</span>=<span class="string">&#123;()</span> =&gt;</span> setTwo((countTwo) =&gt; countTwo + 1)&#125;&gt;</span></span><br><span class="line"><span class="xml">        +countTwo</span></span><br><span class="line"><span class="xml">      <span class="tag">&lt;/<span class="name">button</span>&gt;</span></span></span><br><span class="line"><span class="xml">      <span class="tag">&lt;<span class="name">Child</span> <span class="attr">count</span>=<span class="string">&#123;countTwo&#125;</span>&gt;</span><span class="tag">&lt;/<span class="name">Child</span>&gt;</span></span></span><br><span class="line"><span class="xml">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line">  )</span><br><span class="line">&#125;</span><br><span class="line"> <span class="keyword">const</span> Child = <span class="function">(<span class="params">props</span>) =&gt;</span> &#123;</span><br><span class="line">   <span class="built_in">console</span>.log(<span class="string">&#x27;child执行了&#x27;</span>)</span><br><span class="line">   <span class="keyword">return</span> <span class="xml"><span class="tag">&lt;<span class="name">div</span>&gt;</span>&#123;props.count&#125;<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
+
+<p>通过运行发现，Child里的代码执行了。</p>
+<span id="more"></span>
+<h4 id="使用memo进行封装"><a href="#使用memo进行封装" class="headerlink" title="使用memo进行封装"></a>使用memo进行封装</h4><p>将Child用memo封装一下，就可以使m不变就不执行Child，这个时候只要m的值不变，就不会执行Child组件</p>
+<p>使用React.memo封装，会返回一个新的组件，调用新组件</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> UseMemo = <span class="function">() =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">const</span> [countOne, setOne] = useState(<span class="function">() =&gt;</span> <span class="number">0</span>)</span><br><span class="line">  <span class="keyword">const</span> [countTwo, setTwo] = useState(<span class="function">() =&gt;</span> <span class="number">0</span>)</span><br><span class="line">  <span class="keyword">return</span> (</span><br><span class="line">    <span class="xml"><span class="tag">&lt;<span class="name">div</span>&gt;</span></span></span><br><span class="line"><span class="xml">      <span class="tag">&lt;<span class="name">h1</span>&gt;</span>&#123;countOne&#125;<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span></span><br><span class="line"><span class="xml">      <span class="tag">&lt;<span class="name">button</span> <span class="attr">onClick</span>=<span class="string">&#123;()</span> =&gt;</span> setOne((countOne) =&gt; countOne + 1)&#125;&gt;</span></span><br><span class="line"><span class="xml">        +countOne</span></span><br><span class="line"><span class="xml">      <span class="tag">&lt;/<span class="name">button</span>&gt;</span></span></span><br><span class="line"><span class="xml">      <span class="tag">&lt;<span class="name">button</span> <span class="attr">onClick</span>=<span class="string">&#123;()</span> =&gt;</span> setTwo((countTwo) =&gt; countTwo + 1)&#125;&gt;</span></span><br><span class="line"><span class="xml">        +countTwo</span></span><br><span class="line"><span class="xml">      <span class="tag">&lt;/<span class="name">button</span>&gt;</span></span></span><br><span class="line"><span class="xml">      <span class="tag">&lt;<span class="name">Child</span> <span class="attr">count</span>=<span class="string">&#123;countTwo&#125;</span>&gt;</span><span class="tag">&lt;/<span class="name">Child</span>&gt;</span></span></span><br><span class="line"><span class="xml">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line">  )</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">const</span> Child = React.memo(<span class="function">(<span class="params">props</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">&#x27;child执行了&#x27;</span>)</span><br><span class="line">  <span class="keyword">return</span> (</span><br><span class="line">    <span class="xml"><span class="tag">&lt;<span class="name">div</span>&gt;</span></span></span><br><span class="line"><span class="xml">      &#123;props.count&#125;</span></span><br><span class="line"><span class="xml">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line">  )</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<p>这次执行就可以发现，改变了countOne，Child的代码并没有执行。</p>
+<h4 id="但是此时还有一个bug，如果在子组件Child上添加一个监听函数，无论修改countTwo的值与否，都会执行Child组件"><a href="#但是此时还有一个bug，如果在子组件Child上添加一个监听函数，无论修改countTwo的值与否，都会执行Child组件" class="headerlink" title="但是此时还有一个bug，如果在子组件Child上添加一个监听函数，无论修改countTwo的值与否，都会执行Child组件"></a><strong>但是此时还有一个bug，如果在子组件Child上添加一个监听函数，无论修改countTwo的值与否，都会执行Child组件</strong></h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> UseMemo = <span class="function">() =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">const</span> [countOne, setOne] = useState(<span class="function">() =&gt;</span> <span class="number">0</span>)</span><br><span class="line">  <span class="keyword">const</span> [countTwo, setTwo] = useState(<span class="function">() =&gt;</span> <span class="number">0</span>)</span><br><span class="line">  <span class="keyword">const</span> onClickChild = <span class="function">(<span class="params">props</span>) =&gt;</span> &#123;</span><br><span class="line">      <span class="built_in">console</span>.log(props, <span class="string">&#x27;aaaaaaa&#x27;</span>)</span><br><span class="line">    setOne(<span class="function">(<span class="params">countOne</span>) =&gt;</span> countOne + <span class="number">1</span>)</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> (</span><br><span class="line">    <span class="xml"><span class="tag">&lt;<span class="name">div</span>&gt;</span></span></span><br><span class="line"><span class="xml">      <span class="tag">&lt;<span class="name">h1</span>&gt;</span>&#123;countOne&#125;<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span></span><br><span class="line"><span class="xml">      <span class="tag">&lt;<span class="name">button</span> <span class="attr">onClick</span>=<span class="string">&#123;()</span> =&gt;</span> setOne((countOne) =&gt; countOne + 1)&#125;&gt;</span></span><br><span class="line"><span class="xml">        +countOne</span></span><br><span class="line"><span class="xml">      <span class="tag">&lt;/<span class="name">button</span>&gt;</span></span></span><br><span class="line"><span class="xml">      <span class="tag">&lt;<span class="name">button</span> <span class="attr">onClick</span>=<span class="string">&#123;()</span> =&gt;</span> setTwo((countTwo) =&gt; countTwo + 1)&#125;&gt;</span></span><br><span class="line"><span class="xml">        +countTwo</span></span><br><span class="line"><span class="xml">      <span class="tag">&lt;/<span class="name">button</span>&gt;</span></span></span><br><span class="line"><span class="xml">      &#123;/*但是如果传了一个引用，则React.memo无效。因为引用是不相等的*/&#125;</span></span><br><span class="line"><span class="xml">      <span class="tag">&lt;<span class="name">Child</span> <span class="attr">count</span>=<span class="string">&#123;countTwo&#125;</span> <span class="attr">onClickChild</span>=<span class="string">&#123;onClickChild&#125;</span>&gt;</span><span class="tag">&lt;/<span class="name">Child</span>&gt;</span></span></span><br><span class="line"><span class="xml">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line">  )</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">const</span> Child = React.memo(<span class="function">(<span class="params">props</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">&#x27;child执行了&#x27;</span>)</span><br><span class="line">  <span class="keyword">return</span> (</span><br><span class="line">    <span class="xml"><span class="tag">&lt;<span class="name">div</span></span></span></span><br><span class="line"><span class="tag"><span class="xml">      <span class="attr">onClick</span>=<span class="string">&#123;()</span> =&gt;</span> &#123;</span></span><br><span class="line"><span class="xml">        console.log(&#x27;11&#x27;)</span></span><br><span class="line"><span class="xml">        props.onClickChild(&#x27;我给父组件传值啦！&#x27;)</span></span><br><span class="line"><span class="xml">      &#125;&#125;</span></span><br><span class="line"><span class="xml">    &gt;</span></span><br><span class="line"><span class="xml">      &#123;props.count&#125;</span></span><br><span class="line"><span class="xml">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line">  )</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<p>以上代码给Child传了个函数onClickChild,这就导致了即使countTwo没改变，Child也同样会被执行。</p>
+<p>这是因为当点击countOne时，就会重新执行父组件代码，<code>onClickChild</code>空函数的地址会发生改变，所以说此时还是会执行Child的</p>
+<p>这个时候就需要useMemo闪亮登场了</p>
+<h4 id="useMemo的作用"><a href="#useMemo的作用" class="headerlink" title="useMemo的作用"></a>useMemo的作用</h4><p>解决因函数更新而渲染自己的问题，就可以使用useMemo,使用它将函数重新封装</p>
+<p><code>const onClickChild=useMemo(fn,array)</code>监听变量，第一个参数是函数，第二个参数是依赖，只有依赖变化时才会重新计算函数</p>
+<p>第一个参数是 () =&gt; value</p>
+<p>第二个参数是依赖 [m, n]</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> UseMemo = <span class="function">() =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">const</span> [countOne, setOne] = useState(<span class="function">() =&gt;</span> <span class="number">0</span>)</span><br><span class="line">  <span class="keyword">const</span> [countTwo, setTwo] = useState(<span class="function">() =&gt;</span> <span class="number">0</span>)</span><br><span class="line">  <span class="keyword">const</span> onClickChild = useMemo(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">&#x27;useMemo执行&#x27;</span>)</span><br><span class="line">    <span class="keyword">return</span> <span class="function">(<span class="params">props</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(props, <span class="string">&#x27;aaaaaaa&#x27;</span>)</span><br><span class="line">      setOne(<span class="function">(<span class="params">countOne</span>) =&gt;</span> countOne + <span class="number">1</span>)</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;, [countTwo])</span><br><span class="line">  <span class="keyword">return</span> (</span><br><span class="line">    <span class="xml"><span class="tag">&lt;<span class="name">div</span>&gt;</span></span></span><br><span class="line"><span class="xml">      <span class="tag">&lt;<span class="name">h1</span>&gt;</span>&#123;countOne&#125;<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span></span><br><span class="line"><span class="xml">      <span class="tag">&lt;<span class="name">button</span> <span class="attr">onClick</span>=<span class="string">&#123;()</span> =&gt;</span> setOne((countOne) =&gt; countOne + 1)&#125;&gt;</span></span><br><span class="line"><span class="xml">        +countOne</span></span><br><span class="line"><span class="xml">      <span class="tag">&lt;/<span class="name">button</span>&gt;</span></span></span><br><span class="line"><span class="xml">      <span class="tag">&lt;<span class="name">button</span> <span class="attr">onClick</span>=<span class="string">&#123;()</span> =&gt;</span> setTwo((countTwo) =&gt; countTwo + 1)&#125;&gt;</span></span><br><span class="line"><span class="xml">        +countTwo</span></span><br><span class="line"><span class="xml">      <span class="tag">&lt;/<span class="name">button</span>&gt;</span></span></span><br><span class="line"><span class="xml">      <span class="tag">&lt;<span class="name">Child</span> <span class="attr">count</span>=<span class="string">&#123;countTwo&#125;</span> <span class="attr">onClickChild</span>=<span class="string">&#123;onClickChild&#125;</span>&gt;</span><span class="tag">&lt;/<span class="name">Child</span>&gt;</span></span></span><br><span class="line"><span class="xml">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line">  )</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">const</span> Child = React.memo(<span class="function">(<span class="params">props</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">&#x27;child执行了&#x27;</span>)</span><br><span class="line">  <span class="keyword">return</span> (</span><br><span class="line">    <span class="xml"><span class="tag">&lt;<span class="name">div</span></span></span></span><br><span class="line"><span class="tag"><span class="xml">      <span class="attr">onClick</span>=<span class="string">&#123;()</span> =&gt;</span> &#123;</span></span><br><span class="line"><span class="xml">        console.log(&#x27;11&#x27;)</span></span><br><span class="line"><span class="xml">        props.onClickChild(&#x27;我给父组件传值啦！&#x27;)</span></span><br><span class="line"><span class="xml">      &#125;&#125;</span></span><br><span class="line"><span class="xml">    &gt;</span></span><br><span class="line"><span class="xml">      &#123;props.count&#125;</span></span><br><span class="line"><span class="xml">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line">  )</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<p>通过以上代码运行改变countOne，Child就不会执行啦</p>
+<p>这里要注意下，useMemo是用来消除上面在子组件Child上添加函数，造成子组件重复渲染的问题，</p>
+<p>通俗点说就是处理onClickChild这个函数带来的bug</p>
+<p>如果Child不是用React.memo包裹的，那么改变countOne同样会触发Child改变。</p>
+<p>所以通常二者是结合使用的。</p>
+<h4 id="注意："><a href="#注意：" class="headerlink" title="注意："></a>注意：</h4><ul>
+<li>如果你的value是个函数，那么你就要写成<code>useMemo(() =&gt; fn, deps)</code></li>
+<li>这是一个返回函数的函数,比较复杂；于是就有了<code>useCallback</code>，你可以使用<code>useCallback</code></li>
+</ul>
+<h4 id="useCallback的作用"><a href="#useCallback的作用" class="headerlink" title="useCallback的作用"></a>useCallback的作用</h4><p>useCallback(fn, deps) 相当于 useMemo(() =&gt; fn, deps)</p>
+<p>上面的onClickChild函数用useCallback写法如下：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> UseMemo = <span class="function">() =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">const</span> [countOne, setOne] = useState(<span class="function">() =&gt;</span> <span class="number">0</span>)</span><br><span class="line">  <span class="keyword">const</span> [countTwo, setTwo] = useState(<span class="function">() =&gt;</span> <span class="number">0</span>)</span><br><span class="line">  <span class="keyword">const</span> onClickChild = useCallback(</span><br><span class="line">       <span class="function">(<span class="params">props</span>) =&gt;</span> &#123;</span><br><span class="line">         <span class="built_in">console</span>.log(props, <span class="string">&#x27;aaaaaaa&#x27;</span>)</span><br><span class="line">         setOne(<span class="function">(<span class="params">countOne</span>) =&gt;</span> countOne + <span class="number">1</span>)</span><br><span class="line">       &#125;,</span><br><span class="line">       [countTwo]</span><br><span class="line">     )</span><br><span class="line">  <span class="keyword">return</span> (</span><br><span class="line">    <span class="xml"><span class="tag">&lt;<span class="name">div</span>&gt;</span></span></span><br><span class="line"><span class="xml">      <span class="tag">&lt;<span class="name">h1</span>&gt;</span>&#123;countOne&#125;<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span></span><br><span class="line"><span class="xml">      <span class="tag">&lt;<span class="name">button</span> <span class="attr">onClick</span>=<span class="string">&#123;()</span> =&gt;</span> setOne((countOne) =&gt; countOne + 1)&#125;&gt;</span></span><br><span class="line"><span class="xml">        +countOne</span></span><br><span class="line"><span class="xml">      <span class="tag">&lt;/<span class="name">button</span>&gt;</span></span></span><br><span class="line"><span class="xml">      <span class="tag">&lt;<span class="name">button</span> <span class="attr">onClick</span>=<span class="string">&#123;()</span> =&gt;</span> setTwo((countTwo) =&gt; countTwo + 1)&#125;&gt;</span></span><br><span class="line"><span class="xml">        +countTwo</span></span><br><span class="line"><span class="xml">      <span class="tag">&lt;/<span class="name">button</span>&gt;</span></span></span><br><span class="line"><span class="xml">      &#123;/*但是如果传了一个引用，则React.memo无效。因为引用是不相等的*/&#125;</span></span><br><span class="line"><span class="xml">      <span class="tag">&lt;<span class="name">Child</span> <span class="attr">count</span>=<span class="string">&#123;countTwo&#125;</span> <span class="attr">onClickChild</span>=<span class="string">&#123;onClickChild&#125;</span>&gt;</span><span class="tag">&lt;/<span class="name">Child</span>&gt;</span></span></span><br><span class="line"><span class="xml">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line">  )</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">const</span> Child = React.memo(<span class="function">(<span class="params">props</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">&#x27;child执行了&#x27;</span>)</span><br><span class="line">  <span class="keyword">return</span> (</span><br><span class="line">    <span class="xml"><span class="tag">&lt;<span class="name">div</span></span></span></span><br><span class="line"><span class="tag"><span class="xml">      <span class="attr">onClick</span>=<span class="string">&#123;()</span> =&gt;</span> &#123;</span></span><br><span class="line"><span class="xml">        console.log(&#x27;11&#x27;)</span></span><br><span class="line"><span class="xml">        props.onClickChild(&#x27;我给父组件传值啦！&#x27;)</span></span><br><span class="line"><span class="xml">      &#125;&#125;</span></span><br><span class="line"><span class="xml">    &gt;</span></span><br><span class="line"><span class="xml">      &#123;props.count&#125;</span></span><br><span class="line"><span class="xml">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line">  )</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<p>到这里React.memo,useMemo,useCallback就都解释完了，喜欢的小伙伴点个收藏哦。</p>
+
+    
+
+    
+
+    
+    <div class="declare"> 
+      <ul class="post-copyright">
+        <li>
+          <strong>本文作者：</strong>
+          white-Hang
+        </li>
+        <li>
+          <strong>本文链接：</strong>
+          <a href="https://white-hang.github.io/2021/11/11/React-Hooks之useMemo和useCallback详解/" title="React-Hooks之useMemo和useCallback详解" target="_blank">https://white-hang.github.io/2021/11/11/React-Hooks之useMemo和useCallback详解/</a>
+        </li>
+        
+        <li>
+          <strong>版权声明： </strong>
           
+          本博客所有文章除特别声明外，均采用 <a href="https://github.com/JoeyBling/hexo-theme-yilia-plus/blob/master/LICENSE" rel="external nofollow" target="_blank">MIT</a> 许可协议。转载请注明出处！
+        </li>
+        
+      </ul>
+    </div>
+    
+
+  </div>
+  <div class="article-info article-info-index">
+    
+    
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -296,191 +345,87 @@
 		</ul>
 	</div>
 
-          
+    
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
+    
+
+    
+    <div class="clearfix"></div>
+  </div>
   </div>
 </article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/2021/11/09/React-Hooks%E4%B9%8BuseEffect%E8%AF%A6%E8%A7%A3/" class="archive-article-date">
-        <time datetime="2021-11-09T12:46:10.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-11-09</time>
-</a>
 
+
+<nav id="article-nav">
+  
+    <a href="/2021/11/15/vue%E9%A1%B9%E7%9B%AE%E9%87%8C%E4%BD%BF%E7%94%A8scss%E5%85%A8%E5%B1%80%E5%8F%98%E9%87%8F/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          vue项目里使用scss全局变量
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2021/11/09/React-Hooks%E4%B9%8BuseEffect%E8%AF%A6%E8%A7%A3/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">React-Hooks之useEffect详解</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
+        
+        
+    </div>
+</aside>
+
+
+
+
+
+
+
+
+
+
+
   
-    <h1 itemprop="name">
-	
-	  <a class="archive-article-title" href="/2021/11/09/React-Hooks%E4%B9%8BuseEffect%E8%AF%A6%E8%A7%A3/">React-Hooks之useEffect详解</a>
-	
-    </h1>
+  <div id="gitment-ctn"></div>
   
-
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">react</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
+    <!-- 中文 -->
+    <link rel="stylesheet" href="/lib/gitment.css">
+    <script src="/lib/gitment.js"></script>
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/2021/11/07/h5%E4%B8%8A%E4%BC%A0%E5%9B%BE%E7%89%87%E8%BF%9B%E8%A1%8C%E5%9B%BE%E7%89%87%E5%8E%8B%E7%BC%A9/" class="archive-article-date">
-        <time datetime="2021-11-07T08:22:44.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-11-07</time>
-</a>
+  <script>
+    <!-- id: "React-Hooks之useMemo和useCallback详解" -->
+    var gitment = new Gitment({
+      id: "20211111204756",
+      owner: 'white-Hang',
+      repo: 'white-Hang.github.io',
+      oauth: {
+        client_id: '9dffa4894c387f84afc9',
+        client_secret: '8a8c5ae7adeee0705e331e28d94d3e11a9efe314',
+      },
+    })
+    gitment.render('gitment-ctn')
+  </script>
 
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-	
-	  <a class="archive-article-title" href="/2021/11/07/h5%E4%B8%8A%E4%BC%A0%E5%9B%BE%E7%89%87%E8%BF%9B%E8%A1%8C%E5%9B%BE%E7%89%87%E5%8E%8B%E7%BC%A9/">h5上传图片进行图片压缩</a>
-	
-    </h1>
+
   
 
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">h5</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/2021/11/07/%E7%A7%BB%E5%8A%A8%E7%AB%AF%E8%B0%83%E8%AF%95vConsole/" class="archive-article-date">
-        <time datetime="2021-11-07T08:17:12.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-11-07</time>
-</a>
-
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-	
-	  <a class="archive-article-title" href="/2021/11/07/%E7%A7%BB%E5%8A%A8%E7%AB%AF%E8%B0%83%E8%AF%95vConsole/">移动端调试vConsole</a>
-	
-    </h1>
-  
-
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">h5</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	
-<a href="/2021/11/07/h5%E7%A7%BB%E5%8A%A8%E7%AB%AFuc%E6%B5%8F%E8%A7%88%E5%99%A8%E6%8B%8D%E7%85%A7%E8%A6%86%E7%9B%96%E9%97%AE%E9%A2%98/" class="archive-article-date">
-        <time datetime="2021-11-07T08:10:24.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-11-07</time>
-</a>
-
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-	
-	  <a class="archive-article-title" href="/2021/11/07/h5%E7%A7%BB%E5%8A%A8%E7%AB%AFuc%E6%B5%8F%E8%A7%88%E5%99%A8%E6%8B%8D%E7%85%A7%E8%A6%86%E7%9B%96%E9%97%AE%E9%A2%98/">h5移动端uc浏览器拍照覆盖问题</a>
-	
-    </h1>
-  
-
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">h5</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
-
-    
 
 
           </div>
@@ -521,8 +466,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,
