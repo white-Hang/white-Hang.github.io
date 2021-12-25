@@ -6,21 +6,21 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://white-hang.github.io">
-  <title>react脚手架配置代理总结 | Hexo</title>
+  <title>Vue实现将页面转成PDF并下载 | Hexo</title>
   <meta name="generator" content="hexo-theme-yilia-plus">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
-  <meta name="description" content="方法一在package.json中追加如下配置 1&quot;proxy&quot;:&quot;http:&#x2F;&#x2F;localhost:5000&quot;  说明：  优点：配置简单，前端请求资源时可以不加任何前缀。  缺点：不能配置多个代理。  工作方式：上述方式配置代理，当请求了3000不存在的资源时，那么该请求会转发给5000 （优先匹配前端资源）   方法二第一步：创建代理配置文件在src下">
+  <meta name="description" content="一.安装所需依赖1.将页面html转换成图片 1npm install --save html2canvas  2.将图片生成pdf 1npm install jspdf --save  二.创建一个htmlToPdf.js文件在公共文件夹utils添加如下代码： 1234567891011121314151617181920212223242526272829303132333435363738">
 <meta property="og:type" content="article">
-<meta property="og:title" content="react脚手架配置代理总结">
-<meta property="og:url" content="https://white-hang.github.io/2021/10/18/react%E8%84%9A%E6%89%8B%E6%9E%B6%E9%85%8D%E7%BD%AE%E4%BB%A3%E7%90%86%E6%80%BB%E7%BB%93/index.html">
+<meta property="og:title" content="Vue实现将页面转成PDF并下载">
+<meta property="og:url" content="https://white-hang.github.io/2021/12/25/Vue%E5%AE%9E%E7%8E%B0%E5%B0%86%E9%A1%B5%E9%9D%A2%E8%BD%AC%E6%88%90PDF%E5%B9%B6%E4%B8%8B%E8%BD%BD/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="方法一在package.json中追加如下配置 1&quot;proxy&quot;:&quot;http:&#x2F;&#x2F;localhost:5000&quot;  说明：  优点：配置简单，前端请求资源时可以不加任何前缀。  缺点：不能配置多个代理。  工作方式：上述方式配置代理，当请求了3000不存在的资源时，那么该请求会转发给5000 （优先匹配前端资源）   方法二第一步：创建代理配置文件在src下">
+<meta property="og:description" content="一.安装所需依赖1.将页面html转换成图片 1npm install --save html2canvas  2.将图片生成pdf 1npm install jspdf --save  二.创建一个htmlToPdf.js文件在公共文件夹utils添加如下代码： 1234567891011121314151617181920212223242526272829303132333435363738">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2021-10-18T15:18:44.000Z">
-<meta property="article:modified_time" content="2021-10-18T15:19:28.735Z">
+<meta property="article:published_time" content="2021-12-25T14:21:09.000Z">
+<meta property="article:modified_time" content="2021-12-25T14:23:22.890Z">
 <meta property="article:author" content="white-Hang">
-<meta property="article:tag" content="react">
+<meta property="article:tag" content="vue">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternative" href="/atom.xml" title="Hexo" type="application/atom+xml">
@@ -212,14 +212,14 @@
               class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-react脚手架配置代理总结" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-Vue实现将页面转成PDF并下载" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
   
   
     <h1 class="article-title" itemprop="name">
-      react脚手架配置代理总结
+      Vue实现将页面转成PDF并下载
     </h1>
   
 
@@ -231,8 +231,8 @@
               <i class="icon-smile icon"></i> 阅读数：<span id="busuanzi_value_page_pv"></span>次
         </span>
 
-<a href="/2021/10/18/react%E8%84%9A%E6%89%8B%E6%9E%B6%E9%85%8D%E7%BD%AE%E4%BB%A3%E7%90%86%E6%80%BB%E7%BB%93/" class="archive-article-date">
-        <time datetime="2021-10-18T15:18:44.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-10-18</time>
+<a href="/2021/12/25/Vue%E5%AE%9E%E7%8E%B0%E5%B0%86%E9%A1%B5%E9%9D%A2%E8%BD%AC%E6%88%90PDF%E5%B9%B6%E4%B8%8B%E8%BD%BD/" class="archive-article-date">
+        <time datetime="2021-12-25T14:21:09.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-12-25</time>
 </a>
 
   
@@ -245,7 +245,7 @@
       <!-- 百度字体平台:http://fontstore.baidu.com/static/editor/index.html -->
       <i class="icon-statistics"></i>
       <span class="post-meta-item-text"> 字数统计:</span>
-      <span class="post-count">455字</span>
+      <span class="post-count">335字</span>
     </span>
   </span>
 
@@ -265,32 +265,20 @@
   
   <div class="article-entry" itemprop="articleBody">
     
-    <h3 id="方法一"><a href="#方法一" class="headerlink" title="方法一"></a>方法一</h3><p>在package.json中追加如下配置</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">&quot;proxy&quot;</span>:<span class="string">&quot;http://localhost:5000&quot;</span></span><br></pre></td></tr></table></figure>
+    <h4 id="一-安装所需依赖"><a href="#一-安装所需依赖" class="headerlink" title="一.安装所需依赖"></a>一.安装所需依赖</h4><p>1.将页面html转换成图片</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install --save html2canvas</span><br></pre></td></tr></table></figure>
 
-<p>说明：</p>
-<ol>
-<li><p>优点：配置简单，前端请求资源时可以不加任何前缀。</p>
-</li>
-<li><p>缺点：不能配置多个代理。</p>
-</li>
-<li><p>工作方式：上述方式配置代理，当请求了3000不存在的资源时，那么该请求会转发给5000 （优先匹配前端资源）</p>
-</li>
-</ol>
-<h3 id="方法二"><a href="#方法二" class="headerlink" title="方法二"></a>方法二</h3><h4 id="第一步：创建代理配置文件"><a href="#第一步：创建代理配置文件" class="headerlink" title="第一步：创建代理配置文件"></a>第一步：创建代理配置文件</h4><p>在src下创建配置文件：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">setupProxy.js</span><br></pre></td></tr></table></figure>
+<p>2.将图片生成pdf</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install jspdf --save</span><br></pre></td></tr></table></figure>
 
-<h4 id="第二步编写setupProxy-js配置具体代理规则："><a href="#第二步编写setupProxy-js配置具体代理规则：" class="headerlink" title="第二步编写setupProxy.js配置具体代理规则："></a>第二步编写setupProxy.js配置具体代理规则：</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> proxy = <span class="built_in">require</span>(<span class="string">&#x27;http-proxy-middleware&#x27;</span>)</span><br><span class="line">   </span><br><span class="line">   <span class="built_in">module</span>.exports = <span class="function"><span class="keyword">function</span>(<span class="params">app</span>) </span>&#123;</span><br><span class="line">     app.use(</span><br><span class="line">       proxy(<span class="string">&#x27;/api1&#x27;</span>, &#123;  <span class="comment">//api1是需要转发的请求(所有带有/api1前缀的请求都会转发给5000)</span></span><br><span class="line">         <span class="attr">target</span>: <span class="string">&#x27;http://localhost:5000&#x27;</span>, <span class="comment">//配置转发目标地址(能返回数据的服务器地址),如果是域名需要额外添加一个参数changeOrigin: true，否则会代理失败。</span></span><br><span class="line">         <span class="attr">changeOrigin</span>: <span class="literal">true</span>, <span class="comment">//控制服务器接收到的请求头中host字段的值,这个参数可以让target参数是域名</span></span><br><span class="line">         <span class="comment">/*</span></span><br><span class="line"><span class="comment">         	changeOrigin设置为true时，服务器收到的请求头中的host为：localhost:5000</span></span><br><span class="line"><span class="comment">         	changeOrigin设置为false时，服务器收到的请求头中的host为：localhost:3000</span></span><br><span class="line"><span class="comment">         	changeOrigin默认值为false，但我们一般将changeOrigin值设为true</span></span><br><span class="line"><span class="comment">         */</span></span><br><span class="line">         <span class="attr">pathRewrite</span>: &#123;<span class="string">&#x27;^/api1&#x27;</span>: <span class="string">&#x27;&#x27;</span>&#125; <span class="comment">//去除请求前缀，保证交给后台服务器的是正常请求地址(必须配置),比如访问的API路径：/api1/users,设置pathRewrite: &#123;&#x27;^/api1&#x27; : &#x27;&#x27;&#125;后，最终代理访问的路径：http://localhost:5000/users</span></span><br><span class="line">       &#125;),</span><br><span class="line">       proxy(<span class="string">&#x27;/api2&#x27;</span>, &#123; </span><br><span class="line">         <span class="attr">target</span>: <span class="string">&#x27;http://localhost:5001&#x27;</span>,</span><br><span class="line">         <span class="attr">changeOrigin</span>: <span class="literal">true</span>,</span><br><span class="line">         <span class="attr">pathRewrite</span>: &#123;<span class="string">&#x27;^/api2&#x27;</span>: <span class="string">&#x27;&#x27;</span>&#125;</span><br><span class="line">       &#125;)</span><br><span class="line">     )</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+<h4 id="二-创建一个htmlToPdf-js文件在公共文件夹utils"><a href="#二-创建一个htmlToPdf-js文件在公共文件夹utils" class="headerlink" title="二.创建一个htmlToPdf.js文件在公共文件夹utils"></a>二.创建一个htmlToPdf.js文件在公共文件夹utils</h4><p>添加如下代码：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// htmlToPdf.js</span></span><br><span class="line"><span class="comment">// 导出页面为PDF格式</span></span><br><span class="line"><span class="keyword">import</span> html2Canvas <span class="keyword">from</span> <span class="string">&#x27;html2canvas&#x27;</span></span><br><span class="line"><span class="keyword">import</span> JsPDF <span class="keyword">from</span> <span class="string">&#x27;jspdf&#x27;</span></span><br><span class="line"><span class="keyword">const</span> getPdf = <span class="function">(<span class="params">htmlTitle</span>) =&gt;</span>&#123;</span><br><span class="line">        html2Canvas(<span class="built_in">document</span>.querySelector(<span class="string">&#x27;#pdfDom&#x27;</span>), &#123;</span><br><span class="line">          <span class="attr">allowTaint</span>: <span class="literal">true</span>,</span><br><span class="line">          <span class="attr">taintTest</span>: <span class="literal">false</span>,</span><br><span class="line">          <span class="attr">useCORS</span>: <span class="literal">true</span>,</span><br><span class="line">          <span class="attr">y</span>:<span class="number">72</span>, <span class="comment">// 对Y轴进行裁切</span></span><br><span class="line">          <span class="comment">// width:1200,</span></span><br><span class="line">          <span class="comment">// height:5000,</span></span><br><span class="line">          <span class="attr">dpi</span>: <span class="built_in">window</span>.devicePixelRatio * <span class="number">4</span>, <span class="comment">//将分辨率提高到特定的DPI 提高四倍</span></span><br><span class="line">          <span class="attr">scale</span>: <span class="number">4</span> <span class="comment">//按比例增加分辨率 </span></span><br><span class="line">        &#125;).then(<span class="function"><span class="keyword">function</span> (<span class="params">canvas</span>) </span>&#123;</span><br><span class="line">          <span class="keyword">let</span> contentWidth = canvas.width</span><br><span class="line">          <span class="keyword">let</span> contentHeight = canvas.height</span><br><span class="line">          <span class="keyword">let</span> pageHeight = contentWidth / <span class="number">592.28</span> * <span class="number">841.89</span></span><br><span class="line">          <span class="keyword">let</span> leftHeight = contentHeight</span><br><span class="line">          <span class="keyword">let</span> position = <span class="number">0</span></span><br><span class="line">          <span class="keyword">let</span> imgWidth = <span class="number">595.28</span></span><br><span class="line">          <span class="keyword">let</span> imgHeight = <span class="number">592.28</span> / contentWidth * contentHeight</span><br><span class="line">          <span class="keyword">let</span> pageData = canvas.toDataURL(<span class="string">&#x27;image/jpeg&#x27;</span>, <span class="number">1.0</span>)</span><br><span class="line">          <span class="keyword">let</span> PDF = <span class="keyword">new</span> JsPDF(<span class="string">&#x27;&#x27;</span>, <span class="string">&#x27;pt&#x27;</span>, <span class="string">&#x27;a4&#x27;</span>)</span><br><span class="line">          <span class="keyword">if</span> (leftHeight &lt; pageHeight) &#123;</span><br><span class="line">            PDF.addImage(pageData, <span class="string">&#x27;JPEG&#x27;</span>, <span class="number">0</span>, <span class="number">0</span>, imgWidth, imgHeight)</span><br><span class="line">          &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="keyword">while</span> (leftHeight &gt; <span class="number">0</span>) &#123;</span><br><span class="line">              PDF.addImage(pageData, <span class="string">&#x27;JPEG&#x27;</span>, <span class="number">0</span>, position, imgWidth, imgHeight)</span><br><span class="line">              leftHeight -= pageHeight</span><br><span class="line">              position -= <span class="number">841.89</span></span><br><span class="line">              <span class="keyword">if</span> (leftHeight &gt; <span class="number">0</span>) &#123;</span><br><span class="line">              PDF.addPage()</span><br><span class="line">            &#125;</span><br><span class="line">          &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        PDF.save(htmlTitle + <span class="string">&#x27;.pdf&#x27;</span>)</span><br><span class="line">      &#125;)</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> getPdf</span><br></pre></td></tr></table></figure>
 
+<h4 id="三-文件里引入使用："><a href="#三-文件里引入使用：" class="headerlink" title="三.文件里引入使用："></a>三.文件里引入使用：</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> getPdf <span class="keyword">from</span> <span class="string">&#x27;@/utils/htmlToPdf.js&#x27;</span></span><br></pre></td></tr></table></figure>
 
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&lt;div id=<span class="string">&quot;pdfDom&quot;</span>&gt;</span><br><span class="line">  ... 打印的内容</span><br><span class="line">&lt;/div&gt;</span><br><span class="line"><span class="comment">//添加打印按钮</span></span><br><span class="line"><span class="xml"><span class="tag">&lt;<span class="name">el-button</span> @<span class="attr">click</span>=<span class="string">&quot;downLoadPdf()&quot;</span>&gt;</span>PDF<span class="tag">&lt;/<span class="name">el-button</span>&gt;</span></span></span><br><span class="line"><span class="comment">//methods里添加打印方法</span></span><br><span class="line"><span class="function"><span class="title">downLoadPdf</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">  getPdf(<span class="string">&#x27;pdf文件名&#x27;</span>)</span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure>
 
-<p>说明：</p>
-<ol>
-<li><p>优点：可以配置多个代理，可以灵活的控制请求是否走代理。</p>
-</li>
-<li><p>缺点：配置繁琐，前端请求资源时必须加前缀。</p>
-</li>
-</ol>
+<p>喜欢的小伙伴，给博客点击个收藏哦！！！</p>
 
     
 
@@ -305,7 +293,7 @@
         </li>
         <li>
           <strong>本文链接：</strong>
-          <a href="https://white-hang.github.io/2021/10/18/react脚手架配置代理总结/" title="react脚手架配置代理总结" target="_blank">https://white-hang.github.io/2021/10/18/react脚手架配置代理总结/</a>
+          <a href="https://white-hang.github.io/2021/12/25/Vue实现将页面转成PDF并下载/" title="Vue实现将页面转成PDF并下载" target="_blank">https://white-hang.github.io/2021/12/25/Vue实现将页面转成PDF并下载/</a>
         </li>
         
         <li>
@@ -327,7 +315,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">react</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">vue</a>
         		</li>
       		
 		</ul>
@@ -346,18 +334,9 @@
 
 <nav id="article-nav">
   
-    <a href="/2021/10/19/react%E4%B8%AD%E7%9A%84setState%E8%AF%A6%E8%A7%A3/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          react中的setState详解
-        
-      </div>
-    </a>
   
-  
-    <a href="/2021/10/16/H5-VUE%E5%88%A9%E7%94%A8canvas%E5%AE%9E%E7%8E%B0%E6%89%8B%E6%9C%BA%E7%AD%BE%E5%90%8D%E5%B9%B6%E4%B8%94%E5%8F%AF%E6%97%8B%E8%BD%AC%E5%8A%9F%E8%83%BD/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">H5 VUE利用canvas实现手机签名并且可旋转功能</div>
+    <a href="/2021/11/22/%E6%89%8B%E6%8A%8A%E6%89%8B%E6%95%99%E4%BD%A0%E5%8F%91%E5%B8%83%E4%B8%80%E4%B8%AAnpm%E5%8C%85%EF%BC%88%E5%9F%BA%E4%BA%8Evue%EF%BC%89/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">手把手教你发布一个npm包（基于vue）</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -398,9 +377,9 @@
     <script src="/lib/gitment.js"></script>
   
   <script>
-    <!-- id: "react脚手架配置代理总结" -->
+    <!-- id: "Vue实现将页面转成PDF并下载" -->
     var gitment = new Gitment({
-      id: "20211018231844",
+      id: "20211225222109",
       owner: 'white-Hang',
       repo: 'white-Hang.github.io',
       oauth: {

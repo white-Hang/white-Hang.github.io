@@ -214,6 +214,105 @@
             
 
   
+    <article id="post-Vue实现将页面转成PDF并下载" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+  
+  
+    <h1 itemprop="name">
+	
+	  <a class="article-title" href="/2021/12/25/Vue%E5%AE%9E%E7%8E%B0%E5%B0%86%E9%A1%B5%E9%9D%A2%E8%BD%AC%E6%88%90PDF%E5%B9%B6%E4%B8%8B%E8%BD%BD/">Vue实现将页面转成PDF并下载</a>
+	
+    </h1>
+  
+
+
+  
+  
+<a href="/2021/12/25/Vue%E5%AE%9E%E7%8E%B0%E5%B0%86%E9%A1%B5%E9%9D%A2%E8%BD%AC%E6%88%90PDF%E5%B9%B6%E4%B8%8B%E8%BD%BD/" class="archive-article-date">
+        <time datetime="2021-12-25T14:21:09.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-12-25</time>
+</a>
+
+  
+  
+    
+
+  
+  </header>
+  
+  <div class="article-entry" itemprop="articleBody">
+    
+    <h4 id="一-安装所需依赖"><a href="#一-安装所需依赖" class="headerlink" title="一.安装所需依赖"></a>一.安装所需依赖</h4><p>1.将页面html转换成图片</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install --save html2canvas</span><br></pre></td></tr></table></figure>
+
+<p>2.将图片生成pdf</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install jspdf --save</span><br></pre></td></tr></table></figure>
+
+<h4 id="二-创建一个htmlToPdf-js文件在公共文件夹utils"><a href="#二-创建一个htmlToPdf-js文件在公共文件夹utils" class="headerlink" title="二.创建一个htmlToPdf.js文件在公共文件夹utils"></a>二.创建一个htmlToPdf.js文件在公共文件夹utils</h4><p>添加如下代码：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// htmlToPdf.js</span></span><br><span class="line"><span class="comment">// 导出页面为PDF格式</span></span><br><span class="line"><span class="keyword">import</span> html2Canvas <span class="keyword">from</span> <span class="string">&#x27;html2canvas&#x27;</span></span><br><span class="line"><span class="keyword">import</span> JsPDF <span class="keyword">from</span> <span class="string">&#x27;jspdf&#x27;</span></span><br><span class="line"><span class="keyword">const</span> getPdf = <span class="function">(<span class="params">htmlTitle</span>) =&gt;</span>&#123;</span><br><span class="line">        html2Canvas(<span class="built_in">document</span>.querySelector(<span class="string">&#x27;#pdfDom&#x27;</span>), &#123;</span><br><span class="line">          <span class="attr">allowTaint</span>: <span class="literal">true</span>,</span><br><span class="line">          <span class="attr">taintTest</span>: <span class="literal">false</span>,</span><br><span class="line">          <span class="attr">useCORS</span>: <span class="literal">true</span>,</span><br><span class="line">          <span class="attr">y</span>:<span class="number">72</span>, <span class="comment">// 对Y轴进行裁切</span></span><br><span class="line">          <span class="comment">// width:1200,</span></span><br><span class="line">          <span class="comment">// height:5000,</span></span><br><span class="line">          <span class="attr">dpi</span>: <span class="built_in">window</span>.devicePixelRatio * <span class="number">4</span>, <span class="comment">//将分辨率提高到特定的DPI 提高四倍</span></span><br><span class="line">          <span class="attr">scale</span>: <span class="number">4</span> <span class="comment">//按比例增加分辨率 </span></span><br><span class="line">        &#125;).then(<span class="function"><span class="keyword">function</span> (<span class="params">canvas</span>) </span>&#123;</span><br><span class="line">          <span class="keyword">let</span> contentWidth = canvas.width</span><br><span class="line">          <span class="keyword">let</span> contentHeight = canvas.height</span><br><span class="line">          <span class="keyword">let</span> pageHeight = contentWidth / <span class="number">592.28</span> * <span class="number">841.89</span></span><br><span class="line">          <span class="keyword">let</span> leftHeight = contentHeight</span><br><span class="line">          <span class="keyword">let</span> position = <span class="number">0</span></span><br><span class="line">          <span class="keyword">let</span> imgWidth = <span class="number">595.28</span></span><br><span class="line">          <span class="keyword">let</span> imgHeight = <span class="number">592.28</span> / contentWidth * contentHeight</span><br><span class="line">          <span class="keyword">let</span> pageData = canvas.toDataURL(<span class="string">&#x27;image/jpeg&#x27;</span>, <span class="number">1.0</span>)</span><br><span class="line">          <span class="keyword">let</span> PDF = <span class="keyword">new</span> JsPDF(<span class="string">&#x27;&#x27;</span>, <span class="string">&#x27;pt&#x27;</span>, <span class="string">&#x27;a4&#x27;</span>)</span><br><span class="line">          <span class="keyword">if</span> (leftHeight &lt; pageHeight) &#123;</span><br><span class="line">            PDF.addImage(pageData, <span class="string">&#x27;JPEG&#x27;</span>, <span class="number">0</span>, <span class="number">0</span>, imgWidth, imgHeight)</span><br><span class="line">          &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="keyword">while</span> (leftHeight &gt; <span class="number">0</span>) &#123;</span><br><span class="line">              PDF.addImage(pageData, <span class="string">&#x27;JPEG&#x27;</span>, <span class="number">0</span>, position, imgWidth, imgHeight)</span><br><span class="line">              leftHeight -= pageHeight</span><br><span class="line">              position -= <span class="number">841.89</span></span><br><span class="line">              <span class="keyword">if</span> (leftHeight &gt; <span class="number">0</span>) &#123;</span><br><span class="line">              PDF.addPage()</span><br><span class="line">            &#125;</span><br><span class="line">          &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        PDF.save(htmlTitle + <span class="string">&#x27;.pdf&#x27;</span>)</span><br><span class="line">      &#125;)</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> getPdf</span><br></pre></td></tr></table></figure>
+
+<h4 id="三-文件里引入使用："><a href="#三-文件里引入使用：" class="headerlink" title="三.文件里引入使用："></a>三.文件里引入使用：</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> getPdf <span class="keyword">from</span> <span class="string">&#x27;@/utils/htmlToPdf.js&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&lt;div id=<span class="string">&quot;pdfDom&quot;</span>&gt;</span><br><span class="line">  ... 打印的内容</span><br><span class="line">&lt;/div&gt;</span><br><span class="line"><span class="comment">//添加打印按钮</span></span><br><span class="line"><span class="xml"><span class="tag">&lt;<span class="name">el-button</span> @<span class="attr">click</span>=<span class="string">&quot;downLoadPdf()&quot;</span>&gt;</span>PDF<span class="tag">&lt;/<span class="name">el-button</span>&gt;</span></span></span><br><span class="line"><span class="comment">//methods里添加打印方法</span></span><br><span class="line"><span class="function"><span class="title">downLoadPdf</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">  getPdf(<span class="string">&#x27;pdf文件名&#x27;</span>)</span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure>
+
+<p>喜欢的小伙伴，给博客点击个收藏哦！！！</p>
+
+    
+
+    
+
+    
+
+  </div>
+  <div class="article-info article-info-index">
+    
+    
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">vue</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+    
+
+    
+    <p class="article-more-link">
+      <a class="article-more-a" href="/2021/12/25/Vue%E5%AE%9E%E7%8E%B0%E5%B0%86%E9%A1%B5%E9%9D%A2%E8%BD%AC%E6%88%90PDF%E5%B9%B6%E4%B8%8B%E8%BD%BD/">展开全文 >></a>
+    </p>
+    
+
+    
+    <div class="clearfix"></div>
+  </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-手把手教你发布一个npm包（基于vue）" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -1083,95 +1182,6 @@
 
 
   
-    <article id="post-react中的路由传参方式总结" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-  
-  
-    <h1 itemprop="name">
-	
-	  <a class="article-title" href="/2021/10/23/react%E4%B8%AD%E7%9A%84%E8%B7%AF%E7%94%B1%E4%BC%A0%E5%8F%82%E6%96%B9%E5%BC%8F%E6%80%BB%E7%BB%93/">react中的路由传参方式总结</a>
-	
-    </h1>
-  
-
-
-  
-  
-<a href="/2021/10/23/react%E4%B8%AD%E7%9A%84%E8%B7%AF%E7%94%B1%E4%BC%A0%E5%8F%82%E6%96%B9%E5%BC%8F%E6%80%BB%E7%BB%93/" class="archive-article-date">
-        <time datetime="2021-10-23T12:05:04.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-10-23</time>
-</a>
-
-  
-  
-    
-
-  
-  </header>
-  
-  <div class="article-entry" itemprop="articleBody">
-    
-    <h3 id="1-params传参-刷新页面后参数不消失，参数会在地址栏显示"><a href="#1-params传参-刷新页面后参数不消失，参数会在地址栏显示" class="headerlink" title="1.params传参(刷新页面后参数不消失，参数会在地址栏显示)"></a>1.params传参(刷新页面后参数不消失，参数会在地址栏显示)</h3><p>代码展示：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* 向路由组件传递params参数 */</span></span><br><span class="line"><span class="comment">//声明式路由跳转：</span></span><br><span class="line">&lt;Link to=&#123;<span class="string">`/home/message/detail/<span class="subst">$&#123;id&#125;</span>/<span class="subst">$&#123;title&#125;</span>`</span>&#125;&gt;&#123;title&#125;&lt;/Link&gt;</span><br><span class="line"><span class="comment">//或</span></span><br><span class="line"><span class="xml"><span class="tag">&lt;<span class="name">Link</span> <span class="attr">to</span>=<span class="string">&#123;&#123;pathname:</span>`/<span class="attr">home</span>/<span class="attr">message</span>/<span class="attr">detail</span>/$&#123;<span class="attr">id</span>&#125;/$&#123;<span class="attr">title</span>&#125;`&#125;&#125;&gt;</span>&#123;title&#125;<span class="tag">&lt;/<span class="name">Link</span>&gt;</span></span></span><br><span class="line"><span class="comment">//编程式路由跳转：</span></span><br><span class="line"><span class="built_in">this</span>.props.history.push(<span class="string">`/home/message/detail/<span class="subst">$&#123;id&#125;</span>/<span class="subst">$&#123;title&#125;</span>`</span>)</span><br><span class="line"><span class="comment">//或</span></span><br><span class="line"><span class="built_in">this</span>.props.history.push(&#123;<span class="attr">pathname</span>:<span class="string">`/home/message/detail/<span class="subst">$&#123;id&#125;</span>/<span class="subst">$&#123;title&#125;</span>`</span>&#125;)</span><br><span class="line"><span class="comment">/* 声明接收params参数 */</span></span><br><span class="line">&lt;Route path=<span class="string">&quot;/home/message/detail/:id/:title&quot;</span> component=&#123;Detail&#125;/&gt;</span><br><span class="line"><span class="comment">// 接收params参数</span></span><br><span class="line"><span class="keyword">const</span> &#123;id,title&#125; = <span class="built_in">this</span>.props.match.params</span><br></pre></td></tr></table></figure>
-    
-    <a class="article-more-a" href="/2021/10/23/react%E4%B8%AD%E7%9A%84%E8%B7%AF%E7%94%B1%E4%BC%A0%E5%8F%82%E6%96%B9%E5%BC%8F%E6%80%BB%E7%BB%93/#more">more >></a>
-    
-    
-
-    
-
-    
-
-  </div>
-  <div class="article-info article-info-index">
-    
-    
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">react</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-    
-
-    
-    <p class="article-more-link">
-      <a class="article-more-a" href="/2021/10/23/react%E4%B8%AD%E7%9A%84%E8%B7%AF%E7%94%B1%E4%BC%A0%E5%8F%82%E6%96%B9%E5%BC%8F%E6%80%BB%E7%BB%93/">展开全文 >></a>
-    </p>
-    
-
-    
-    <div class="clearfix"></div>
-  </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
       <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/">Next &amp;raquo;</a>
@@ -1309,19 +1319,19 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">h5</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">vue</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">js</a>
+                <a href="javascript:void(0)" class="js-tag color3">h5</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">hexo</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">js</a>
               </li>
             
             <div class="clearfix"></div>
