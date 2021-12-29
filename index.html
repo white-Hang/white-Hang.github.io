@@ -230,6 +230,438 @@
             
 
   
+    <article id="post-vue3-0中的computed函数" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+  
+  
+    <h1 itemprop="name">
+	
+	  <a class="article-title" href="/2021/12/29/vue3-0%E4%B8%AD%E7%9A%84computed%E5%87%BD%E6%95%B0/">vue3.0中的computed函数</a>
+	
+    </h1>
+  
+
+
+  
+  
+<a href="/2021/12/29/vue3-0%E4%B8%AD%E7%9A%84computed%E5%87%BD%E6%95%B0/" class="archive-article-date">
+        <time datetime="2021-12-29T14:55:41.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-12-29</time>
+</a>
+
+  
+  
+    
+
+  
+  </header>
+  
+  <div class="article-entry" itemprop="articleBody">
+    
+    <p>作用：与Vue2.x中computed配置功能一致</p>
+<p>写法：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">&lt;div&gt;</span><br><span class="line">&lt;h1&gt;一个人的信息&lt;/h1&gt;</span><br><span class="line">	姓：&lt;input type=&quot;text&quot; v-model=&quot;person.firstName&quot;&gt;</span><br><span class="line">	&lt;br&gt;</span><br><span class="line">	名：&lt;input type=&quot;text&quot; v-model=&quot;person.lastName&quot;&gt;</span><br><span class="line">	&lt;br&gt;</span><br><span class="line">	&lt;span&gt;全名：&#123;&#123;person.fullName&#125;&#125;&lt;/span&gt;</span><br><span class="line">	&lt;br&gt;</span><br><span class="line">	全名：&lt;input type=&quot;text&quot; v-model=&quot;person.fullName&quot;&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line">&lt;/template&gt;</span><br><span class="line"></span><br><span class="line">&lt;script&gt;</span><br><span class="line">	import &#123;reactive,computed&#125; from &#x27;vue&#x27;</span><br><span class="line">	export default &#123;</span><br><span class="line">		name: &#x27;Demo&#x27;,</span><br><span class="line">		setup()&#123;</span><br><span class="line">			//数据</span><br><span class="line">			let person = reactive(&#123;</span><br><span class="line">				firstName:&#x27;张&#x27;,</span><br><span class="line">				lastName:&#x27;三&#x27;</span><br><span class="line">			&#125;)</span><br><span class="line">			//计算属性——简写（没有考虑计算属性被修改的情况）</span><br><span class="line">			/* person.fullName = computed(()=&gt;&#123;</span><br><span class="line">				return person.firstName + &#x27;-&#x27; + person.lastName</span><br><span class="line">			&#125;) */</span><br><span class="line"></span><br><span class="line">			//计算属性——完整写法（考虑读和写）</span><br><span class="line">			person.fullName = computed(&#123;</span><br><span class="line">				get()&#123;</span><br><span class="line">					return person.firstName + &#x27;-&#x27; + person.lastName</span><br><span class="line">				&#125;,</span><br><span class="line">				set(value)&#123;</span><br><span class="line">					const nameArr = value.split(&#x27;-&#x27;)</span><br><span class="line">					person.firstName = nameArr[0]</span><br><span class="line">					person.lastName = nameArr[1]</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;)</span><br><span class="line"></span><br><span class="line">			//返回一个对象（常用）</span><br><span class="line">			return &#123;</span><br><span class="line">				person</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+
+<p>平常使用时，用简写就行。</p>
+
+    
+
+    
+
+    
+
+  </div>
+  <div class="article-info article-info-index">
+    
+    
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">vue</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+    
+
+    
+    <p class="article-more-link">
+      <a class="article-more-a" href="/2021/12/29/vue3-0%E4%B8%AD%E7%9A%84computed%E5%87%BD%E6%95%B0/">展开全文 >></a>
+    </p>
+    
+
+    
+    <div class="clearfix"></div>
+  </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-vue3-0里的reactive函数" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+  
+  
+    <h1 itemprop="name">
+	
+	  <a class="article-title" href="/2021/12/29/vue3-0%E9%87%8C%E7%9A%84reactive%E5%87%BD%E6%95%B0/">vue3.0里的reactive函数</a>
+	
+    </h1>
+  
+
+
+  
+  
+<a href="/2021/12/29/vue3-0%E9%87%8C%E7%9A%84reactive%E5%87%BD%E6%95%B0/" class="archive-article-date">
+        <time datetime="2021-12-29T14:54:09.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-12-29</time>
+</a>
+
+  
+  
+    
+
+  
+  </header>
+  
+  <div class="article-entry" itemprop="articleBody">
+    
+    <h3 id="vue3-0里的reactive函数"><a href="#vue3-0里的reactive函数" class="headerlink" title="vue3.0里的reactive函数"></a>vue3.0里的reactive函数</h3><ul>
+<li><p>作用: 定义一个<strong style="color:#DD5145">对象类型</strong>的响应式数据（基本类型不要用它，要用<code>ref</code>函数）</p>
+<p>如果用来定义基本数据类型，会报如下错误</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">error  &#x27;xxx&#x27; is constant  no-const-assign</span><br></pre></td></tr></table></figure></li>
+<li><p>语法：<code>const 代理对象= reactive(源对象)</code>接收一个对象（或数组），返回一个<strong style="color:#DD5145">代理对象（Proxy的实例对象，简称proxy对象）</strong></p>
+</li>
+<li><p>reactive定义的响应式数据是“深层次的”。</p>
+</li>
+<li><p>内部基于 ES6 的 Proxy 实现，通过代理对象操作源对象内部数据进行操作。</p>
+<p>代码演示：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line"><span class="xml"><span class="tag">&lt;<span class="name">div</span>&gt;</span></span></span><br><span class="line"><span class="xml">    <span class="tag">&lt;<span class="name">h1</span>&gt;</span>一个人的信息<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span></span><br><span class="line"><span class="xml">	<span class="tag">&lt;<span class="name">h2</span>&gt;</span>姓名：&#123;&#123;person.name&#125;&#125;<span class="tag">&lt;/<span class="name">h2</span>&gt;</span></span></span><br><span class="line"><span class="xml">	<span class="tag">&lt;<span class="name">h2</span>&gt;</span>年龄：&#123;&#123;person.age&#125;&#125;<span class="tag">&lt;/<span class="name">h2</span>&gt;</span></span></span><br><span class="line"><span class="xml">	<span class="tag">&lt;<span class="name">h3</span>&gt;</span>工作种类：&#123;&#123;person.job.type&#125;&#125;<span class="tag">&lt;/<span class="name">h3</span>&gt;</span></span></span><br><span class="line"><span class="xml">	<span class="tag">&lt;<span class="name">h3</span>&gt;</span>工作薪水：&#123;&#123;person.job.salary&#125;&#125;<span class="tag">&lt;/<span class="name">h3</span>&gt;</span></span></span><br><span class="line"><span class="xml">	<span class="tag">&lt;<span class="name">h3</span>&gt;</span>爱好：&#123;&#123;person.hobby&#125;&#125;<span class="tag">&lt;/<span class="name">h3</span>&gt;</span></span></span><br><span class="line"><span class="xml">	<span class="tag">&lt;<span class="name">h3</span>&gt;</span>测试的数据c：&#123;&#123;person.job.a.b.c&#125;&#125;<span class="tag">&lt;/<span class="name">h3</span>&gt;</span></span></span><br><span class="line"><span class="xml">	<span class="tag">&lt;<span class="name">button</span> @<span class="attr">click</span>=<span class="string">&quot;changeInfo&quot;</span>&gt;</span>修改人的信息<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span></span><br><span class="line"><span class="xml"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line">	</span><br><span class="line">&lt;/template&gt;</span><br><span class="line"></span><br><span class="line"><span class="xml"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="javascript"></span></span></span><br><span class="line"><span class="javascript"><span class="xml">	<span class="keyword">import</span> &#123;reactive&#125; <span class="keyword">from</span> <span class="string">&#x27;vue&#x27;</span></span></span></span><br><span class="line"><span class="javascript"><span class="xml">	<span class="keyword">export</span> <span class="keyword">default</span> &#123;</span></span></span><br><span class="line"><span class="javascript"><span class="xml">		<span class="attr">name</span>: <span class="string">&#x27;App&#x27;</span>,</span></span></span><br><span class="line"><span class="javascript"><span class="xml">		<span class="function"><span class="title">setup</span>(<span class="params"></span>)</span>&#123;</span></span></span><br><span class="line"><span class="javascript"><span class="xml">			<span class="comment">//数据</span></span></span></span><br><span class="line"><span class="javascript"><span class="xml">			<span class="keyword">let</span> person = reactive(&#123;</span></span></span><br><span class="line"><span class="javascript"><span class="xml">				<span class="attr">name</span>:<span class="string">&#x27;张三&#x27;</span>,</span></span></span><br><span class="line"><span class="javascript"><span class="xml">				<span class="attr">age</span>:<span class="number">18</span>,</span></span></span><br><span class="line"><span class="javascript"><span class="xml">				<span class="attr">job</span>:&#123;</span></span></span><br><span class="line"><span class="javascript"><span class="xml">					<span class="attr">type</span>:<span class="string">&#x27;前端工程师&#x27;</span>,</span></span></span><br><span class="line"><span class="javascript"><span class="xml">					<span class="attr">salary</span>:<span class="string">&#x27;30K&#x27;</span>,</span></span></span><br><span class="line"><span class="javascript"><span class="xml">					<span class="attr">a</span>:&#123;</span></span></span><br><span class="line"><span class="javascript"><span class="xml">						<span class="attr">b</span>:&#123;</span></span></span><br><span class="line"><span class="javascript"><span class="xml">							<span class="attr">c</span>:<span class="number">666</span></span></span></span><br><span class="line"><span class="javascript"><span class="xml">						&#125;</span></span></span><br><span class="line"><span class="javascript"><span class="xml">					&#125;</span></span></span><br><span class="line"><span class="javascript"><span class="xml">				&#125;,</span></span></span><br><span class="line"><span class="javascript"><span class="xml">				<span class="attr">hobby</span>:[<span class="string">&#x27;抽烟&#x27;</span>,<span class="string">&#x27;喝酒&#x27;</span>,<span class="string">&#x27;烫头&#x27;</span>]</span></span></span><br><span class="line"><span class="javascript"><span class="xml">			&#125;)</span></span></span><br><span class="line"><span class="javascript"><span class="xml"></span></span></span><br><span class="line"><span class="javascript"><span class="xml">			<span class="comment">//方法</span></span></span></span><br><span class="line"><span class="javascript"><span class="xml">			<span class="function"><span class="keyword">function</span> <span class="title">changeInfo</span>(<span class="params"></span>)</span>&#123;</span></span></span><br><span class="line"><span class="javascript"><span class="xml">				person.name = <span class="string">&#x27;李四&#x27;</span></span></span></span><br><span class="line"><span class="javascript"><span class="xml">				person.age = <span class="number">48</span></span></span></span><br><span class="line"><span class="javascript"><span class="xml">				person.job.type = <span class="string">&#x27;UI设计师&#x27;</span></span></span></span><br><span class="line"><span class="javascript"><span class="xml">				person.job.salary = <span class="string">&#x27;60K&#x27;</span></span></span></span><br><span class="line"><span class="javascript"><span class="xml">				person.job.a.b.c = <span class="number">999</span></span></span></span><br><span class="line"><span class="javascript"><span class="xml">				person.hobby[<span class="number">0</span>] = <span class="string">&#x27;学习&#x27;</span></span></span></span><br><span class="line"><span class="javascript"><span class="xml">			&#125;</span></span></span><br><span class="line"><span class="javascript"><span class="xml"></span></span></span><br><span class="line"><span class="javascript"><span class="xml">			<span class="comment">//返回一个对象（常用）</span></span></span></span><br><span class="line"><span class="javascript"><span class="xml">			<span class="keyword">return</span> &#123;</span></span></span><br><span class="line"><span class="javascript"><span class="xml">				person,</span></span></span><br><span class="line"><span class="javascript"><span class="xml">				changeInfo</span></span></span><br><span class="line"><span class="javascript"><span class="xml">			&#125;</span></span></span><br><span class="line"><span class="javascript"><span class="xml">		&#125;</span></span></span><br><span class="line"><span class="javascript"><span class="xml">	&#125;</span></span></span><br><span class="line"><span class="javascript"><span class="xml"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span></span><br></pre></td></tr></table></figure></li>
+</ul>
+<h4 id="reactive和ref的对比"><a href="#reactive和ref的对比" class="headerlink" title="reactive和ref的对比"></a>reactive和ref的对比</h4><ul>
+<li>从定义数据角度对比：<ul>
+<li> ref用来定义：<strong style="color:#DD5145">基本类型数据</strong>。</li>
+<li> reactive用来定义：<strong style="color:#DD5145">对象（或数组）类型数据</strong>。</li>
+<li> 备注：ref也可以用来定义<strong style="color:#DD5145">对象（或数组）类型数据</strong>, 它内部会自动通过<code>reactive</code>转为<strong style="color:#DD5145">代理对象</strong>。</li>
+</ul>
+</li>
+<li>从原理角度对比：<ul>
+<li> ref通过<code>Object.defineProperty()</code>的<code>get</code>与<code>set</code>来实现响应式（数据劫持）。</li>
+<li> reactive通过使用<strong style="color:#DD5145">Proxy</strong>来实现响应式（数据劫持）, 并通过<strong style="color:#DD5145">Reflect</strong>操作<strong style="color:orange">源对象</strong>内部的数据。</li>
+</ul>
+</li>
+<li>从使用角度对比：<ul>
+<li> ref定义的数据：操作数据<strong style="color:#DD5145">需要</strong><code>.value</code>，读取数据时模板中直接读取<strong style="color:#DD5145">不需要</strong><code>.value</code>。</li>
+<li> reactive定义的数据：操作数据与读取数据：<strong style="color:#DD5145">均不需要</strong><code>.value</code>。</li>
+</ul>
+</li>
+</ul>
+
+    
+
+    
+
+    
+
+  </div>
+  <div class="article-info article-info-index">
+    
+    
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">vue</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+    
+
+    
+    <p class="article-more-link">
+      <a class="article-more-a" href="/2021/12/29/vue3-0%E9%87%8C%E7%9A%84reactive%E5%87%BD%E6%95%B0/">展开全文 >></a>
+    </p>
+    
+
+    
+    <div class="clearfix"></div>
+  </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-vue3-0中的ref函数" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+  
+  
+    <h1 itemprop="name">
+	
+	  <a class="article-title" href="/2021/12/29/vue3-0%E4%B8%AD%E7%9A%84ref%E5%87%BD%E6%95%B0/">vue3.0中的ref函数</a>
+	
+    </h1>
+  
+
+
+  
+  
+<a href="/2021/12/29/vue3-0%E4%B8%AD%E7%9A%84ref%E5%87%BD%E6%95%B0/" class="archive-article-date">
+        <time datetime="2021-12-29T14:52:42.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-12-29</time>
+</a>
+
+  
+  
+    
+
+  
+  </header>
+  
+  <div class="article-entry" itemprop="articleBody">
+    
+    <ul>
+<li>作用: 定义一个响应式的数据</li>
+<li>语法: <code>const xxx = ref(initValue)</code> <ul>
+<li>创建一个包含响应式数据的<strong style="color:#DD5145">引用对象（reference对象，简称ref对象）</strong>。</li>
+<li>JS中操作数据： <code>xxx.value</code></li>
+<li>模板中读取数据: 不需要.value，直接：<code>&lt;div&gt;&#123;&#123;xxx&#125;&#125;&lt;/div&gt;</code></li>
+</ul>
+</li>
+<li>备注：<ul>
+<li>接收的数据可以是：基本类型、也可以是对象类型。</li>
+<li>基本类型的数据：响应式依然是靠<code>Object.defineProperty()</code>的<code>get</code>与<code>set</code>完成的。</li>
+<li>对象类型的数据：内部 <i style="color:gray;font-weight:bold">“ 求助 ”</i> 了Vue3.0中的一个新函数—— <code>reactive</code>函数。</li>
+</ul>
+</li>
+</ul>
+<p>代码解释：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">	<span class="xml"><span class="tag">&lt;<span class="name">div</span>&gt;</span></span></span><br><span class="line"><span class="xml">		<span class="tag">&lt;<span class="name">h1</span>&gt;</span>一个人的信息<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span></span><br><span class="line"><span class="xml">		<span class="tag">&lt;<span class="name">h2</span>&gt;</span>姓名：&#123;&#123;name&#125;&#125;<span class="tag">&lt;/<span class="name">h2</span>&gt;</span></span></span><br><span class="line"><span class="xml">		<span class="tag">&lt;<span class="name">h2</span>&gt;</span>年龄：&#123;&#123;age&#125;&#125;<span class="tag">&lt;/<span class="name">h2</span>&gt;</span></span></span><br><span class="line"><span class="xml">		<span class="tag">&lt;<span class="name">h3</span>&gt;</span>工作种类：&#123;&#123;job.type&#125;&#125;<span class="tag">&lt;/<span class="name">h3</span>&gt;</span></span></span><br><span class="line"><span class="xml">		<span class="tag">&lt;<span class="name">h3</span>&gt;</span>工作薪水：&#123;&#123;job.salary&#125;&#125;<span class="tag">&lt;/<span class="name">h3</span>&gt;</span></span></span><br><span class="line"><span class="xml">		<span class="tag">&lt;<span class="name">button</span> @<span class="attr">click</span>=<span class="string">&quot;changeInfo&quot;</span>&gt;</span>修改人的信息<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span></span><br><span class="line"><span class="xml">	<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line">&lt;/template&gt;</span><br><span class="line"></span><br><span class="line"><span class="xml"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="javascript"></span></span></span><br><span class="line"><span class="javascript"><span class="xml">	<span class="keyword">import</span> &#123;ref&#125; <span class="keyword">from</span> <span class="string">&#x27;vue&#x27;</span></span></span></span><br><span class="line"><span class="javascript"><span class="xml">	<span class="keyword">export</span> <span class="keyword">default</span> &#123;</span></span></span><br><span class="line"><span class="javascript"><span class="xml">		<span class="attr">name</span>: <span class="string">&#x27;App&#x27;</span>,</span></span></span><br><span class="line"><span class="javascript"><span class="xml">		<span class="function"><span class="title">setup</span>(<span class="params"></span>)</span>&#123;</span></span></span><br><span class="line"><span class="javascript"><span class="xml">			<span class="comment">//基本数据类型</span></span></span></span><br><span class="line"><span class="javascript"><span class="xml">			<span class="keyword">let</span> name = ref(<span class="string">&#x27;张三&#x27;</span>)</span></span></span><br><span class="line"><span class="javascript"><span class="xml">			<span class="keyword">let</span> age = ref(<span class="number">18</span>)</span></span></span><br><span class="line"><span class="javascript"><span class="xml">            <span class="comment">//对象数据类型</span></span></span></span><br><span class="line"><span class="javascript"><span class="xml">			<span class="keyword">let</span> job = ref(&#123;</span></span></span><br><span class="line"><span class="javascript"><span class="xml">				<span class="attr">type</span>:<span class="string">&#x27;前端工程师&#x27;</span>,</span></span></span><br><span class="line"><span class="javascript"><span class="xml">				<span class="attr">salary</span>:<span class="string">&#x27;30K&#x27;</span></span></span></span><br><span class="line"><span class="javascript"><span class="xml">			&#125;)</span></span></span><br><span class="line"><span class="javascript"><span class="xml"></span></span></span><br><span class="line"><span class="javascript"><span class="xml">			<span class="comment">//方法</span></span></span></span><br><span class="line"><span class="javascript"><span class="xml">			<span class="function"><span class="keyword">function</span> <span class="title">changeInfo</span>(<span class="params"></span>)</span>&#123;</span></span></span><br><span class="line"><span class="javascript"><span class="xml">                <span class="comment">//修改基本数据类型响应式依然是靠Object.defineProperty()的get与set完成的。</span></span></span></span><br><span class="line"><span class="javascript"><span class="xml">				 name.value = <span class="string">&#x27;李四&#x27;</span></span></span></span><br><span class="line"><span class="javascript"><span class="xml">				 age.value = <span class="number">48</span></span></span></span><br><span class="line"><span class="javascript"><span class="xml">                <span class="comment">//修改对象类型的数据内部求助 了Vue3.0中的一个新函数—— reactive函数。所以这里type和salary后面就不用.value了</span></span></span></span><br><span class="line"><span class="javascript"><span class="xml">				 job.value.type = <span class="string">&#x27;UI设计师&#x27;</span></span></span></span><br><span class="line"><span class="javascript"><span class="xml">				 job.value.salary = <span class="string">&#x27;60K&#x27;</span></span></span></span><br><span class="line"><span class="javascript"><span class="xml">			&#125;</span></span></span><br><span class="line"><span class="javascript"><span class="xml"></span></span></span><br><span class="line"><span class="javascript"><span class="xml">			<span class="comment">//返回一个对象（常用）</span></span></span></span><br><span class="line"><span class="javascript"><span class="xml">			<span class="keyword">return</span> &#123;</span></span></span><br><span class="line"><span class="javascript"><span class="xml">				name,</span></span></span><br><span class="line"><span class="javascript"><span class="xml">				age,</span></span></span><br><span class="line"><span class="javascript"><span class="xml">				job,</span></span></span><br><span class="line"><span class="javascript"><span class="xml">				changeInfo</span></span></span><br><span class="line"><span class="javascript"><span class="xml">			&#125;</span></span></span><br><span class="line"><span class="javascript"><span class="xml">		&#125;</span></span></span><br><span class="line"><span class="javascript"><span class="xml">	&#125;</span></span></span><br><span class="line"><span class="javascript"><span class="xml"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span></span><br></pre></td></tr></table></figure>
+
+
+
+    
+
+    
+
+    
+
+  </div>
+  <div class="article-info article-info-index">
+    
+    
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">vue</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+    
+
+    
+    <p class="article-more-link">
+      <a class="article-more-a" href="/2021/12/29/vue3-0%E4%B8%AD%E7%9A%84ref%E5%87%BD%E6%95%B0/">展开全文 >></a>
+    </p>
+    
+
+    
+    <div class="clearfix"></div>
+  </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-vue3-0中的setup" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+  
+  
+    <h1 itemprop="name">
+	
+	  <a class="article-title" href="/2021/12/29/vue3-0%E4%B8%AD%E7%9A%84setup/">vue3.0中的setup</a>
+	
+    </h1>
+  
+
+
+  
+  
+<a href="/2021/12/29/vue3-0%E4%B8%AD%E7%9A%84setup/" class="archive-article-date">
+        <time datetime="2021-12-29T14:51:16.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-12-29</time>
+</a>
+
+  
+  
+    
+
+  
+  </header>
+  
+  <div class="article-entry" itemprop="articleBody">
+    
+    <h4 id="一、什么是setup"><a href="#一、什么是setup" class="headerlink" title="一、什么是setup"></a>一、什么是setup</h4><ol>
+<li>理解：Vue3.0中一个新的配置项，值为一个函数。</li>
+<li>setup是所有<strong style="color:#DD5145">Composition API（组合API）</strong><i style="color:gray;font-weight:bold">“ 表演的舞台 ”</i>。</li>
+<li>组件中所用到的：数据、方法等等，均要配置在setup中。</li>
+<li>setup函数的两种返回值：<ol>
+<li>若返回一个对象，则对象中的属性、方法, 在模板中均可以直接使用。（重点关注！）</li>
+<li><span style="color:#aad">若返回一个渲染函数：则可以自定义渲染内容。（了解）</span></li>
+</ol>
+</li>
+<li>注意点：<ol>
+<li>尽量不要与Vue2.x配置混用<ul>
+<li>Vue2.x配置（data、methos、computed…）中<strong style="color:#DD5145">可以访问到</strong>setup中的属性、方法。</li>
+<li>但在setup中<strong style="color:#DD5145">不能访问到</strong>Vue2.x配置（data、methos、computed…）。</li>
+<li>如果有重名, setup优先。</li>
+</ul>
+</li>
+<li>setup不能是一个async函数，因为返回值不再是return的对象, 而是promise, 模板看不到return对象中的属性。（后期也可以返回一个Promise实例，但需要Suspense和异步组件的配合）</li>
+</ol>
+</li>
+</ol>
+<h4 id="二、setup的两个注意点"><a href="#二、setup的两个注意点" class="headerlink" title="二、setup的两个注意点"></a>二、setup的两个注意点</h4><ul>
+<li><p>setup执行的时机</p>
+<ul>
+<li>在beforeCreate之前执行一次，this是undefined。</li>
+</ul>
+</li>
+<li><p>setup的参数</p>
+<ul>
+<li>props：值为对象，包含：组件外部传递过来，且组件内部声明接收了的属性。</li>
+<li>context：上下文对象<ul>
+<li>attrs: 值为对象，包含：组件外部传递过来，但没有在props配置中声明的属性, 相当于 <code>this.$attrs</code>。</li>
+<li>slots: 收到的插槽内容, 相当于 <code>this.$slots</code>。</li>
+<li>emit: 分发自定义事件的函数, 相当于 <code>this.$emit</code>。</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+    
+
+    
+
+    
+
+  </div>
+  <div class="article-info article-info-index">
+    
+    
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">vue</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+    
+
+    
+    <p class="article-more-link">
+      <a class="article-more-a" href="/2021/12/29/vue3-0%E4%B8%AD%E7%9A%84setup/">展开全文 >></a>
+    </p>
+    
+
+    
+    <div class="clearfix"></div>
+  </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-Git使用出现git-github-com-Permission-denied-publickey-处理" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -261,7 +693,7 @@
     
     <p>进入git bash界面然后：</p>
 <h4 id="第一步，git-config-–global-–list-验证邮箱与GitHub注册时输入的是否一致"><a href="#第一步，git-config-–global-–list-验证邮箱与GitHub注册时输入的是否一致" class="headerlink" title="第一步，git config –global –list 验证邮箱与GitHub注册时输入的是否一致"></a>第一步，git config –global –list 验证邮箱与GitHub注册时输入的是否一致</h4><p><img src="/assets/img/WechatIMG109.png" alt="执行结果"></p>
-<h4 id="第二步，通过git-config-–global-user-name-“yourname”，git-config-–global-user-email-“-x65-109-x61-x69-108-x40-x65-109-x61-x69-x6c-x2e-99-111-x6d-”（这里得名字和邮箱都是注册github时用的）设置全局用户名和邮箱。"><a href="#第二步，通过git-config-–global-user-name-“yourname”，git-config-–global-user-email-“-x65-109-x61-x69-108-x40-x65-109-x61-x69-x6c-x2e-99-111-x6d-”（这里得名字和邮箱都是注册github时用的）设置全局用户名和邮箱。" class="headerlink" title="第二步，通过git config –global user.name “yourname”，git config –global user.email “&#x65;&#109;&#x61;&#x69;&#108;&#x40;&#x65;&#109;&#x61;&#x69;&#x6c;&#x2e;&#99;&#111;&#x6d; ”（这里得名字和邮箱都是注册github时用的）设置全局用户名和邮箱。"></a>第二步，通过git config –global user.name “yourname”，git config –global user.email “<a href="mailto:&#x65;&#109;&#x61;&#x69;&#108;&#x40;&#x65;&#109;&#x61;&#x69;&#x6c;&#x2e;&#99;&#111;&#x6d;">&#x65;&#109;&#x61;&#x69;&#108;&#x40;&#x65;&#109;&#x61;&#x69;&#x6c;&#x2e;&#99;&#111;&#x6d;</a> ”（这里得名字和邮箱都是注册github时用的）设置全局用户名和邮箱。</h4><p>如果名字或者邮箱和第一步验证与gitHub注册的不一样，重新设置一下即可</p>
+<h4 id="第二步，通过git-config-–global-user-name-“yourname”，git-config-–global-user-email-“-x65-109-x61-105-108-x40-x65-109-97-x69-108-46-x63-x6f-109-”（这里得名字和邮箱都是注册github时用的）设置全局用户名和邮箱。"><a href="#第二步，通过git-config-–global-user-name-“yourname”，git-config-–global-user-email-“-x65-109-x61-105-108-x40-x65-109-97-x69-108-46-x63-x6f-109-”（这里得名字和邮箱都是注册github时用的）设置全局用户名和邮箱。" class="headerlink" title="第二步，通过git config –global user.name “yourname”，git config –global user.email “&#x65;&#109;&#x61;&#105;&#108;&#x40;&#x65;&#109;&#97;&#x69;&#108;&#46;&#x63;&#x6f;&#109; ”（这里得名字和邮箱都是注册github时用的）设置全局用户名和邮箱。"></a>第二步，通过git config –global user.name “yourname”，git config –global user.email “<a href="mailto:&#x65;&#109;&#x61;&#105;&#108;&#x40;&#x65;&#109;&#97;&#x69;&#108;&#46;&#x63;&#x6f;&#109;">&#x65;&#109;&#x61;&#105;&#108;&#x40;&#x65;&#109;&#97;&#x69;&#108;&#46;&#x63;&#x6f;&#109;</a> ”（这里得名字和邮箱都是注册github时用的）设置全局用户名和邮箱。</h4><p>如果名字或者邮箱和第一步验证与gitHub注册的不一样，重新设置一下即可</p>
 <p><img src="/assets/img/WechatIMG116.png" alt="执行结果"></p>
 <h4 id="第三步，ssh-keygen-t-rsa-C-“这里换上你的邮箱”，一路回车，在出现选择时输入Y，再一路回车直到生成密钥。会在-Users-路径下生成一个-ssh文件夹，密钥就存储在其中。"><a href="#第三步，ssh-keygen-t-rsa-C-“这里换上你的邮箱”，一路回车，在出现选择时输入Y，再一路回车直到生成密钥。会在-Users-路径下生成一个-ssh文件夹，密钥就存储在其中。" class="headerlink" title="第三步，ssh-keygen -t rsa -C “这里换上你的邮箱”，一路回车，在出现选择时输入Y，再一路回车直到生成密钥。会在/Users/***/路径下生成一个.ssh文件夹，密钥就存储在其中。"></a>第三步，ssh-keygen -t rsa -C “这里换上你的邮箱”，一路回车，在出现选择时输入Y，再一路回车直到生成密钥。会在/Users/***/路径下生成一个.ssh文件夹，密钥就存储在其中。</h4><p><img src="/assets/img/WechatIMG110.png" alt="执行结果"></p>
 <h4 id="第四步，到git仓库，添加秘钥，"><a href="#第四步，到git仓库，添加秘钥，" class="headerlink" title="第四步，到git仓库，添加秘钥，"></a>第四步，到git仓库，添加秘钥，</h4><p><img src="/assets/img/WechatIMG111.png" alt="执行结果"><br><img src="/assets/img/WechatIMG112.png" alt="执行结果"><br><img src="/assets/img/WechatIMG113.png" alt="执行结果"><br><img src="/assets/img/WechatIMG114.png" alt="执行结果"><br>点击Add SSH key</p>
@@ -805,399 +1237,9 @@
 
 
   
-    <article id="post-h5上传图片进行图片压缩" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-  
-  
-    <h1 itemprop="name">
-	
-	  <a class="article-title" href="/2021/11/07/h5%E4%B8%8A%E4%BC%A0%E5%9B%BE%E7%89%87%E8%BF%9B%E8%A1%8C%E5%9B%BE%E7%89%87%E5%8E%8B%E7%BC%A9/">h5上传图片进行图片压缩</a>
-	
-    </h1>
-  
-
-
-  
-  
-<a href="/2021/11/07/h5%E4%B8%8A%E4%BC%A0%E5%9B%BE%E7%89%87%E8%BF%9B%E8%A1%8C%E5%9B%BE%E7%89%87%E5%8E%8B%E7%BC%A9/" class="archive-article-date">
-        <time datetime="2021-11-07T08:22:44.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-11-07</time>
-</a>
-
-  
-  
-    
-
-  
-  </header>
-  
-  <div class="article-entry" itemprop="articleBody">
-    
-    <h4 id="使用场景："><a href="#使用场景：" class="headerlink" title="使用场景："></a>使用场景：</h4><p>公司要求做身份证正反面上传，但是后台对照片的大小做了限制，超过规定大小则上传不成功，如图所示：</p>
-<p><img src="/assets/h5/WechatIMG91.jpeg" alt="错误"></p>
-<p>这时候就需要前端来对拍照的图片做压缩，然后上传给后台</p>
-<h4 id="具体代码"><a href="#具体代码" class="headerlink" title="具体代码:"></a>具体代码:</h4><p>1.在公共js文件util.js里封装图片压缩方法：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 图片压缩</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">const</span> imgPreview = <span class="function">(<span class="params">file, callback</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="comment">//将base64转换为文件</span></span><br><span class="line">  <span class="function"><span class="keyword">function</span> <span class="title">dataURLtoFile</span>(<span class="params">dataurl, file</span>) </span>&#123;</span><br><span class="line">      <span class="keyword">var</span> arr = dataurl.split(<span class="string">&quot;,&quot;</span>),</span><br><span class="line">          bstr = atob(arr[<span class="number">1</span>]),</span><br><span class="line">          n = bstr.length,</span><br><span class="line">          u8arr = <span class="keyword">new</span> <span class="built_in">Uint8Array</span>(n);</span><br><span class="line">      <span class="keyword">while</span> (n--) &#123;</span><br><span class="line">          u8arr[n] = bstr.charCodeAt(n);</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="keyword">return</span> <span class="keyword">new</span> File([u8arr], file.name, &#123;</span><br><span class="line">          <span class="attr">type</span>: file.type</span><br><span class="line">      &#125;);</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="comment">// 压缩图片</span></span><br><span class="line">  <span class="function"><span class="keyword">function</span> <span class="title">compress</span>(<span class="params">img</span>) </span>&#123;</span><br><span class="line">      <span class="keyword">let</span> canvas = <span class="built_in">document</span>.createElement(<span class="string">&quot;canvas&quot;</span>);</span><br><span class="line">      <span class="keyword">let</span> ctx = canvas.getContext(<span class="string">&quot;2d&quot;</span>);</span><br><span class="line">      <span class="comment">//瓦片canvas</span></span><br><span class="line">      <span class="keyword">let</span> tCanvas = <span class="built_in">document</span>.createElement(<span class="string">&quot;canvas&quot;</span>);</span><br><span class="line">      <span class="keyword">let</span> tctx = tCanvas.getContext(<span class="string">&quot;2d&quot;</span>);</span><br><span class="line">      <span class="comment">// let initSize = img.src.length;</span></span><br><span class="line">      <span class="keyword">let</span> width = img.width;</span><br><span class="line">      <span class="keyword">let</span> height = img.height;</span><br><span class="line">      <span class="comment">//如果图片大于四百万像素，计算压缩比并将大小压至400万以下</span></span><br><span class="line">      <span class="keyword">let</span> ratio;</span><br><span class="line">      <span class="keyword">if</span> ((ratio = (width * height) / <span class="number">4000000</span>) &gt; <span class="number">1</span>) &#123;</span><br><span class="line">          <span class="comment">// console.log(&quot;大于400万像素&quot;);</span></span><br><span class="line">          ratio = <span class="built_in">Math</span>.sqrt(ratio);</span><br><span class="line">          width /= ratio;</span><br><span class="line">          height /= ratio;</span><br><span class="line">      &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">          ratio = <span class="number">1</span>;</span><br><span class="line">      &#125;</span><br><span class="line">      canvas.width = width;</span><br><span class="line">      canvas.height = height;</span><br><span class="line">      <span class="comment">//    铺底色</span></span><br><span class="line">      ctx.fillStyle = <span class="string">&quot;#fff&quot;</span>;</span><br><span class="line">      ctx.fillRect(<span class="number">0</span>, <span class="number">0</span>, canvas.width, canvas.height);</span><br><span class="line">      <span class="comment">//如果图片像素大于100万则使用瓦片绘制</span></span><br><span class="line">      <span class="keyword">let</span> count;</span><br><span class="line">      <span class="keyword">if</span> ((count = (width * height) / <span class="number">1000000</span>) &gt; <span class="number">1</span>) &#123;</span><br><span class="line">          <span class="comment">// console.log(&quot;超过100W像素&quot;);</span></span><br><span class="line">          count = ~~(<span class="built_in">Math</span>.sqrt(count) + <span class="number">1</span>); <span class="comment">//计算要分成多少块瓦片</span></span><br><span class="line">          <span class="comment">//      计算每块瓦片的宽和高</span></span><br><span class="line">          <span class="keyword">let</span> nw = ~~(width / count);</span><br><span class="line">          <span class="keyword">let</span> nh = ~~(height / count);</span><br><span class="line">          tCanvas.width = nw;</span><br><span class="line">          tCanvas.height = nh;</span><br><span class="line">          <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; count; i++) &#123;</span><br><span class="line">              <span class="keyword">for</span> (<span class="keyword">let</span> j = <span class="number">0</span>; j &lt; count; j++) &#123;</span><br><span class="line">                  tctx.drawImage(</span><br><span class="line">                      img,</span><br><span class="line">                      i * nw * ratio,</span><br><span class="line">                      j * nh * ratio,</span><br><span class="line">                      nw * ratio,</span><br><span class="line">                      nh * ratio,</span><br><span class="line">                      <span class="number">0</span>,</span><br><span class="line">                      <span class="number">0</span>,</span><br><span class="line">                      nw,</span><br><span class="line">                      nh</span><br><span class="line">                  );</span><br><span class="line">                  ctx.drawImage(tCanvas, i * nw, j * nh, nw, nh);</span><br><span class="line">              &#125;</span><br><span class="line">          &#125;</span><br><span class="line">      &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">          ctx.drawImage(img, <span class="number">0</span>, <span class="number">0</span>, width, height);</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="comment">//进行最小压缩</span></span><br><span class="line">      <span class="keyword">let</span> ndata = canvas.toDataURL(<span class="string">&quot;image/jpeg&quot;</span>, <span class="number">0.3</span>);</span><br><span class="line">      tCanvas.width = tCanvas.height = canvas.width = canvas.height = <span class="number">0</span>;</span><br><span class="line">      <span class="keyword">return</span> ndata;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="comment">// 看支持不支持FileReader</span></span><br><span class="line">  <span class="keyword">if</span> (!file || !<span class="built_in">window</span>.FileReader) &#123;</span><br><span class="line">      <span class="keyword">return</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">if</span> (<span class="regexp">/^image/</span>.test(file.type)) &#123;</span><br><span class="line">      <span class="comment">// 创建一个reader</span></span><br><span class="line">      <span class="keyword">let</span> reader = <span class="keyword">new</span> FileReader();</span><br><span class="line">      <span class="comment">// 将图片转成 base64 格式</span></span><br><span class="line">      reader.readAsDataURL(file);</span><br><span class="line">      <span class="comment">// 读取成功后的回调</span></span><br><span class="line">      reader.onloadend = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">          <span class="keyword">let</span> result = <span class="built_in">this</span>.result;</span><br><span class="line">          <span class="keyword">let</span> img = <span class="keyword">new</span> Image();</span><br><span class="line">          img.src = result;</span><br><span class="line">          <span class="comment">//判断图片是否小于500K,是就直接上传，反之压缩图片</span></span><br><span class="line">          <span class="keyword">if</span> (<span class="built_in">this</span> .result.length &lt;= <span class="number">100</span> * <span class="number">1024</span>) &#123;</span><br><span class="line">              <span class="comment">// 上传图片</span></span><br><span class="line">              <span class="keyword">let</span> imageFile = dataURLtoFile(<span class="built_in">this</span>.result, file);</span><br><span class="line">              callback(imageFile);</span><br><span class="line">          &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">              img.onload = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">                  <span class="keyword">let</span> data = compress(img);</span><br><span class="line">                  <span class="comment">// 上传图片</span></span><br><span class="line">                  <span class="keyword">let</span> imageFile = dataURLtoFile(data, file);</span><br><span class="line">                  callback(imageFile);</span><br><span class="line">              &#125;;</span><br><span class="line">          &#125;</span><br><span class="line">      &#125;;</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
-
-<p>2.使用方法：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; imgPreview &#125; <span class="keyword">from</span> <span class="string">&quot;@/libs/util.js&quot;</span>;</span><br><span class="line">afterReadz (event) &#123;</span><br><span class="line">  <span class="built_in">this</span>.cardimgz = event.content</span><br><span class="line">  imgPreview(event.file,<span class="function">(<span class="params">files</span>)=&gt;</span>&#123;</span><br><span class="line">    <span class="built_in">this</span>.frontFile = files<span class="comment">//压缩后的文件流</span></span><br><span class="line">  &#125;)</span><br><span class="line">&#125;,</span><br><span class="line">afterReadf (event) &#123;</span><br><span class="line">  <span class="built_in">this</span>.cardimgf = event.content</span><br><span class="line">  imgPreview(event.file,<span class="function">(<span class="params">files</span>)=&gt;</span>&#123;</span><br><span class="line">    <span class="built_in">this</span>.backFile = files<span class="comment">//压缩后的文件流</span></span><br><span class="line">  &#125;)</span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure>
-
-<p>通过以上写法拿到压缩后的文件流，然后通过formData传参给后台就行了。</p>
-
-    
-
-    
-
-    
-
-  </div>
-  <div class="article-info article-info-index">
-    
-    
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">h5</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-    
-
-    
-    <p class="article-more-link">
-      <a class="article-more-a" href="/2021/11/07/h5%E4%B8%8A%E4%BC%A0%E5%9B%BE%E7%89%87%E8%BF%9B%E8%A1%8C%E5%9B%BE%E7%89%87%E5%8E%8B%E7%BC%A9/">展开全文 >></a>
-    </p>
-    
-
-    
-    <div class="clearfix"></div>
-  </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-移动端调试vConsole" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-  
-  
-    <h1 itemprop="name">
-	
-	  <a class="article-title" href="/2021/11/07/%E7%A7%BB%E5%8A%A8%E7%AB%AF%E8%B0%83%E8%AF%95vConsole/">移动端调试vConsole</a>
-	
-    </h1>
-  
-
-
-  
-  
-<a href="/2021/11/07/%E7%A7%BB%E5%8A%A8%E7%AB%AF%E8%B0%83%E8%AF%95vConsole/" class="archive-article-date">
-        <time datetime="2021-11-07T08:17:12.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-11-07</time>
-</a>
-
-  
-  
-    
-
-  
-  </header>
-  
-  <div class="article-entry" itemprop="articleBody">
-    
-    <h4 id="本文介绍了一种在h5移动端打印跳转的工具方法"><a href="#本文介绍了一种在h5移动端打印跳转的工具方法" class="headerlink" title="本文介绍了一种在h5移动端打印跳转的工具方法"></a>本文介绍了一种在h5移动端打印跳转的工具方法</h4><h4 id="通过vConsole-js-重写console方法，实现了类似于微信小程序的移动端调试效果。"><a href="#通过vConsole-js-重写console方法，实现了类似于微信小程序的移动端调试效果。" class="headerlink" title="通过vConsole.js 重写console方法，实现了类似于微信小程序的移动端调试效果。"></a>通过vConsole.js 重写console方法，实现了类似于微信小程序的移动端调试效果。</h4><h4 id="具体使用方法很简单在public文件夹下的index-html文件中添加如下代码："><a href="#具体使用方法很简单在public文件夹下的index-html文件中添加如下代码：" class="headerlink" title="具体使用方法很简单在public文件夹下的index.html文件中添加如下代码："></a>具体使用方法很简单在public文件夹下的index.html文件中添加如下代码：</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;script src=<span class="string">&quot;https://cdn.bootcss.com/vConsole/3.3.4/vconsole.min.js&quot;</span>&gt;&lt;/script&gt;</span><br><span class="line"><span class="xml"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="javascript"></span></span></span><br><span class="line"><span class="javascript"><span class="xml">        <span class="keyword">var</span> vConsole = <span class="keyword">new</span> VConsole()</span></span></span><br><span class="line"><span class="javascript"><span class="xml"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span></span><br></pre></td></tr></table></figure>
-
-<h3 id="这样就ok了，效果图如下："><a href="#这样就ok了，效果图如下：" class="headerlink" title="这样就ok了，效果图如下："></a>这样就ok了，效果图如下：</h3><p><img src="/assets/h5/WechatIMG90.jpeg" alt="vConsole"></p>
-
-    
-
-    
-
-    
-
-  </div>
-  <div class="article-info article-info-index">
-    
-    
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">h5</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-    
-
-    
-    <p class="article-more-link">
-      <a class="article-more-a" href="/2021/11/07/%E7%A7%BB%E5%8A%A8%E7%AB%AF%E8%B0%83%E8%AF%95vConsole/">展开全文 >></a>
-    </p>
-    
-
-    
-    <div class="clearfix"></div>
-  </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-h5移动端uc浏览器拍照覆盖问题" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-  
-  
-    <h1 itemprop="name">
-	
-	  <a class="article-title" href="/2021/11/07/h5%E7%A7%BB%E5%8A%A8%E7%AB%AFuc%E6%B5%8F%E8%A7%88%E5%99%A8%E6%8B%8D%E7%85%A7%E8%A6%86%E7%9B%96%E9%97%AE%E9%A2%98/">h5移动端uc浏览器拍照覆盖问题</a>
-	
-    </h1>
-  
-
-
-  
-  
-<a href="/2021/11/07/h5%E7%A7%BB%E5%8A%A8%E7%AB%AFuc%E6%B5%8F%E8%A7%88%E5%99%A8%E6%8B%8D%E7%85%A7%E8%A6%86%E7%9B%96%E9%97%AE%E9%A2%98/" class="archive-article-date">
-        <time datetime="2021-11-07T08:10:24.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-11-07</time>
-</a>
-
-  
-  
-    
-
-  
-  </header>
-  
-  <div class="article-entry" itemprop="articleBody">
-    
-    <h4 id="问题描述："><a href="#问题描述：" class="headerlink" title="问题描述："></a>问题描述：</h4><p>公司项目中，要求实现上传身份证正反面照片功能。兼容pc端与手机端。pc端直接选择文件上传，在谷歌，火狐，safari等均没问题。</p>
-<p>手机端可调用手机相机或选择图库，选择图库，各浏览器均没问题，手机拍照呢，在uc浏览器上就有问题了….</p>
-<p>采用的是form表单提交的方式（后台要求），结果上传的两张图片一样，前一张被后一张覆盖了！！</p>
-<p>经过分析，图片被覆盖掉，唯一的原因就是，拍照的过程中，<strong>手机占用同一块内存</strong>，这就是uc独特的u3内核机制导致的吧。</p>
-<p>具体分析如下图所示：</p>
-<p>对于input的file:拍照上传时，未保存在硬盘中，直接在内存中，占用同一块内存，导致二进制文件流被覆盖，</p>
-<p>　　　　　　  选择图库呢，因为是从硬盘中读取，每次使用时读取都会在内存中新开辟一个内存空间，所以，不会有覆盖的问题啦。</p>
-<p><img src="/assets/h5/WechatIMG85.png" alt="uc图片上传流程"></p>
-<h4 id="基础代码"><a href="#基础代码" class="headerlink" title="基础代码"></a>基础代码</h4><p>我采用的是vant组件的uploader组件，我前面的博客有写过在h5中调取摄像头，这里因为上传身份证并不需要直接调取摄像头，可以选取文件，所以采用uploader</p>
-<p>代码如下：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//正面上传</span></span><br><span class="line">&lt;van-uploader :after-read=<span class="string">&quot;afterReadz&quot;</span></span><br><span class="line">                        <span class="class"><span class="keyword">class</span></span>=<span class="string">&quot;uploader&quot;</span>&gt;</span><br><span class="line">            <span class="xml"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;up-tip-img&quot;</span></span></span></span><br><span class="line"><span class="tag"><span class="xml">                 <span class="attr">:style</span>=<span class="string">&quot;backgroundColor&quot;</span>&gt;</span>&#123;&#123;cardimgz?&#x27;重新上传人像面&#x27;:&#x27;上传身份证人像面&#x27;&#125;&#125;<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line">&lt;/van-uploader&gt;</span><br><span class="line"><span class="comment">//反面上传</span></span><br><span class="line"><span class="xml"><span class="tag">&lt;<span class="name">van-uploader</span> <span class="attr">:after-read</span>=<span class="string">&quot;afterReadf&quot;</span></span></span></span><br><span class="line"><span class="tag"><span class="xml">                        <span class="attr">class</span>=<span class="string">&quot;uploader&quot;</span>&gt;</span></span></span><br><span class="line"><span class="xml">            <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;up-tip-img&quot;</span></span></span></span><br><span class="line"><span class="tag"><span class="xml">                 <span class="attr">:style</span>=<span class="string">&quot;backgroundColor&quot;</span>&gt;</span>&#123;&#123;cardimgf?&#x27;重新上传国徽面&#x27;:&#x27;上传身份证国徽面&#x27;&#125;&#125;<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line"><span class="xml"><span class="tag">&lt;/<span class="name">van-uploader</span>&gt;</span></span></span><br></pre></td></tr></table></figure>
-
-
-
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//正面上传</span></span><br><span class="line">afterReadz (event) &#123;</span><br><span class="line">  <span class="built_in">this</span>.cardimgz = event.content<span class="comment">//图片的base64地址</span></span><br><span class="line">  <span class="built_in">this</span>.frontFile = event.file<span class="comment">//文件流</span></span><br><span class="line">&#125;,</span><br><span class="line"><span class="comment">//反面上传</span></span><br><span class="line">afterReadf (event) &#123;</span><br><span class="line">  <span class="built_in">this</span>.cardimgf = event.content<span class="comment">//图片的base64地址</span></span><br><span class="line">  <span class="built_in">this</span>.backFile = event.file<span class="comment">//文件流</span></span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure>
-
-<p>以上代码是在uc浏览器中会被覆盖的代码因为上传以后直接拿文件流传给后端</p>
-    
-    <a class="article-more-a" href="/2021/11/07/h5%E7%A7%BB%E5%8A%A8%E7%AB%AFuc%E6%B5%8F%E8%A7%88%E5%99%A8%E6%8B%8D%E7%85%A7%E8%A6%86%E7%9B%96%E9%97%AE%E9%A2%98/#more">more >></a>
-    
-    
-
-    
-
-    
-
-  </div>
-  <div class="article-info article-info-index">
-    
-    
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">h5</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-    
-
-    
-    <p class="article-more-link">
-      <a class="article-more-a" href="/2021/11/07/h5%E7%A7%BB%E5%8A%A8%E7%AB%AFuc%E6%B5%8F%E8%A7%88%E5%99%A8%E6%8B%8D%E7%85%A7%E8%A6%86%E7%9B%96%E9%97%AE%E9%A2%98/">展开全文 >></a>
-    </p>
-    
-
-    
-    <div class="clearfix"></div>
-  </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-React-Hooks之useState的详解" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-  
-  
-    <h1 itemprop="name">
-	
-	  <a class="article-title" href="/2021/10/29/React-Hooks%E4%B9%8BuseState%E7%9A%84%E8%AF%A6%E8%A7%A3/">React-Hooks之useState的详解</a>
-	
-    </h1>
-  
-
-
-  
-  
-<a href="/2021/10/29/React-Hooks%E4%B9%8BuseState%E7%9A%84%E8%AF%A6%E8%A7%A3/" class="archive-article-date">
-        <time datetime="2021-10-29T14:40:51.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-10-29</time>
-</a>
-
-  
-  
-    
-
-  
-  </header>
-  
-  <div class="article-entry" itemprop="articleBody">
-    
-    <h4 id="useState的定义"><a href="#useState的定义" class="headerlink" title="useState的定义"></a>useState的定义</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> [state, setState] = useState(initialState);</span><br></pre></td></tr></table></figure>
-
-<p>返回一个 state，以及更新 state 的函数。</p>
-<p>在初始渲染期间，返回的状态 (<code>state</code>) 与传入的第一个参数 (<code>initialState</code>) 值相同。</p>
-<p><code>setState</code> 函数用于更新 state。它接收一个新的 state 值并将组件的一次重新渲染加入队列。</p>
-<h4 id="useState的定义初始值的两种写法"><a href="#useState的定义初始值的两种写法" class="headerlink" title="useState的定义初始值的两种写法"></a>useState的定义初始值的两种写法</h4><p>写法一：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> [count, setCount] = useState(<span class="number">0</span>);</span><br></pre></td></tr></table></figure>
-
-<p>写法二：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> [user, setUser] = React.useState(<span class="function">() =&gt;</span> (&#123; <span class="attr">name</span>: <span class="string">&#x27;张三&#x27;</span>, <span class="attr">age</span>: <span class="string">&#x27;18&#x27;</span> &#125;))</span><br></pre></td></tr></table></figure>
-
-<p>两种写法的区别如下：  </p>
-<p>useState可以传入对象，但是js引擎会解析这个对象，计算9+9，造成多余的运算</p>
-<p>useState可以传入一个函数，函数并不会执行</p>
-<p>这样写的好处是js只会在初始化值的时候执行一次函数</p>
-<p>之后就不会再查看这个函数</p>
-    
-    <a class="article-more-a" href="/2021/10/29/React-Hooks%E4%B9%8BuseState%E7%9A%84%E8%AF%A6%E8%A7%A3/#more">more >></a>
-    
-    
-
-    
-
-    
-
-  </div>
-  <div class="article-info article-info-index">
-    
-    
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">react</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-    
-
-    
-    <p class="article-more-link">
-      <a class="article-more-a" href="/2021/10/29/React-Hooks%E4%B9%8BuseState%E7%9A%84%E8%AF%A6%E8%A7%A3/">展开全文 >></a>
-    </p>
-    
-
-    
-    <div class="clearfix"></div>
-  </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
-      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/">Next &amp;raquo;</a>
+      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/2/">Next &amp;raquo;</a>
     </nav>
   
 
@@ -1344,11 +1386,11 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">hexo</a>
+                <a href="javascript:void(0)" class="js-tag color3">js</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">js</a>
+                <a href="javascript:void(0)" class="js-tag color5">hexo</a>
               </li>
             
             <div class="clearfix"></div>
