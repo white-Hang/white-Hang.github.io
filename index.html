@@ -85,6 +85,8 @@
 			
 				<li><a href="/tags/h5/index.html" >h5</a></li>
 			
+				<li><a href="/tags/git/index.html" >git</a></li>
+			
 			</ul>
 		</nav>
 		<nav class="header-smart-menu">
@@ -108,6 +110,11 @@
 					
 						<a class="github" target="_blank" rel="noopener" href="https://github.com/white-Hang" 
 												title="GitHub" ><i class="icon-github"></i></a>
+					
+				
+					
+						<a class="csdn" target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_46063693" 
+												title="CSDN" ><i class="icon-csdn"></i></a>
 					
 				
 			</div>
@@ -168,6 +175,8 @@
 			
 				
 			
+				
+			
 			
 			
 			<nav class="header-nav">
@@ -178,6 +187,11 @@
 							href="https://github.com/white-Hang" title="GitHub"><i class="icon-github"></i></a>
 						
 					
+						
+						<a class="csdn" target="_blank" 
+							href="https://blog.csdn.net/weixin_46063693" title="CSDN"><i class="icon-csdn"></i></a>
+						
+					
 				</div>
 			</nav>
 
@@ -185,17 +199,19 @@
 				<ul style="width: 70%">
 				
 				
-					<li style="width: 16.666666666666668%"><a href="/">主页</a></li>
+					<li style="width: 14.285714285714286%"><a href="/">主页</a></li>
 		        
-					<li style="width: 16.666666666666668%"><a href="/tags/hexo/index.html">hexo</a></li>
+					<li style="width: 14.285714285714286%"><a href="/tags/hexo/index.html">hexo</a></li>
 		        
-					<li style="width: 16.666666666666668%"><a href="/tags/vue/index.html">vue</a></li>
+					<li style="width: 14.285714285714286%"><a href="/tags/vue/index.html">vue</a></li>
 		        
-					<li style="width: 16.666666666666668%"><a href="/tags/react/index.html">react</a></li>
+					<li style="width: 14.285714285714286%"><a href="/tags/react/index.html">react</a></li>
 		        
-					<li style="width: 16.666666666666668%"><a href="/tags/js/index.html">js</a></li>
+					<li style="width: 14.285714285714286%"><a href="/tags/js/index.html">js</a></li>
 		        
-					<li style="width: 16.666666666666668%"><a href="/tags/h5/index.html">h5</a></li>
+					<li style="width: 14.285714285714286%"><a href="/tags/h5/index.html">h5</a></li>
+		        
+					<li style="width: 14.285714285714286%"><a href="/tags/git/index.html">git</a></li>
 		        
 				</ul>
 			</nav>
@@ -212,6 +228,99 @@
           </div>
           <div id="js-content" class="content-ll">
             
+
+  
+    <article id="post-Git使用出现git-github-com-Permission-denied-publickey-处理" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+  
+  
+    <h1 itemprop="name">
+	
+	  <a class="article-title" href="/2021/12/29/Git%E4%BD%BF%E7%94%A8%E5%87%BA%E7%8E%B0git-github-com-Permission-denied-publickey-%E5%A4%84%E7%90%86/">Git使用出现git@github.com Permission denied (publickey). 处理</a>
+	
+    </h1>
+  
+
+
+  
+  
+<a href="/2021/12/29/Git%E4%BD%BF%E7%94%A8%E5%87%BA%E7%8E%B0git-github-com-Permission-denied-publickey-%E5%A4%84%E7%90%86/" class="archive-article-date">
+        <time datetime="2021-12-29T14:31:59.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-12-29</time>
+</a>
+
+  
+  
+    
+
+  
+  </header>
+  
+  <div class="article-entry" itemprop="articleBody">
+    
+    <p>进入git bash界面然后：</p>
+<h4 id="第一步，git-config-–global-–list-验证邮箱与GitHub注册时输入的是否一致"><a href="#第一步，git-config-–global-–list-验证邮箱与GitHub注册时输入的是否一致" class="headerlink" title="第一步，git config –global –list 验证邮箱与GitHub注册时输入的是否一致"></a>第一步，git config –global –list 验证邮箱与GitHub注册时输入的是否一致</h4><p><img src="/assets/img/WechatIMG109.png" alt="执行结果"></p>
+<h4 id="第二步，通过git-config-–global-user-name-“yourname”，git-config-–global-user-email-“-x65-109-x61-x69-108-x40-x65-109-x61-x69-x6c-x2e-99-111-x6d-”（这里得名字和邮箱都是注册github时用的）设置全局用户名和邮箱。"><a href="#第二步，通过git-config-–global-user-name-“yourname”，git-config-–global-user-email-“-x65-109-x61-x69-108-x40-x65-109-x61-x69-x6c-x2e-99-111-x6d-”（这里得名字和邮箱都是注册github时用的）设置全局用户名和邮箱。" class="headerlink" title="第二步，通过git config –global user.name “yourname”，git config –global user.email “&#x65;&#109;&#x61;&#x69;&#108;&#x40;&#x65;&#109;&#x61;&#x69;&#x6c;&#x2e;&#99;&#111;&#x6d; ”（这里得名字和邮箱都是注册github时用的）设置全局用户名和邮箱。"></a>第二步，通过git config –global user.name “yourname”，git config –global user.email “<a href="mailto:&#x65;&#109;&#x61;&#x69;&#108;&#x40;&#x65;&#109;&#x61;&#x69;&#x6c;&#x2e;&#99;&#111;&#x6d;">&#x65;&#109;&#x61;&#x69;&#108;&#x40;&#x65;&#109;&#x61;&#x69;&#x6c;&#x2e;&#99;&#111;&#x6d;</a> ”（这里得名字和邮箱都是注册github时用的）设置全局用户名和邮箱。</h4><p>如果名字或者邮箱和第一步验证与gitHub注册的不一样，重新设置一下即可</p>
+<p><img src="/assets/img/WechatIMG116.png" alt="执行结果"></p>
+<h4 id="第三步，ssh-keygen-t-rsa-C-“这里换上你的邮箱”，一路回车，在出现选择时输入Y，再一路回车直到生成密钥。会在-Users-路径下生成一个-ssh文件夹，密钥就存储在其中。"><a href="#第三步，ssh-keygen-t-rsa-C-“这里换上你的邮箱”，一路回车，在出现选择时输入Y，再一路回车直到生成密钥。会在-Users-路径下生成一个-ssh文件夹，密钥就存储在其中。" class="headerlink" title="第三步，ssh-keygen -t rsa -C “这里换上你的邮箱”，一路回车，在出现选择时输入Y，再一路回车直到生成密钥。会在/Users/***/路径下生成一个.ssh文件夹，密钥就存储在其中。"></a>第三步，ssh-keygen -t rsa -C “这里换上你的邮箱”，一路回车，在出现选择时输入Y，再一路回车直到生成密钥。会在/Users/***/路径下生成一个.ssh文件夹，密钥就存储在其中。</h4><p><img src="/assets/img/WechatIMG110.png" alt="执行结果"></p>
+<h4 id="第四步，到git仓库，添加秘钥，"><a href="#第四步，到git仓库，添加秘钥，" class="headerlink" title="第四步，到git仓库，添加秘钥，"></a>第四步，到git仓库，添加秘钥，</h4><p><img src="/assets/img/WechatIMG111.png" alt="执行结果"><br><img src="/assets/img/WechatIMG112.png" alt="执行结果"><br><img src="/assets/img/WechatIMG113.png" alt="执行结果"><br><img src="/assets/img/WechatIMG114.png" alt="执行结果"><br>点击Add SSH key</p>
+<h4 id="第五步，ssh-T-git-github-com-测试一下通不通，通了显示如下"><a href="#第五步，ssh-T-git-github-com-测试一下通不通，通了显示如下" class="headerlink" title="第五步，ssh -T git@github.com 测试一下通不通，通了显示如下"></a>第五步，ssh -T <a href="mailto:git@github.com">git@github.com</a> 测试一下通不通，通了显示如下</h4><p><img src="/assets/img/WechatIMG115.png" alt="执行结果"></p>
+<p>然后就能正常使用了。</p>
+
+    
+
+    
+
+    
+
+  </div>
+  <div class="article-info article-info-index">
+    
+    
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">git</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+    
+
+    
+    <p class="article-more-link">
+      <a class="article-more-a" href="/2021/12/29/Git%E4%BD%BF%E7%94%A8%E5%87%BA%E7%8E%B0git-github-com-Permission-denied-publickey-%E5%A4%84%E7%90%86/">展开全文 >></a>
+    </p>
+    
+
+    
+    <div class="clearfix"></div>
+  </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
 
   
     <article id="post-Vue实现将页面转成PDF并下载" class="article article-type-post  article-index" itemscope itemprop="blogPost">
@@ -1086,102 +1195,6 @@
 
 
   
-    <article id="post-vue-H5实现调用手机摄像头" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-  
-  
-    <h1 itemprop="name">
-	
-	  <a class="article-title" href="/2021/10/29/vue-H5%E5%AE%9E%E7%8E%B0%E8%B0%83%E7%94%A8%E6%89%8B%E6%9C%BA%E6%91%84%E5%83%8F%E5%A4%B4/">vue H5实现调用手机摄像头</a>
-	
-    </h1>
-  
-
-
-  
-  
-<a href="/2021/10/29/vue-H5%E5%AE%9E%E7%8E%B0%E8%B0%83%E7%94%A8%E6%89%8B%E6%9C%BA%E6%91%84%E5%83%8F%E5%A4%B4/" class="archive-article-date">
-        <time datetime="2021-10-29T14:31:28.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-10-29</time>
-</a>
-
-  
-  
-    
-
-  
-  </header>
-  
-  <div class="article-entry" itemprop="articleBody">
-    
-    <p>本篇文章分享一下在使用vue编写h5时，调用摄像头遇到的坑，和解决的写法。</p>
-<h4 id="首先说坑："><a href="#首先说坑：" class="headerlink" title="首先说坑："></a>首先说坑：</h4><p>一开始用的<a target="_blank" rel="noopener" href="https://youzan.github.io/vant-weapp/#/uploader">vant</a>的uploader组件，代码如下;</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&lt;van-uploader :after-read=<span class="string">&quot;afterRead&quot;</span></span><br><span class="line">                <span class="class"><span class="keyword">class</span></span>=<span class="string">&quot;uploader&quot;</span></span><br><span class="line">                accept=<span class="string">&quot;video&quot;</span></span><br><span class="line">                capture=<span class="string">&quot;camera&quot;</span>&gt;</span><br><span class="line">    <span class="xml"><span class="tag">&lt;<span class="name">van-button</span> <span class="attr">round</span></span></span></span><br><span class="line"><span class="tag"><span class="xml">                <span class="attr">block</span></span></span></span><br><span class="line"><span class="tag"><span class="xml">                <span class="attr">type</span>=<span class="string">&quot;info&quot;</span>&gt;</span>开始录制<span class="tag">&lt;/<span class="name">van-button</span>&gt;</span></span></span><br><span class="line">  &lt;/van-uploader&gt;</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">afterRead (event) &#123;</span><br><span class="line">  <span class="built_in">console</span>.log(event, <span class="string">&#x27;file&#x27;</span>)<span class="comment">//拿到上传的文件数据</span></span><br><span class="line">  <span class="comment">//...对文件数据做操作</span></span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure>
-
-<p>以上代码确实可以调取摄像头，但是这里有个大坑：</p>
-<p>在ios系统下这个是能正常调取手机摄像头的，但是在安卓系统下，是直接打开相册，选取文件。</p>
-<p>如果你需求是要直接调取摄像头录像的话，这个方法那就不适用了，所以下面采用了原生的写法。</p>
-    
-    <a class="article-more-a" href="/2021/10/29/vue-H5%E5%AE%9E%E7%8E%B0%E8%B0%83%E7%94%A8%E6%89%8B%E6%9C%BA%E6%91%84%E5%83%8F%E5%A4%B4/#more">more >></a>
-    
-    
-
-    
-
-    
-
-  </div>
-  <div class="article-info article-info-index">
-    
-    
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">h5</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-    
-
-    
-    <p class="article-more-link">
-      <a class="article-more-a" href="/2021/10/29/vue-H5%E5%AE%9E%E7%8E%B0%E8%B0%83%E7%94%A8%E6%89%8B%E6%9C%BA%E6%91%84%E5%83%8F%E5%A4%B4/">展开全文 >></a>
-    </p>
-    
-
-    
-    <div class="clearfix"></div>
-  </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
       <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/">Next &amp;raquo;</a>
@@ -1315,6 +1328,10 @@
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">git</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">react</a>
               </li>
              
@@ -1327,11 +1344,11 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">js</a>
+                <a href="javascript:void(0)" class="js-tag color5">hexo</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">hexo</a>
+                <a href="javascript:void(0)" class="js-tag color3">js</a>
               </li>
             
             <div class="clearfix"></div>
@@ -1379,6 +1396,20 @@
 
     
     	<section class="tools-section tools-section-friends" q-show="friends">
+  		
+        <ul class="search-ul">
+          
+            <li class="search-li">
+              <a href="https://blog.csdn.net/weixin_46063693" target="_blank" 
+                class="search-title" >
+                
+                  <i class="icon-link icon"></i>
+                
+                CSDN
+              </a>
+            </li>
+          
+        </ul>
   		
     	</section>
     
