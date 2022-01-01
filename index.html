@@ -230,6 +230,501 @@
             
 
   
+    <article id="post-es6中的class类详解" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+  
+  
+    <h1 itemprop="name">
+	
+	  <a class="article-title" href="/2022/01/01/es6%E4%B8%AD%E7%9A%84class%E7%B1%BB%E8%AF%A6%E8%A7%A3/">es6中的class类详解</a>
+	
+    </h1>
+  
+
+
+  
+  
+<a href="/2022/01/01/es6%E4%B8%AD%E7%9A%84class%E7%B1%BB%E8%AF%A6%E8%A7%A3/" class="archive-article-date">
+        <time datetime="2022-01-01T05:35:25.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-01-01</time>
+</a>
+
+  
+  
+    
+
+  
+  </header>
+  
+  <div class="article-entry" itemprop="articleBody">
+    
+    <h4 id="构造函数生成实例对象"><a href="#构造函数生成实例对象" class="headerlink" title="构造函数生成实例对象"></a>构造函数生成实例对象</h4><p>JavaScript ES6之前的还没有Class类的概念，生成实例对象的传统方法是通过构造函数。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Mold</span>(<span class="params">a, b</span>) </span>&#123;</span><br><span class="line">      <span class="built_in">this</span>.a = a</span><br><span class="line">      <span class="built_in">this</span>.b = b</span><br><span class="line">&#125;</span><br><span class="line">Mold.prototype.count = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="built_in">this</span>.a + <span class="built_in">this</span>.b</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">let</span> sum = <span class="keyword">new</span> Mold(<span class="number">1</span>, <span class="number">2</span>)</span><br><span class="line"><span class="built_in">console</span>.log(sum.count()) <span class="comment">//3</span></span><br></pre></td></tr></table></figure>
+
+<p>这中写法跟传统的面向对象语言差异较大，写起来也比较繁杂。</p>
+<p>ES6提供了更加接近其他语言的写法，引入了Class（类）的概念，作为对象的模板，可以通过class关键字，定义类（类似python、java等）；</p>
+<p>当然ES6的大部分功能再ES5都能实现，ES6的class可以看作是一个语法糖，只是新的class定义类的写法让对象原型的写法更加简单明了、更接近与面向对象的编程思想。与上面ES5写的类使用ES6实现，例如：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Mold</span> </span>&#123;</span><br><span class="line">  <span class="function"><span class="title">constructor</span>(<span class="params">a, b</span>)</span> &#123;</span><br><span class="line">    <span class="comment">//构造器中的this是谁？—— 类的实例对象</span></span><br><span class="line">    <span class="built_in">console</span>.log(<span class="built_in">this</span>) <span class="comment">//Mold &#123;a: 1,b: 2&#125;</span></span><br><span class="line">    <span class="built_in">this</span>.a = a</span><br><span class="line">    <span class="built_in">this</span>.b = b</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="function"><span class="title">count</span>(<span class="params"></span>)</span> &#123;</span><br><span class="line">    <span class="comment">//count方法放在了哪里？——类的原型对象上，供实例使用</span></span><br><span class="line">    <span class="comment">//通过Mold实例调用count时，count中的this就是Mold实例</span></span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">this</span>.a + <span class="built_in">this</span>.b</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">let</span> sum = <span class="keyword">new</span> Mold(<span class="number">1</span>, <span class="number">2</span>)</span><br><span class="line"><span class="built_in">console</span>.log(sum.count()) <span class="comment">//3</span></span><br></pre></td></tr></table></figure>
+    
+    <a class="article-more-a" href="/2022/01/01/es6%E4%B8%AD%E7%9A%84class%E7%B1%BB%E8%AF%A6%E8%A7%A3/#more">more >></a>
+    
+    
+
+    
+
+    
+
+  </div>
+  <div class="article-info article-info-index">
+    
+    
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">vue</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+    
+
+    
+    <p class="article-more-link">
+      <a class="article-more-a" href="/2022/01/01/es6%E4%B8%AD%E7%9A%84class%E7%B1%BB%E8%AF%A6%E8%A7%A3/">展开全文 >></a>
+    </p>
+    
+
+    
+    <div class="clearfix"></div>
+  </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-vue3-0中的provide-与-inject" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+  
+  
+    <h1 itemprop="name">
+	
+	  <a class="article-title" href="/2022/01/01/vue3-0%E4%B8%AD%E7%9A%84provide-%E4%B8%8E-inject/">vue3.0中的provide与inject</a>
+	
+    </h1>
+  
+
+
+  
+  
+<a href="/2022/01/01/vue3-0%E4%B8%AD%E7%9A%84provide-%E4%B8%8E-inject/" class="archive-article-date">
+        <time datetime="2022-01-01T05:32:20.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-01-01</time>
+</a>
+
+  
+  
+    
+
+  
+  </header>
+  
+  <div class="article-entry" itemprop="articleBody">
+    
+    <img src="https://v3.cn.vuejs.org/images/components_provide.png" style="width:300px" />
+
+<ul>
+<li><p>作用：实现<strong style="color:#DD5145">祖与后代组件间</strong>通信</p>
+</li>
+<li><p>套路：父组件有一个 <code>provide</code> 选项来提供数据，后代组件有一个 <code>inject</code> 选项来开始使用这些数据</p>
+</li>
+<li><p>具体写法：</p>
+<ol>
+<li>祖组件中：</li>
+</ol>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="title">setup</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">	......</span><br><span class="line">    <span class="keyword">let</span> car = reactive(&#123;<span class="attr">name</span>:<span class="string">&#x27;奔驰&#x27;</span>,<span class="attr">price</span>:<span class="string">&#x27;40万&#x27;</span>&#125;)</span><br><span class="line">    provide(<span class="string">&#x27;car&#x27;</span>,car)</span><br><span class="line">    ......</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>  2.后代组件中：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="title">setup</span>(<span class="params">props,context</span>)</span>&#123;</span><br><span class="line">	......</span><br><span class="line">    <span class="keyword">const</span> car = inject(<span class="string">&#x27;car&#x27;</span>)</span><br><span class="line">    <span class="keyword">return</span> &#123;car&#125;</span><br><span class="line">	......</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id=""><a href="#" class="headerlink" title=""></a></h2><p>展示结果：<br><img src="/assets/vue/WechatIMG124.png" alt="结果"></p>
+</li>
+</ul>
+
+    
+
+    
+
+    
+
+  </div>
+  <div class="article-info article-info-index">
+    
+    
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">vue</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+    
+
+    
+    <p class="article-more-link">
+      <a class="article-more-a" href="/2022/01/01/vue3-0%E4%B8%AD%E7%9A%84provide-%E4%B8%8E-inject/">展开全文 >></a>
+    </p>
+    
+
+    
+    <div class="clearfix"></div>
+  </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-vue3-0中的toRef和toRefs函数" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+  
+  
+    <h1 itemprop="name">
+	
+	  <a class="article-title" href="/2022/01/01/vue3-0%E4%B8%AD%E7%9A%84toRef%E5%92%8CtoRefs%E5%87%BD%E6%95%B0/">vue3.0中的toRef和toRefs函数</a>
+	
+    </h1>
+  
+
+
+  
+  
+<a href="/2022/01/01/vue3-0%E4%B8%AD%E7%9A%84toRef%E5%92%8CtoRefs%E5%87%BD%E6%95%B0/" class="archive-article-date">
+        <time datetime="2022-01-01T05:31:18.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-01-01</time>
+</a>
+
+  
+  
+    
+
+  
+  </header>
+  
+  <div class="article-entry" itemprop="articleBody">
+    
+    <ul>
+<li>作用：创建一个 ref 对象，其value值指向另一个对象中的某个属性。</li>
+<li>语法：<code>const name = toRef(person,&#39;name&#39;)</code></li>
+<li>应用:   要将响应式对象中的某个属性单独提供给外部使用时。</li>
+</ul>
+<ul>
+<li>扩展：<code>toRefs</code> 与<code>toRef</code>功能一致，但可以批量创建多个 ref 对象，语法：<code>toRefs(person)</code></li>
+</ul>
+<p>代码演示：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">	<span class="xml"><span class="tag">&lt;<span class="name">h4</span>&gt;</span>&#123;&#123;person&#125;&#125;<span class="tag">&lt;/<span class="name">h4</span>&gt;</span></span></span><br><span class="line">	<span class="xml"><span class="tag">&lt;<span class="name">h2</span>&gt;</span>姓名：&#123;&#123;name&#125;&#125;<span class="tag">&lt;/<span class="name">h2</span>&gt;</span></span></span><br><span class="line">	<span class="xml"><span class="tag">&lt;<span class="name">h2</span>&gt;</span>年龄：&#123;&#123;age&#125;&#125;<span class="tag">&lt;/<span class="name">h2</span>&gt;</span></span></span><br><span class="line">	<span class="xml"><span class="tag">&lt;<span class="name">h2</span>&gt;</span>薪资：&#123;&#123;job.j1.salary&#125;&#125;K<span class="tag">&lt;/<span class="name">h2</span>&gt;</span></span></span><br><span class="line">	<span class="xml"><span class="tag">&lt;<span class="name">button</span> @<span class="attr">click</span>=<span class="string">&quot;name+=&#x27;~&#x27;&quot;</span>&gt;</span>修改姓名<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span></span><br><span class="line">	<span class="xml"><span class="tag">&lt;<span class="name">button</span> @<span class="attr">click</span>=<span class="string">&quot;age++&quot;</span>&gt;</span>增长年龄<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span></span><br><span class="line">	<span class="xml"><span class="tag">&lt;<span class="name">button</span> @<span class="attr">click</span>=<span class="string">&quot;job.j1.salary++&quot;</span>&gt;</span>涨薪<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span></span><br><span class="line">&lt;/template&gt;</span><br><span class="line"></span><br><span class="line"><span class="xml"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="javascript"></span></span></span><br><span class="line"><span class="javascript"><span class="xml">	<span class="keyword">import</span> &#123;ref,reactive,toRef,toRefs&#125; <span class="keyword">from</span> <span class="string">&#x27;vue&#x27;</span></span></span></span><br><span class="line"><span class="javascript"><span class="xml">	<span class="keyword">export</span> <span class="keyword">default</span> &#123;</span></span></span><br><span class="line"><span class="javascript"><span class="xml">		<span class="attr">name</span>: <span class="string">&#x27;Demo&#x27;</span>,</span></span></span><br><span class="line"><span class="javascript"><span class="xml">		<span class="function"><span class="title">setup</span>(<span class="params"></span>)</span>&#123;</span></span></span><br><span class="line"><span class="javascript"><span class="xml">			<span class="comment">//数据</span></span></span></span><br><span class="line"><span class="javascript"><span class="xml">			<span class="keyword">let</span> person = reactive(&#123;</span></span></span><br><span class="line"><span class="javascript"><span class="xml">				<span class="attr">name</span>:<span class="string">&#x27;张三&#x27;</span>,</span></span></span><br><span class="line"><span class="javascript"><span class="xml">				<span class="attr">age</span>:<span class="number">18</span>,</span></span></span><br><span class="line"><span class="javascript"><span class="xml">				<span class="attr">job</span>:&#123;</span></span></span><br><span class="line"><span class="javascript"><span class="xml">					<span class="attr">j1</span>:&#123;</span></span></span><br><span class="line"><span class="javascript"><span class="xml">						<span class="attr">salary</span>:<span class="number">20</span></span></span></span><br><span class="line"><span class="javascript"><span class="xml">					&#125;</span></span></span><br><span class="line"><span class="javascript"><span class="xml">				&#125;</span></span></span><br><span class="line"><span class="javascript"><span class="xml">			&#125;)</span></span></span><br><span class="line"><span class="javascript"><span class="xml"></span></span></span><br><span class="line"><span class="javascript"><span class="xml">			<span class="comment">// const name1 = person.name</span></span></span></span><br><span class="line"><span class="javascript"><span class="xml">			<span class="comment">// console.log(&#x27;%%%&#x27;,name1)</span></span></span></span><br><span class="line"><span class="javascript"><span class="xml"></span></span></span><br><span class="line"><span class="javascript"><span class="xml">			<span class="comment">// const name2 = toRef(person,&#x27;name&#x27;)</span></span></span></span><br><span class="line"><span class="javascript"><span class="xml">			<span class="comment">// console.log(&#x27;####&#x27;,name2)</span></span></span></span><br><span class="line"><span class="javascript"><span class="xml"></span></span></span><br><span class="line"><span class="javascript"><span class="xml">			<span class="keyword">const</span> x = toRefs(person)</span></span></span><br><span class="line"><span class="javascript"><span class="xml">			<span class="built_in">console</span>.log(<span class="string">&#x27;******&#x27;</span>,x)</span></span></span><br><span class="line"><span class="javascript"><span class="xml"></span></span></span><br><span class="line"><span class="javascript"><span class="xml">			<span class="comment">//返回一个对象（常用）</span></span></span></span><br><span class="line"><span class="javascript"><span class="xml">			<span class="keyword">return</span> &#123;</span></span></span><br><span class="line"><span class="javascript"><span class="xml">				person,</span></span></span><br><span class="line"><span class="javascript"><span class="xml">				<span class="comment">// name:toRef(person,&#x27;name&#x27;),</span></span></span></span><br><span class="line"><span class="javascript"><span class="xml">				<span class="comment">// age:toRef(person,&#x27;age&#x27;),</span></span></span></span><br><span class="line"><span class="javascript"><span class="xml">				<span class="comment">// salary:toRef(person.job.j1,&#x27;salary&#x27;),</span></span></span></span><br><span class="line"><span class="javascript"><span class="xml">				...toRefs(person)</span></span></span><br><span class="line"><span class="javascript"><span class="xml">			&#125;</span></span></span><br><span class="line"><span class="javascript"><span class="xml">		&#125;</span></span></span><br><span class="line"><span class="javascript"><span class="xml">	&#125;</span></span></span><br><span class="line"><span class="javascript"><span class="xml"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span></span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+    
+
+    
+
+    
+
+  </div>
+  <div class="article-info article-info-index">
+    
+    
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">vue</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+    
+
+    
+    <p class="article-more-link">
+      <a class="article-more-a" href="/2022/01/01/vue3-0%E4%B8%AD%E7%9A%84toRef%E5%92%8CtoRefs%E5%87%BD%E6%95%B0/">展开全文 >></a>
+    </p>
+    
+
+    
+    <div class="clearfix"></div>
+  </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-vue3-0中的watchEffect函数" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+  
+  
+    <h1 itemprop="name">
+	
+	  <a class="article-title" href="/2022/01/01/vue3-0%E4%B8%AD%E7%9A%84watchEffect%E5%87%BD%E6%95%B0/">vue3.0中的watchEffect函数</a>
+	
+    </h1>
+  
+
+
+  
+  
+<a href="/2022/01/01/vue3-0%E4%B8%AD%E7%9A%84watchEffect%E5%87%BD%E6%95%B0/" class="archive-article-date">
+        <time datetime="2022-01-01T05:30:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-01-01</time>
+</a>
+
+  
+  
+    
+
+  
+  </header>
+  
+  <div class="article-entry" itemprop="articleBody">
+    
+    <ul>
+<li><p>watch的套路是：既要指明监视的属性，也要指明监视的回调。</p>
+</li>
+<li><p>watchEffect的套路是：不用指明监视哪个属性，监视的回调中用到哪个属性，那就监视哪个属性。</p>
+</li>
+<li><p>watchEffect有点像computed：</p>
+<ul>
+<li>但computed注重的计算出来的值（回调函数的返回值），所以必须要写返回值。</li>
+<li>而watchEffect更注重的是过程（回调函数的函数体），所以不用写返回值。</li>
+</ul>
+</li>
+</ul>
+<p>代码演示：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line">	<span class="xml"><span class="tag">&lt;<span class="name">h2</span>&gt;</span>当前求和为：&#123;&#123;sum&#125;&#125;<span class="tag">&lt;/<span class="name">h2</span>&gt;</span></span></span><br><span class="line">	<span class="xml"><span class="tag">&lt;<span class="name">button</span> @<span class="attr">click</span>=<span class="string">&quot;sum++&quot;</span>&gt;</span>点我+1<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span></span><br><span class="line">	&lt;hr&gt;</span><br><span class="line">	<span class="xml"><span class="tag">&lt;<span class="name">h2</span>&gt;</span>当前的信息为：&#123;&#123;msg&#125;&#125;<span class="tag">&lt;/<span class="name">h2</span>&gt;</span></span></span><br><span class="line">	<span class="xml"><span class="tag">&lt;<span class="name">button</span> @<span class="attr">click</span>=<span class="string">&quot;msg+=&#x27;！&#x27;&quot;</span>&gt;</span>修改信息<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span></span><br><span class="line">	&lt;hr&gt;</span><br><span class="line">	<span class="xml"><span class="tag">&lt;<span class="name">h2</span>&gt;</span>姓名：&#123;&#123;person.name&#125;&#125;<span class="tag">&lt;/<span class="name">h2</span>&gt;</span></span></span><br><span class="line">	<span class="xml"><span class="tag">&lt;<span class="name">h2</span>&gt;</span>年龄：&#123;&#123;person.age&#125;&#125;<span class="tag">&lt;/<span class="name">h2</span>&gt;</span></span></span><br><span class="line">	<span class="xml"><span class="tag">&lt;<span class="name">h2</span>&gt;</span>薪资：&#123;&#123;person.job.j1.salary&#125;&#125;K<span class="tag">&lt;/<span class="name">h2</span>&gt;</span></span></span><br><span class="line">	<span class="xml"><span class="tag">&lt;<span class="name">button</span> @<span class="attr">click</span>=<span class="string">&quot;person.name+=&#x27;~&#x27;&quot;</span>&gt;</span>修改姓名<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span></span><br><span class="line">	<span class="xml"><span class="tag">&lt;<span class="name">button</span> @<span class="attr">click</span>=<span class="string">&quot;person.age++&quot;</span>&gt;</span>增长年龄<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span></span><br><span class="line">	<span class="xml"><span class="tag">&lt;<span class="name">button</span> @<span class="attr">click</span>=<span class="string">&quot;person.job.j1.salary++&quot;</span>&gt;</span>涨薪<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span></span><br><span class="line">&lt;/template&gt;</span><br><span class="line"></span><br><span class="line"><span class="xml"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="javascript"></span></span></span><br><span class="line"><span class="javascript"><span class="xml">	<span class="keyword">import</span> &#123;ref,reactive,watch,watchEffect&#125; <span class="keyword">from</span> <span class="string">&#x27;vue&#x27;</span></span></span></span><br><span class="line"><span class="javascript"><span class="xml">	<span class="keyword">export</span> <span class="keyword">default</span> &#123;</span></span></span><br><span class="line"><span class="javascript"><span class="xml">		<span class="attr">name</span>: <span class="string">&#x27;Demo&#x27;</span>,</span></span></span><br><span class="line"><span class="javascript"><span class="xml">		<span class="function"><span class="title">setup</span>(<span class="params"></span>)</span>&#123;</span></span></span><br><span class="line"><span class="javascript"><span class="xml">			<span class="comment">//数据</span></span></span></span><br><span class="line"><span class="javascript"><span class="xml">			<span class="keyword">let</span> sum = ref(<span class="number">0</span>)</span></span></span><br><span class="line"><span class="javascript"><span class="xml">			<span class="keyword">let</span> msg = ref(<span class="string">&#x27;你好啊&#x27;</span>)</span></span></span><br><span class="line"><span class="javascript"><span class="xml">			<span class="keyword">let</span> person = reactive(&#123;</span></span></span><br><span class="line"><span class="javascript"><span class="xml">				<span class="attr">name</span>:<span class="string">&#x27;张三&#x27;</span>,</span></span></span><br><span class="line"><span class="javascript"><span class="xml">				<span class="attr">age</span>:<span class="number">18</span>,</span></span></span><br><span class="line"><span class="javascript"><span class="xml">				<span class="attr">job</span>:&#123;</span></span></span><br><span class="line"><span class="javascript"><span class="xml">					<span class="attr">j1</span>:&#123;</span></span></span><br><span class="line"><span class="javascript"><span class="xml">						<span class="attr">salary</span>:<span class="number">20</span></span></span></span><br><span class="line"><span class="javascript"><span class="xml">					&#125;</span></span></span><br><span class="line"><span class="javascript"><span class="xml">				&#125;</span></span></span><br><span class="line"><span class="javascript"><span class="xml">			&#125;)</span></span></span><br><span class="line"><span class="javascript"><span class="xml"></span></span></span><br><span class="line"><span class="javascript"><span class="xml">			<span class="comment">//监视</span></span></span></span><br><span class="line"><span class="javascript"><span class="xml">			<span class="comment">/* watch(sum,(newValue,oldValue)=&gt;&#123;</span></span></span></span><br><span class="line"><span class="comment"><span class="javascript"><span class="xml">				console.log(&#x27;sum的值变化了&#x27;,newValue,oldValue)</span></span></span></span><br><span class="line"><span class="comment"><span class="javascript"><span class="xml">			&#125;,&#123;immediate:true&#125;) */</span></span></span></span><br><span class="line"><span class="javascript"><span class="xml"></span></span></span><br><span class="line"><span class="javascript"><span class="xml">			watchEffect(<span class="function">()=&gt;</span>&#123;</span></span></span><br><span class="line"><span class="javascript"><span class="xml">				<span class="keyword">const</span> x1 = sum.value</span></span></span><br><span class="line"><span class="javascript"><span class="xml">				<span class="keyword">const</span> x2 = person.job.j1.salary</span></span></span><br><span class="line"><span class="javascript"><span class="xml">				<span class="built_in">console</span>.log(<span class="string">&#x27;watchEffect所指定的回调执行了&#x27;</span>)</span></span></span><br><span class="line"><span class="javascript"><span class="xml">			&#125;)</span></span></span><br><span class="line"><span class="javascript"><span class="xml"></span></span></span><br><span class="line"><span class="javascript"><span class="xml">			<span class="comment">//返回一个对象（常用）</span></span></span></span><br><span class="line"><span class="javascript"><span class="xml">			<span class="keyword">return</span> &#123;</span></span></span><br><span class="line"><span class="javascript"><span class="xml">				sum,</span></span></span><br><span class="line"><span class="javascript"><span class="xml">				msg,</span></span></span><br><span class="line"><span class="javascript"><span class="xml">				person</span></span></span><br><span class="line"><span class="javascript"><span class="xml">			&#125;</span></span></span><br><span class="line"><span class="javascript"><span class="xml">		&#125;</span></span></span><br><span class="line"><span class="javascript"><span class="xml">	&#125;</span></span></span><br><span class="line"><span class="javascript"><span class="xml"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span></span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+    
+
+    
+
+    
+
+  </div>
+  <div class="article-info article-info-index">
+    
+    
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">vue</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+    
+
+    
+    <p class="article-more-link">
+      <a class="article-more-a" href="/2022/01/01/vue3-0%E4%B8%AD%E7%9A%84watchEffect%E5%87%BD%E6%95%B0/">展开全文 >></a>
+    </p>
+    
+
+    
+    <div class="clearfix"></div>
+  </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-vue3-0中的watch函数" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+  
+  
+    <h1 itemprop="name">
+	
+	  <a class="article-title" href="/2022/01/01/vue3-0%E4%B8%AD%E7%9A%84watch%E5%87%BD%E6%95%B0/">vue3.0中的watch函数</a>
+	
+    </h1>
+  
+
+
+  
+  
+<a href="/2022/01/01/vue3-0%E4%B8%AD%E7%9A%84watch%E5%87%BD%E6%95%B0/" class="archive-article-date">
+        <time datetime="2022-01-01T05:28:33.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-01-01</time>
+</a>
+
+  
+  
+    
+
+  
+  </header>
+  
+  <div class="article-entry" itemprop="articleBody">
+    
+    <ul>
+<li><p>与Vue2.x中watch配置功能一致</p>
+</li>
+<li><p>两个小“坑”：</p>
+<ul>
+<li>监视reactive定义的响应式数据时：oldValue无法正确获取、强制开启了深度监视（deep配置失效）。</li>
+<li>监视reactive定义的响应式数据中某个属性时：deep配置有效。</li>
+</ul>
+</li>
+</ul>
+<p>代码解释：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br></pre></td><td class="code"><pre><span class="line">&lt;template&gt;</span><br><span class="line"><span class="xml"><span class="tag">&lt;<span class="name">div</span>&gt;</span></span></span><br><span class="line"><span class="xml">    <span class="tag">&lt;<span class="name">h2</span>&gt;</span>当前求和为：&#123;&#123;sum&#125;&#125;<span class="tag">&lt;/<span class="name">h2</span>&gt;</span></span></span><br><span class="line"><span class="xml">	<span class="tag">&lt;<span class="name">button</span> @<span class="attr">click</span>=<span class="string">&quot;sum++&quot;</span>&gt;</span>点我+1<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span></span><br><span class="line"><span class="xml">	<span class="tag">&lt;<span class="name">hr</span>&gt;</span></span></span><br><span class="line"><span class="xml">	<span class="tag">&lt;<span class="name">h2</span>&gt;</span>当前的信息为：&#123;&#123;msg&#125;&#125;<span class="tag">&lt;/<span class="name">h2</span>&gt;</span></span></span><br><span class="line"><span class="xml">	<span class="tag">&lt;<span class="name">button</span> @<span class="attr">click</span>=<span class="string">&quot;msg+=&#x27;！&#x27;&quot;</span>&gt;</span>修改信息<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span></span><br><span class="line"><span class="xml">	<span class="tag">&lt;<span class="name">hr</span>&gt;</span></span></span><br><span class="line"><span class="xml">	<span class="tag">&lt;<span class="name">h2</span>&gt;</span>姓名：&#123;&#123;person.name&#125;&#125;<span class="tag">&lt;/<span class="name">h2</span>&gt;</span></span></span><br><span class="line"><span class="xml">	<span class="tag">&lt;<span class="name">h2</span>&gt;</span>年龄：&#123;&#123;person.age&#125;&#125;<span class="tag">&lt;/<span class="name">h2</span>&gt;</span></span></span><br><span class="line"><span class="xml">	<span class="tag">&lt;<span class="name">h2</span>&gt;</span>薪资：&#123;&#123;person.job.j1.salary&#125;&#125;K<span class="tag">&lt;/<span class="name">h2</span>&gt;</span></span></span><br><span class="line"><span class="xml">	<span class="tag">&lt;<span class="name">button</span> @<span class="attr">click</span>=<span class="string">&quot;person.name+=&#x27;~&#x27;&quot;</span>&gt;</span>修改姓名<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span></span><br><span class="line"><span class="xml">	<span class="tag">&lt;<span class="name">button</span> @<span class="attr">click</span>=<span class="string">&quot;person.age++&quot;</span>&gt;</span>增长年龄<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span></span><br><span class="line"><span class="xml">	<span class="tag">&lt;<span class="name">button</span> @<span class="attr">click</span>=<span class="string">&quot;person.job.j1.salary++&quot;</span>&gt;</span>涨薪<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span></span><br><span class="line"><span class="xml"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line"><span class="xml"><span class="tag">&lt;/<span class="name">template</span>&gt;</span></span></span><br><span class="line"><span class="xml"></span></span><br><span class="line"><span class="xml"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="javascript"></span></span></span><br><span class="line"><span class="javascript"><span class="xml">	<span class="keyword">import</span> &#123;ref,reactive,watch&#125; <span class="keyword">from</span> <span class="string">&#x27;vue&#x27;</span></span></span></span><br><span class="line"><span class="javascript"><span class="xml">	<span class="keyword">export</span> <span class="keyword">default</span> &#123;</span></span></span><br><span class="line"><span class="javascript"><span class="xml">		<span class="attr">name</span>: <span class="string">&#x27;Demo&#x27;</span>,</span></span></span><br><span class="line"><span class="javascript"><span class="xml">		<span class="function"><span class="title">setup</span>(<span class="params"></span>)</span>&#123;</span></span></span><br><span class="line"><span class="javascript"><span class="xml">			<span class="comment">//数据</span></span></span></span><br><span class="line"><span class="javascript"><span class="xml">			<span class="keyword">let</span> sum = ref(<span class="number">0</span>)</span></span></span><br><span class="line"><span class="javascript"><span class="xml">			<span class="keyword">let</span> msg = ref(<span class="string">&#x27;你好啊&#x27;</span>)</span></span></span><br><span class="line"><span class="javascript"><span class="xml">			<span class="keyword">let</span> person = reactive(&#123;</span></span></span><br><span class="line"><span class="javascript"><span class="xml">				<span class="attr">name</span>:<span class="string">&#x27;张三&#x27;</span>,</span></span></span><br><span class="line"><span class="javascript"><span class="xml">				<span class="attr">age</span>:<span class="number">18</span>,</span></span></span><br><span class="line"><span class="javascript"><span class="xml">				<span class="attr">job</span>:&#123;</span></span></span><br><span class="line"><span class="javascript"><span class="xml">					<span class="attr">j1</span>:&#123;</span></span></span><br><span class="line"><span class="javascript"><span class="xml">						<span class="attr">salary</span>:<span class="number">20</span></span></span></span><br><span class="line"><span class="javascript"><span class="xml">					&#125;</span></span></span><br><span class="line"><span class="javascript"><span class="xml">				&#125;</span></span></span><br><span class="line"><span class="javascript"><span class="xml">			&#125;)</span></span></span><br><span class="line"><span class="javascript"><span class="xml"></span></span></span><br><span class="line"><span class="javascript"><span class="xml">			<span class="comment">//情况一：监视ref所定义的一个响应式数据</span></span></span></span><br><span class="line"><span class="javascript"><span class="xml">			<span class="comment">//  watch(sum,(newValue,oldValue)=&gt;&#123;</span></span></span></span><br><span class="line"><span class="javascript"><span class="xml">			<span class="comment">// 	console.log(&#x27;sum变了&#x27;,newValue,oldValue)</span></span></span></span><br><span class="line"><span class="javascript"><span class="xml">			<span class="comment">// &#125;,&#123;immediate:true&#125;) </span></span></span></span><br><span class="line"><span class="javascript"><span class="xml"></span></span></span><br><span class="line"><span class="javascript"><span class="xml">			<span class="comment">//情况二：监视ref所定义的多个响应式数据</span></span></span></span><br><span class="line"><span class="javascript"><span class="xml">			<span class="comment">//  watch([sum,msg],(newValue,oldValue)=&gt;&#123;</span></span></span></span><br><span class="line"><span class="javascript"><span class="xml">			<span class="comment">// 	console.log(&#x27;sum或msg变了&#x27;,newValue,oldValue)</span></span></span></span><br><span class="line"><span class="javascript"><span class="xml">			<span class="comment">// &#125;,&#123;immediate:true&#125;) </span></span></span></span><br><span class="line"><span class="javascript"><span class="xml"></span></span></span><br><span class="line"><span class="javascript"><span class="xml">			<span class="comment">/* </span></span></span></span><br><span class="line"><span class="comment"><span class="javascript"><span class="xml">				情况三：监视reactive所定义的一个响应式数据的全部属性</span></span></span></span><br><span class="line"><span class="comment"><span class="javascript"><span class="xml">						1.注意：此处无法正确的获取oldValue</span></span></span></span><br><span class="line"><span class="comment"><span class="javascript"><span class="xml">						2.注意：强制开启了深度监视（deep配置无效）</span></span></span></span><br><span class="line"><span class="comment"><span class="javascript"><span class="xml">			*/</span></span></span></span><br><span class="line"><span class="javascript"><span class="xml">			<span class="comment">// watch(person,(newValue,oldValue)=&gt;&#123;</span></span></span></span><br><span class="line"><span class="javascript"><span class="xml">			<span class="comment">// 	console.log(&#x27;person变化了&#x27;,newValue,oldValue)</span></span></span></span><br><span class="line"><span class="javascript"><span class="xml">			<span class="comment">// &#125;,&#123;deep:false&#125;) //此处的deep配置无效 </span></span></span></span><br><span class="line"><span class="javascript"><span class="xml"></span></span></span><br><span class="line"><span class="javascript"><span class="xml">			<span class="comment">//情况四：监视reactive所定义的一个响应式数据中的某个属性</span></span></span></span><br><span class="line"><span class="javascript"><span class="xml">			<span class="comment">// watch(()=&gt;person.name,(newValue,oldValue)=&gt;&#123;</span></span></span></span><br><span class="line"><span class="javascript"><span class="xml">			<span class="comment">// 	console.log(&#x27;person的name变化了&#x27;,newValue,oldValue)</span></span></span></span><br><span class="line"><span class="javascript"><span class="xml">			<span class="comment">// &#125;)  </span></span></span></span><br><span class="line"><span class="javascript"><span class="xml"></span></span></span><br><span class="line"><span class="javascript"><span class="xml">			<span class="comment">//情况五：监视reactive所定义的一个响应式数据中的某些属性</span></span></span></span><br><span class="line"><span class="javascript"><span class="xml">			<span class="comment">// watch([()=&gt;person.name,()=&gt;person.age],(newValue,oldValue)=&gt;&#123;</span></span></span></span><br><span class="line"><span class="javascript"><span class="xml">			<span class="comment">// 	console.log(&#x27;person的name或age变化了&#x27;,newValue,oldValue)</span></span></span></span><br><span class="line"><span class="javascript"><span class="xml">			<span class="comment">// &#125;) </span></span></span></span><br><span class="line"><span class="javascript"><span class="xml"></span></span></span><br><span class="line"><span class="javascript"><span class="xml">			<span class="comment">//特殊情况</span></span></span></span><br><span class="line"><span class="javascript"><span class="xml">			watch(<span class="function">()=&gt;</span>person.job,<span class="function">(<span class="params">newValue,oldValue</span>)=&gt;</span>&#123;</span></span></span><br><span class="line"><span class="javascript"><span class="xml">				<span class="built_in">console</span>.log(<span class="string">&#x27;person的job变化了&#x27;</span>,newValue,oldValue)</span></span></span><br><span class="line"><span class="javascript"><span class="xml">			&#125;,&#123;<span class="attr">deep</span>:<span class="literal">false</span>&#125;) <span class="comment">//此处由于监视的是reactive素定义的对象中的某个属性，所以deep配置有效 */</span></span></span></span><br><span class="line"><span class="javascript"><span class="xml"></span></span></span><br><span class="line"><span class="javascript"><span class="xml"></span></span></span><br><span class="line"><span class="javascript"><span class="xml">			<span class="comment">//返回一个对象（常用）</span></span></span></span><br><span class="line"><span class="javascript"><span class="xml">			<span class="keyword">return</span> &#123;</span></span></span><br><span class="line"><span class="javascript"><span class="xml">				sum,</span></span></span><br><span class="line"><span class="javascript"><span class="xml">				msg,</span></span></span><br><span class="line"><span class="javascript"><span class="xml">				person</span></span></span><br><span class="line"><span class="javascript"><span class="xml">			&#125;</span></span></span><br><span class="line"><span class="javascript"><span class="xml">		&#125;</span></span></span><br><span class="line"><span class="javascript"><span class="xml">	&#125;</span></span></span><br><span class="line"><span class="javascript"><span class="xml"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span></span><br><span class="line"><span class="xml"></span></span><br><span class="line"><span class="xml"></span></span><br></pre></td></tr></table></figure>
+
+
+
+    
+
+    
+
+    
+
+  </div>
+  <div class="article-info article-info-index">
+    
+    
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">vue</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+    
+
+    
+    <p class="article-more-link">
+      <a class="article-more-a" href="/2022/01/01/vue3-0%E4%B8%AD%E7%9A%84watch%E5%87%BD%E6%95%B0/">展开全文 >></a>
+    </p>
+    
+
+    
+    <div class="clearfix"></div>
+  </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-vue3-0中的computed函数" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -693,7 +1188,7 @@
     
     <p>进入git bash界面然后：</p>
 <h4 id="第一步，git-config-–global-–list-验证邮箱与GitHub注册时输入的是否一致"><a href="#第一步，git-config-–global-–list-验证邮箱与GitHub注册时输入的是否一致" class="headerlink" title="第一步，git config –global –list 验证邮箱与GitHub注册时输入的是否一致"></a>第一步，git config –global –list 验证邮箱与GitHub注册时输入的是否一致</h4><p><img src="/assets/img/WechatIMG109.png" alt="执行结果"></p>
-<h4 id="第二步，通过git-config-–global-user-name-“yourname”，git-config-–global-user-email-“-x65-109-x61-105-108-x40-x65-109-97-x69-108-46-x63-x6f-109-”（这里得名字和邮箱都是注册github时用的）设置全局用户名和邮箱。"><a href="#第二步，通过git-config-–global-user-name-“yourname”，git-config-–global-user-email-“-x65-109-x61-105-108-x40-x65-109-97-x69-108-46-x63-x6f-109-”（这里得名字和邮箱都是注册github时用的）设置全局用户名和邮箱。" class="headerlink" title="第二步，通过git config –global user.name “yourname”，git config –global user.email “&#x65;&#109;&#x61;&#105;&#108;&#x40;&#x65;&#109;&#97;&#x69;&#108;&#46;&#x63;&#x6f;&#109; ”（这里得名字和邮箱都是注册github时用的）设置全局用户名和邮箱。"></a>第二步，通过git config –global user.name “yourname”，git config –global user.email “<a href="mailto:&#x65;&#109;&#x61;&#105;&#108;&#x40;&#x65;&#109;&#97;&#x69;&#108;&#46;&#x63;&#x6f;&#109;">&#x65;&#109;&#x61;&#105;&#108;&#x40;&#x65;&#109;&#97;&#x69;&#108;&#46;&#x63;&#x6f;&#109;</a> ”（这里得名字和邮箱都是注册github时用的）设置全局用户名和邮箱。</h4><p>如果名字或者邮箱和第一步验证与gitHub注册的不一样，重新设置一下即可</p>
+<h4 id="第二步，通过git-config-–global-user-name-“yourname”，git-config-–global-user-email-“-x65-x6d-97-x69-x6c-x40-x65-x6d-97-x69-108-x2e-99-x6f-109-”（这里得名字和邮箱都是注册github时用的）设置全局用户名和邮箱。"><a href="#第二步，通过git-config-–global-user-name-“yourname”，git-config-–global-user-email-“-x65-x6d-97-x69-x6c-x40-x65-x6d-97-x69-108-x2e-99-x6f-109-”（这里得名字和邮箱都是注册github时用的）设置全局用户名和邮箱。" class="headerlink" title="第二步，通过git config –global user.name “yourname”，git config –global user.email “&#x65;&#x6d;&#97;&#x69;&#x6c;&#x40;&#x65;&#x6d;&#97;&#x69;&#108;&#x2e;&#99;&#x6f;&#109; ”（这里得名字和邮箱都是注册github时用的）设置全局用户名和邮箱。"></a>第二步，通过git config –global user.name “yourname”，git config –global user.email “<a href="mailto:&#x65;&#x6d;&#97;&#x69;&#x6c;&#x40;&#x65;&#x6d;&#97;&#x69;&#108;&#x2e;&#99;&#x6f;&#109;">&#x65;&#x6d;&#97;&#x69;&#x6c;&#x40;&#x65;&#x6d;&#97;&#x69;&#108;&#x2e;&#99;&#x6f;&#109;</a> ”（这里得名字和邮箱都是注册github时用的）设置全局用户名和邮箱。</h4><p>如果名字或者邮箱和第一步验证与gitHub注册的不一样，重新设置一下即可</p>
 <p><img src="/assets/img/WechatIMG116.png" alt="执行结果"></p>
 <h4 id="第三步，ssh-keygen-t-rsa-C-“这里换上你的邮箱”，一路回车，在出现选择时输入Y，再一路回车直到生成密钥。会在-Users-路径下生成一个-ssh文件夹，密钥就存储在其中。"><a href="#第三步，ssh-keygen-t-rsa-C-“这里换上你的邮箱”，一路回车，在出现选择时输入Y，再一路回车直到生成密钥。会在-Users-路径下生成一个-ssh文件夹，密钥就存储在其中。" class="headerlink" title="第三步，ssh-keygen -t rsa -C “这里换上你的邮箱”，一路回车，在出现选择时输入Y，再一路回车直到生成密钥。会在/Users/***/路径下生成一个.ssh文件夹，密钥就存储在其中。"></a>第三步，ssh-keygen -t rsa -C “这里换上你的邮箱”，一路回车，在出现选择时输入Y，再一路回车直到生成密钥。会在/Users/***/路径下生成一个.ssh文件夹，密钥就存储在其中。</h4><p><img src="/assets/img/WechatIMG110.png" alt="执行结果"></p>
 <h4 id="第四步，到git仓库，添加秘钥，"><a href="#第四步，到git仓库，添加秘钥，" class="headerlink" title="第四步，到git仓库，添加秘钥，"></a>第四步，到git仓库，添加秘钥，</h4><p><img src="/assets/img/WechatIMG111.png" alt="执行结果"><br><img src="/assets/img/WechatIMG112.png" alt="执行结果"><br><img src="/assets/img/WechatIMG113.png" alt="执行结果"><br><img src="/assets/img/WechatIMG114.png" alt="执行结果"><br>点击Add SSH key</p>
@@ -755,488 +1250,6 @@
 
 
   
-    <article id="post-Vue实现将页面转成PDF并下载" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-  
-  
-    <h1 itemprop="name">
-	
-	  <a class="article-title" href="/2021/12/25/Vue%E5%AE%9E%E7%8E%B0%E5%B0%86%E9%A1%B5%E9%9D%A2%E8%BD%AC%E6%88%90PDF%E5%B9%B6%E4%B8%8B%E8%BD%BD/">Vue实现将页面转成PDF并下载</a>
-	
-    </h1>
-  
-
-
-  
-  
-<a href="/2021/12/25/Vue%E5%AE%9E%E7%8E%B0%E5%B0%86%E9%A1%B5%E9%9D%A2%E8%BD%AC%E6%88%90PDF%E5%B9%B6%E4%B8%8B%E8%BD%BD/" class="archive-article-date">
-        <time datetime="2021-12-25T14:21:09.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-12-25</time>
-</a>
-
-  
-  
-    
-
-  
-  </header>
-  
-  <div class="article-entry" itemprop="articleBody">
-    
-    <h4 id="一-安装所需依赖"><a href="#一-安装所需依赖" class="headerlink" title="一.安装所需依赖"></a>一.安装所需依赖</h4><p>1.将页面html转换成图片</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install --save html2canvas</span><br></pre></td></tr></table></figure>
-
-<p>2.将图片生成pdf</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install jspdf --save</span><br></pre></td></tr></table></figure>
-
-<h4 id="二-创建一个htmlToPdf-js文件在公共文件夹utils"><a href="#二-创建一个htmlToPdf-js文件在公共文件夹utils" class="headerlink" title="二.创建一个htmlToPdf.js文件在公共文件夹utils"></a>二.创建一个htmlToPdf.js文件在公共文件夹utils</h4><p>添加如下代码：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// htmlToPdf.js</span></span><br><span class="line"><span class="comment">// 导出页面为PDF格式</span></span><br><span class="line"><span class="keyword">import</span> html2Canvas <span class="keyword">from</span> <span class="string">&#x27;html2canvas&#x27;</span></span><br><span class="line"><span class="keyword">import</span> JsPDF <span class="keyword">from</span> <span class="string">&#x27;jspdf&#x27;</span></span><br><span class="line"><span class="keyword">const</span> getPdf = <span class="function">(<span class="params">htmlTitle</span>) =&gt;</span>&#123;</span><br><span class="line">        html2Canvas(<span class="built_in">document</span>.querySelector(<span class="string">&#x27;#pdfDom&#x27;</span>), &#123;</span><br><span class="line">          <span class="attr">allowTaint</span>: <span class="literal">true</span>,</span><br><span class="line">          <span class="attr">taintTest</span>: <span class="literal">false</span>,</span><br><span class="line">          <span class="attr">useCORS</span>: <span class="literal">true</span>,</span><br><span class="line">          <span class="attr">y</span>:<span class="number">72</span>, <span class="comment">// 对Y轴进行裁切</span></span><br><span class="line">          <span class="comment">// width:1200,</span></span><br><span class="line">          <span class="comment">// height:5000,</span></span><br><span class="line">          <span class="attr">dpi</span>: <span class="built_in">window</span>.devicePixelRatio * <span class="number">4</span>, <span class="comment">//将分辨率提高到特定的DPI 提高四倍</span></span><br><span class="line">          <span class="attr">scale</span>: <span class="number">4</span> <span class="comment">//按比例增加分辨率 </span></span><br><span class="line">        &#125;).then(<span class="function"><span class="keyword">function</span> (<span class="params">canvas</span>) </span>&#123;</span><br><span class="line">          <span class="keyword">let</span> contentWidth = canvas.width</span><br><span class="line">          <span class="keyword">let</span> contentHeight = canvas.height</span><br><span class="line">          <span class="keyword">let</span> pageHeight = contentWidth / <span class="number">592.28</span> * <span class="number">841.89</span></span><br><span class="line">          <span class="keyword">let</span> leftHeight = contentHeight</span><br><span class="line">          <span class="keyword">let</span> position = <span class="number">0</span></span><br><span class="line">          <span class="keyword">let</span> imgWidth = <span class="number">595.28</span></span><br><span class="line">          <span class="keyword">let</span> imgHeight = <span class="number">592.28</span> / contentWidth * contentHeight</span><br><span class="line">          <span class="keyword">let</span> pageData = canvas.toDataURL(<span class="string">&#x27;image/jpeg&#x27;</span>, <span class="number">1.0</span>)</span><br><span class="line">          <span class="keyword">let</span> PDF = <span class="keyword">new</span> JsPDF(<span class="string">&#x27;&#x27;</span>, <span class="string">&#x27;pt&#x27;</span>, <span class="string">&#x27;a4&#x27;</span>)</span><br><span class="line">          <span class="keyword">if</span> (leftHeight &lt; pageHeight) &#123;</span><br><span class="line">            PDF.addImage(pageData, <span class="string">&#x27;JPEG&#x27;</span>, <span class="number">0</span>, <span class="number">0</span>, imgWidth, imgHeight)</span><br><span class="line">          &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="keyword">while</span> (leftHeight &gt; <span class="number">0</span>) &#123;</span><br><span class="line">              PDF.addImage(pageData, <span class="string">&#x27;JPEG&#x27;</span>, <span class="number">0</span>, position, imgWidth, imgHeight)</span><br><span class="line">              leftHeight -= pageHeight</span><br><span class="line">              position -= <span class="number">841.89</span></span><br><span class="line">              <span class="keyword">if</span> (leftHeight &gt; <span class="number">0</span>) &#123;</span><br><span class="line">              PDF.addPage()</span><br><span class="line">            &#125;</span><br><span class="line">          &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        PDF.save(htmlTitle + <span class="string">&#x27;.pdf&#x27;</span>)</span><br><span class="line">      &#125;)</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> getPdf</span><br></pre></td></tr></table></figure>
-
-<h4 id="三-文件里引入使用："><a href="#三-文件里引入使用：" class="headerlink" title="三.文件里引入使用："></a>三.文件里引入使用：</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> getPdf <span class="keyword">from</span> <span class="string">&#x27;@/utils/htmlToPdf.js&#x27;</span></span><br></pre></td></tr></table></figure>
-
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&lt;div id=<span class="string">&quot;pdfDom&quot;</span>&gt;</span><br><span class="line">  ... 打印的内容</span><br><span class="line">&lt;/div&gt;</span><br><span class="line"><span class="comment">//添加打印按钮</span></span><br><span class="line"><span class="xml"><span class="tag">&lt;<span class="name">el-button</span> @<span class="attr">click</span>=<span class="string">&quot;downLoadPdf()&quot;</span>&gt;</span>PDF<span class="tag">&lt;/<span class="name">el-button</span>&gt;</span></span></span><br><span class="line"><span class="comment">//methods里添加打印方法</span></span><br><span class="line"><span class="function"><span class="title">downLoadPdf</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">  getPdf(<span class="string">&#x27;pdf文件名&#x27;</span>)</span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure>
-
-<p>喜欢的小伙伴，给博客点击个收藏哦！！！</p>
-
-    
-
-    
-
-    
-
-  </div>
-  <div class="article-info article-info-index">
-    
-    
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">vue</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-    
-
-    
-    <p class="article-more-link">
-      <a class="article-more-a" href="/2021/12/25/Vue%E5%AE%9E%E7%8E%B0%E5%B0%86%E9%A1%B5%E9%9D%A2%E8%BD%AC%E6%88%90PDF%E5%B9%B6%E4%B8%8B%E8%BD%BD/">展开全文 >></a>
-    </p>
-    
-
-    
-    <div class="clearfix"></div>
-  </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-手把手教你发布一个npm包（基于vue）" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-  
-  
-    <h1 itemprop="name">
-	
-	  <a class="article-title" href="/2021/11/22/%E6%89%8B%E6%8A%8A%E6%89%8B%E6%95%99%E4%BD%A0%E5%8F%91%E5%B8%83%E4%B8%80%E4%B8%AAnpm%E5%8C%85%EF%BC%88%E5%9F%BA%E4%BA%8Evue%EF%BC%89/">手把手教你发布一个npm包（基于vue）</a>
-	
-    </h1>
-  
-
-
-  
-  
-<a href="/2021/11/22/%E6%89%8B%E6%8A%8A%E6%89%8B%E6%95%99%E4%BD%A0%E5%8F%91%E5%B8%83%E4%B8%80%E4%B8%AAnpm%E5%8C%85%EF%BC%88%E5%9F%BA%E4%BA%8Evue%EF%BC%89/" class="archive-article-date">
-        <time datetime="2021-11-22T13:26:26.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-11-22</time>
-</a>
-
-  
-  
-    
-
-  
-  </header>
-  
-  <div class="article-entry" itemprop="articleBody">
-    
-    <p>前言：工作的时候总是使用别人的npm包，或者不同项目里有时候会用到一些可以复用的组件，每次都是复制粘贴，这让我对发布一个自己的npm包，产生了浓厚的兴趣。</p>
-<p>我有时心底会好奇自己如何发布一个npm包呢，什么时候自己的包能够被很多人喜欢并使用呢…今天我终于迈出了第一步。</p>
-<p>下面是我发布的关于echarts的包，有兴趣的小伙伴，可以下载使用看看哦</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install easy-echarts</span><br></pre></td></tr></table></figure>
-
-<h4 id="一、编写自己的npm包"><a href="#一、编写自己的npm包" class="headerlink" title="一、编写自己的npm包"></a>一、编写自己的npm包</h4><p>1.新建一个空文件夹</p>
-<p>2.进入文件夹，终端(cmd)运行 <strong>npm init</strong></p>
-<p><img src="/assets/vue/WechatIMG97.png" alt="图片"></p>
-<p>完成后会在目录下生成一个 package.json 文件</p>
-<p>我们可以根据自己的需要补充文件内容</p>
-<p>这是我的：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="string">&quot;name&quot;</span>: <span class="string">&quot;easy-echarts&quot;</span>,</span><br><span class="line">  <span class="string">&quot;version&quot;</span>: <span class="string">&quot;1.0.3&quot;</span>,</span><br><span class="line">  <span class="string">&quot;description&quot;</span>: <span class="string">&quot;&quot;</span>,</span><br><span class="line">  <span class="string">&quot;main&quot;</span>: <span class="string">&quot;index.js&quot;</span>,</span><br><span class="line">  <span class="string">&quot;private&quot;</span>: <span class="literal">false</span>,</span><br><span class="line">  <span class="string">&quot;scripts&quot;</span>: &#123;</span><br><span class="line">    <span class="string">&quot;test&quot;</span>: <span class="string">&quot;echo \&quot;Error: no test specified\&quot; &amp;&amp; exit 1&quot;</span>,</span><br><span class="line">    <span class="string">&quot;build&quot;</span>: <span class="string">&quot;cross-env NODE_ENV=production webpack --progress --hide-modules&quot;</span>,</span><br><span class="line">    <span class="string">&quot;dev&quot;</span>: <span class="string">&quot;cross-env NODE_ENV=development webpack-dev-server --open --hot&quot;</span></span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="string">&quot;author&quot;</span>: <span class="string">&quot;lihang&quot;</span>,</span><br><span class="line">  <span class="string">&quot;license&quot;</span>: <span class="string">&quot;ISC&quot;</span>,</span><br><span class="line">  <span class="string">&quot;browserslist&quot;</span>: [</span><br><span class="line">    <span class="string">&quot;&gt; 1%&quot;</span>,</span><br><span class="line">    <span class="string">&quot;last 2 versions&quot;</span>,</span><br><span class="line">    <span class="string">&quot;not ie &lt;= 8&quot;</span></span><br><span class="line">  ],</span><br><span class="line">  <span class="string">&quot;devDependencies&quot;</span>: &#123;</span><br><span class="line">    <span class="string">&quot;babel-core&quot;</span>: <span class="string">&quot;^6.26.0&quot;</span>,</span><br><span class="line">    <span class="string">&quot;babel-loader&quot;</span>: <span class="string">&quot;^7.1.2&quot;</span>,</span><br><span class="line">    <span class="string">&quot;babel-preset-env&quot;</span>: <span class="string">&quot;^1.6.0&quot;</span>,</span><br><span class="line">    <span class="string">&quot;babel-preset-stage-3&quot;</span>: <span class="string">&quot;^6.24.1&quot;</span>,</span><br><span class="line">    <span class="string">&quot;cross-env&quot;</span>: <span class="string">&quot;^5.0.5&quot;</span>,</span><br><span class="line">    <span class="string">&quot;echarts&quot;</span>: <span class="string">&quot;^4.1.0&quot;</span>,</span><br><span class="line">    <span class="string">&quot;css-loader&quot;</span>: <span class="string">&quot;^0.28.7&quot;</span>,</span><br><span class="line">    <span class="string">&quot;file-loader&quot;</span>: <span class="string">&quot;^1.1.4&quot;</span>,</span><br><span class="line">    <span class="string">&quot;node-sass&quot;</span>: <span class="string">&quot;^4.5.3&quot;</span>,</span><br><span class="line">    <span class="string">&quot;sass-loader&quot;</span>: <span class="string">&quot;^6.0.6&quot;</span>,</span><br><span class="line">    <span class="string">&quot;vue-loader&quot;</span>: <span class="string">&quot;^13.0.5&quot;</span>,</span><br><span class="line">    <span class="string">&quot;vue-template-compiler&quot;</span>: <span class="string">&quot;^2.4.4&quot;</span>,</span><br><span class="line">    <span class="string">&quot;webpack&quot;</span>: <span class="string">&quot;^3.6.0&quot;</span>,</span><br><span class="line">    <span class="string">&quot;webpack-dev-server&quot;</span>: <span class="string">&quot;^2.9.1&quot;</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<p>3.配置完后，命令行运行 <strong>npm install</strong> 安装依赖包，安装完会生成一个node_modules目录</p>
-<p>4.接下来新建两个文件夹 src(开发目录)，dist(发布目录)</p>
-<p>5.然后我们就可以在 src 目录下编写自己的组件吧</p>
-    
-    <a class="article-more-a" href="/2021/11/22/%E6%89%8B%E6%8A%8A%E6%89%8B%E6%95%99%E4%BD%A0%E5%8F%91%E5%B8%83%E4%B8%80%E4%B8%AAnpm%E5%8C%85%EF%BC%88%E5%9F%BA%E4%BA%8Evue%EF%BC%89/#more">more >></a>
-    
-    
-
-    
-
-    
-
-  </div>
-  <div class="article-info article-info-index">
-    
-    
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">vue</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-    
-
-    
-    <p class="article-more-link">
-      <a class="article-more-a" href="/2021/11/22/%E6%89%8B%E6%8A%8A%E6%89%8B%E6%95%99%E4%BD%A0%E5%8F%91%E5%B8%83%E4%B8%80%E4%B8%AAnpm%E5%8C%85%EF%BC%88%E5%9F%BA%E4%BA%8Evue%EF%BC%89/">展开全文 >></a>
-    </p>
-    
-
-    
-    <div class="clearfix"></div>
-  </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-vue项目里使用scss全局变量" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-  
-  
-    <h1 itemprop="name">
-	
-	  <a class="article-title" href="/2021/11/15/vue%E9%A1%B9%E7%9B%AE%E9%87%8C%E4%BD%BF%E7%94%A8scss%E5%85%A8%E5%B1%80%E5%8F%98%E9%87%8F/">vue项目里使用scss全局变量</a>
-	
-    </h1>
-  
-
-
-  
-  
-<a href="/2021/11/15/vue%E9%A1%B9%E7%9B%AE%E9%87%8C%E4%BD%BF%E7%94%A8scss%E5%85%A8%E5%B1%80%E5%8F%98%E9%87%8F/" class="archive-article-date">
-        <time datetime="2021-11-15T12:41:10.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-11-15</time>
-</a>
-
-  
-  
-    
-
-  
-  </header>
-  
-  <div class="article-entry" itemprop="articleBody">
-    
-    <h4 id="首先："><a href="#首先：" class="headerlink" title="首先："></a>首先：</h4><p>在项目的src文件夹下的style文件夹下创建scss变量js文件</p>
-<p>如图：<br><img src="/assets/vue/WechatIMG94.png" alt="图片"></p>
-<p>创建好的variables.scss.js文件里定义需要全局定义的scss变量</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">* 项目css基础变量设置</span></span><br><span class="line"><span class="comment">* ps:修改变量后需要需要重启项目生效</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="keyword">const</span> variables = &#123;</span><br><span class="line">    <span class="attr">color_333</span>:<span class="string">&#x27;#333&#x27;</span>,</span><br><span class="line">    <span class="attr">size_16</span>:<span class="string">&#x27;16px&#x27;</span>,</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">module</span>.exports = variables</span><br></pre></td></tr></table></figure>
-    
-    <a class="article-more-a" href="/2021/11/15/vue%E9%A1%B9%E7%9B%AE%E9%87%8C%E4%BD%BF%E7%94%A8scss%E5%85%A8%E5%B1%80%E5%8F%98%E9%87%8F/#more">more >></a>
-    
-    
-
-    
-
-    
-
-  </div>
-  <div class="article-info article-info-index">
-    
-    
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">vue</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-    
-
-    
-    <p class="article-more-link">
-      <a class="article-more-a" href="/2021/11/15/vue%E9%A1%B9%E7%9B%AE%E9%87%8C%E4%BD%BF%E7%94%A8scss%E5%85%A8%E5%B1%80%E5%8F%98%E9%87%8F/">展开全文 >></a>
-    </p>
-    
-
-    
-    <div class="clearfix"></div>
-  </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-React-Hooks之useMemo和useCallback详解" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-  
-  
-    <h1 itemprop="name">
-	
-	  <a class="article-title" href="/2021/11/11/React-Hooks%E4%B9%8BuseMemo%E5%92%8CuseCallback%E8%AF%A6%E8%A7%A3/">React-Hooks之useMemo和useCallback详解</a>
-	
-    </h1>
-  
-
-
-  
-  
-<a href="/2021/11/11/React-Hooks%E4%B9%8BuseMemo%E5%92%8CuseCallback%E8%AF%A6%E8%A7%A3/" class="archive-article-date">
-        <time datetime="2021-11-11T12:47:56.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-11-11</time>
-</a>
-
-  
-  
-    
-
-  
-  </header>
-  
-  <div class="article-entry" itemprop="articleBody">
-    
-    <p>要想学习useMemo必须要先知道React.memo,这两者都有一定的优化作用</p>
-<h4 id="memo的作用"><a href="#memo的作用" class="headerlink" title="memo的作用"></a>memo的作用</h4><p>当数据变化时，代码会重新执行一遍，但是<strong>子组件数据没有变化也会执行</strong>，这个时候可以使用<code>memo</code>将子组件封装起来，让子组件的数据只在发生改变时才会执行</p>
-<h4 id="案例"><a href="#案例" class="headerlink" title="案例"></a>案例</h4><p>父组件点击countOne+1，子组件的入参countTwo不变，验证程序会不会执行子组件的代码</p>
-<h4 id="不使用memo的情况"><a href="#不使用memo的情况" class="headerlink" title="不使用memo的情况"></a>不使用memo的情况</h4><p>只改变countOne的值时，虽然说countTwo的值没变，但是也执行了Child的打印语句</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> UseMemo = <span class="function">() =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">const</span> [countOne, setOne] = useState(<span class="function">() =&gt;</span> <span class="number">0</span>)</span><br><span class="line">  <span class="keyword">const</span> [countTwo, setTwo] = useState(<span class="function">() =&gt;</span> <span class="number">0</span>)</span><br><span class="line">  <span class="keyword">return</span> (</span><br><span class="line">    <span class="xml"><span class="tag">&lt;<span class="name">div</span>&gt;</span></span></span><br><span class="line"><span class="xml">      <span class="tag">&lt;<span class="name">h1</span>&gt;</span>&#123;countOne&#125;<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span></span><br><span class="line"><span class="xml">      <span class="tag">&lt;<span class="name">button</span> <span class="attr">onClick</span>=<span class="string">&#123;()</span> =&gt;</span> setOne((countOne) =&gt; countOne + 1)&#125;&gt;</span></span><br><span class="line"><span class="xml">        +countOne</span></span><br><span class="line"><span class="xml">      <span class="tag">&lt;/<span class="name">button</span>&gt;</span></span></span><br><span class="line"><span class="xml">      <span class="tag">&lt;<span class="name">button</span> <span class="attr">onClick</span>=<span class="string">&#123;()</span> =&gt;</span> setTwo((countTwo) =&gt; countTwo + 1)&#125;&gt;</span></span><br><span class="line"><span class="xml">        +countTwo</span></span><br><span class="line"><span class="xml">      <span class="tag">&lt;/<span class="name">button</span>&gt;</span></span></span><br><span class="line"><span class="xml">      <span class="tag">&lt;<span class="name">Child</span> <span class="attr">count</span>=<span class="string">&#123;countTwo&#125;</span>&gt;</span><span class="tag">&lt;/<span class="name">Child</span>&gt;</span></span></span><br><span class="line"><span class="xml">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line">  )</span><br><span class="line">&#125;</span><br><span class="line"> <span class="keyword">const</span> Child = <span class="function">(<span class="params">props</span>) =&gt;</span> &#123;</span><br><span class="line">   <span class="built_in">console</span>.log(<span class="string">&#x27;child执行了&#x27;</span>)</span><br><span class="line">   <span class="keyword">return</span> <span class="xml"><span class="tag">&lt;<span class="name">div</span>&gt;</span>&#123;props.count&#125;<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
-
-<p>通过运行发现，Child里的代码执行了。</p>
-    
-    <a class="article-more-a" href="/2021/11/11/React-Hooks%E4%B9%8BuseMemo%E5%92%8CuseCallback%E8%AF%A6%E8%A7%A3/#more">more >></a>
-    
-    
-
-    
-
-    
-
-  </div>
-  <div class="article-info article-info-index">
-    
-    
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">react</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-    
-
-    
-    <p class="article-more-link">
-      <a class="article-more-a" href="/2021/11/11/React-Hooks%E4%B9%8BuseMemo%E5%92%8CuseCallback%E8%AF%A6%E8%A7%A3/">展开全文 >></a>
-    </p>
-    
-
-    
-    <div class="clearfix"></div>
-  </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-React-Hooks之useEffect详解" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-  
-  
-    <h1 itemprop="name">
-	
-	  <a class="article-title" href="/2021/11/09/React-Hooks%E4%B9%8BuseEffect%E8%AF%A6%E8%A7%A3/">React-Hooks之useEffect详解</a>
-	
-    </h1>
-  
-
-
-  
-  
-<a href="/2021/11/09/React-Hooks%E4%B9%8BuseEffect%E8%AF%A6%E8%A7%A3/" class="archive-article-date">
-        <time datetime="2021-11-09T12:46:10.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-11-09</time>
-</a>
-
-  
-  
-    
-
-  
-  </header>
-  
-  <div class="article-entry" itemprop="articleBody">
-    
-    <p>如果你熟悉 React class 的生命周期函数，你可以把 <code>useEffect</code> Hook 看做 <code>componentDidMount</code>，<code>componentDidUpdate</code> 和 <code>componentWillUnmount</code> 这三个函数的组合。</p>
-<h4 id="一、作为-componentDidMount-使用，-作第二个参数"><a href="#一、作为-componentDidMount-使用，-作第二个参数" class="headerlink" title="一、作为 componentDidMount 使用，[ ] 作第二个参数"></a>一、作为 componentDidMount 使用，[ ] 作第二个参数</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> UseEffect = <span class="function">() =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">const</span> [count, setCount] = useState(<span class="function">() =&gt;</span> <span class="number">0</span>)</span><br><span class="line">  useEffect(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">`点击了<span class="subst">$&#123;count&#125;</span>次数`</span>) <span class="comment">//只会初始化执行一次</span></span><br><span class="line">  &#125;, [])</span><br><span class="line">  <span class="keyword">return</span> <span class="xml"><span class="tag">&lt;<span class="name">button</span> <span class="attr">onClick</span>=<span class="string">&#123;()</span> =&gt;</span> setCount((count) =&gt; count + 1)&#125;&gt;点击<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h4 id="二、作为-componentDidUpdate-使用，可指定依赖"><a href="#二、作为-componentDidUpdate-使用，可指定依赖" class="headerlink" title="二、作为 componentDidUpdate 使用，可指定依赖"></a>二、作为 componentDidUpdate 使用，可指定依赖</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> UseEffect = <span class="function">() =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">const</span> [count, setCount] = useState(<span class="function">() =&gt;</span> <span class="number">0</span>)</span><br><span class="line">  useEffect(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">     <span class="built_in">console</span>.log(<span class="string">`点击了<span class="subst">$&#123;count&#125;</span>次数`</span>) <span class="comment">//count变化就能执行</span></span><br><span class="line">    &#125;, [count])</span><br><span class="line">  <span class="keyword">return</span> <span class="xml"><span class="tag">&lt;<span class="name">button</span> <span class="attr">onClick</span>=<span class="string">&#123;()</span> =&gt;</span> setCount((count) =&gt; count + 1)&#125;&gt;点击<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h4 id="三、作为-componentWillUnmount-使用，通过-return"><a href="#三、作为-componentWillUnmount-使用，通过-return" class="headerlink" title="三、作为 componentWillUnmount 使用，通过 return"></a>三、作为 componentWillUnmount 使用，通过 return</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> UseEffect = <span class="function">() =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">const</span> [count, setCount] = useState(<span class="function">() =&gt;</span> <span class="number">0</span>)</span><br><span class="line">  useEffect(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">      <span class="keyword">const</span> timer = <span class="built_in">setInterval</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">`点击了<span class="subst">$&#123;count&#125;</span>次数`</span>)</span><br><span class="line">      &#125;, <span class="number">1000</span>)</span><br><span class="line">      <span class="keyword">return</span> <span class="function">() =&gt;</span> <span class="built_in">clearInterval</span>(timer)<span class="comment">//组件消灭时，执行return里的操作</span></span><br><span class="line">    &#125;)</span><br><span class="line">  <span class="keyword">return</span> <span class="xml"><span class="tag">&lt;<span class="name">button</span> <span class="attr">onClick</span>=<span class="string">&#123;()</span> =&gt;</span> setCount((count) =&gt; count + 1)&#125;&gt;点击<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h4 id="四、以上三种用途可同时存在"><a href="#四、以上三种用途可同时存在" class="headerlink" title="四、以上三种用途可同时存在"></a>四、以上三种用途可同时存在</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> UseEffect = <span class="function">() =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">const</span> [count, setCount] = useState(<span class="function">() =&gt;</span> <span class="number">0</span>)</span><br><span class="line">  useEffect(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">      <span class="keyword">const</span> timer = <span class="built_in">setInterval</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">`点击了<span class="subst">$&#123;count&#125;</span>次数`</span>)</span><br><span class="line">      &#125;, <span class="number">1000</span>)</span><br><span class="line">      <span class="built_in">console</span>.log(<span class="string">&#x27;任何state变化，都会触发&#x27;</span>)</span><br><span class="line">      <span class="keyword">return</span> <span class="function">() =&gt;</span> <span class="built_in">clearInterval</span>(timer)</span><br><span class="line">    &#125;)</span><br><span class="line">  <span class="keyword">return</span> <span class="xml"><span class="tag">&lt;<span class="name">button</span> <span class="attr">onClick</span>=<span class="string">&#123;()</span> =&gt;</span> setCount((count) =&gt; count + 1)&#125;&gt;点击<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>以上就是useEffect的全部用法了呀，喜欢的小伙伴可以点个收藏博客。</p>
-
-    
-
-    
-
-    
-
-  </div>
-  <div class="article-info article-info-index">
-    
-    
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">react</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-    
-
-    
-    <p class="article-more-link">
-      <a class="article-more-a" href="/2021/11/09/React-Hooks%E4%B9%8BuseEffect%E8%AF%A6%E8%A7%A3/">展开全文 >></a>
-    </p>
-    
-
-    
-    <div class="clearfix"></div>
-  </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
       <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/2/">Next &amp;raquo;</a>
@@ -1251,7 +1264,7 @@
   <div class="outer">
     <div id="footer-info">
     	<div class="footer-left">
-    		&copy; 2018-2021 <a href="https://white-hang.github.io/" target="_blank">white-Hang</a>
+    		&copy; 2018-2022 <a href="https://white-hang.github.io/" target="_blank">white-Hang</a>
     	</div>
       	<div class="footer-right">
 			

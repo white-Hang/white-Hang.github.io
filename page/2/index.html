@@ -230,6 +230,488 @@
             
 
   
+    <article id="post-Vue实现将页面转成PDF并下载" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+  
+  
+    <h1 itemprop="name">
+	
+	  <a class="article-title" href="/2021/12/25/Vue%E5%AE%9E%E7%8E%B0%E5%B0%86%E9%A1%B5%E9%9D%A2%E8%BD%AC%E6%88%90PDF%E5%B9%B6%E4%B8%8B%E8%BD%BD/">Vue实现将页面转成PDF并下载</a>
+	
+    </h1>
+  
+
+
+  
+  
+<a href="/2021/12/25/Vue%E5%AE%9E%E7%8E%B0%E5%B0%86%E9%A1%B5%E9%9D%A2%E8%BD%AC%E6%88%90PDF%E5%B9%B6%E4%B8%8B%E8%BD%BD/" class="archive-article-date">
+        <time datetime="2021-12-25T14:21:09.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-12-25</time>
+</a>
+
+  
+  
+    
+
+  
+  </header>
+  
+  <div class="article-entry" itemprop="articleBody">
+    
+    <h4 id="一-安装所需依赖"><a href="#一-安装所需依赖" class="headerlink" title="一.安装所需依赖"></a>一.安装所需依赖</h4><p>1.将页面html转换成图片</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install --save html2canvas</span><br></pre></td></tr></table></figure>
+
+<p>2.将图片生成pdf</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install jspdf --save</span><br></pre></td></tr></table></figure>
+
+<h4 id="二-创建一个htmlToPdf-js文件在公共文件夹utils"><a href="#二-创建一个htmlToPdf-js文件在公共文件夹utils" class="headerlink" title="二.创建一个htmlToPdf.js文件在公共文件夹utils"></a>二.创建一个htmlToPdf.js文件在公共文件夹utils</h4><p>添加如下代码：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// htmlToPdf.js</span></span><br><span class="line"><span class="comment">// 导出页面为PDF格式</span></span><br><span class="line"><span class="keyword">import</span> html2Canvas <span class="keyword">from</span> <span class="string">&#x27;html2canvas&#x27;</span></span><br><span class="line"><span class="keyword">import</span> JsPDF <span class="keyword">from</span> <span class="string">&#x27;jspdf&#x27;</span></span><br><span class="line"><span class="keyword">const</span> getPdf = <span class="function">(<span class="params">htmlTitle</span>) =&gt;</span>&#123;</span><br><span class="line">        html2Canvas(<span class="built_in">document</span>.querySelector(<span class="string">&#x27;#pdfDom&#x27;</span>), &#123;</span><br><span class="line">          <span class="attr">allowTaint</span>: <span class="literal">true</span>,</span><br><span class="line">          <span class="attr">taintTest</span>: <span class="literal">false</span>,</span><br><span class="line">          <span class="attr">useCORS</span>: <span class="literal">true</span>,</span><br><span class="line">          <span class="attr">y</span>:<span class="number">72</span>, <span class="comment">// 对Y轴进行裁切</span></span><br><span class="line">          <span class="comment">// width:1200,</span></span><br><span class="line">          <span class="comment">// height:5000,</span></span><br><span class="line">          <span class="attr">dpi</span>: <span class="built_in">window</span>.devicePixelRatio * <span class="number">4</span>, <span class="comment">//将分辨率提高到特定的DPI 提高四倍</span></span><br><span class="line">          <span class="attr">scale</span>: <span class="number">4</span> <span class="comment">//按比例增加分辨率 </span></span><br><span class="line">        &#125;).then(<span class="function"><span class="keyword">function</span> (<span class="params">canvas</span>) </span>&#123;</span><br><span class="line">          <span class="keyword">let</span> contentWidth = canvas.width</span><br><span class="line">          <span class="keyword">let</span> contentHeight = canvas.height</span><br><span class="line">          <span class="keyword">let</span> pageHeight = contentWidth / <span class="number">592.28</span> * <span class="number">841.89</span></span><br><span class="line">          <span class="keyword">let</span> leftHeight = contentHeight</span><br><span class="line">          <span class="keyword">let</span> position = <span class="number">0</span></span><br><span class="line">          <span class="keyword">let</span> imgWidth = <span class="number">595.28</span></span><br><span class="line">          <span class="keyword">let</span> imgHeight = <span class="number">592.28</span> / contentWidth * contentHeight</span><br><span class="line">          <span class="keyword">let</span> pageData = canvas.toDataURL(<span class="string">&#x27;image/jpeg&#x27;</span>, <span class="number">1.0</span>)</span><br><span class="line">          <span class="keyword">let</span> PDF = <span class="keyword">new</span> JsPDF(<span class="string">&#x27;&#x27;</span>, <span class="string">&#x27;pt&#x27;</span>, <span class="string">&#x27;a4&#x27;</span>)</span><br><span class="line">          <span class="keyword">if</span> (leftHeight &lt; pageHeight) &#123;</span><br><span class="line">            PDF.addImage(pageData, <span class="string">&#x27;JPEG&#x27;</span>, <span class="number">0</span>, <span class="number">0</span>, imgWidth, imgHeight)</span><br><span class="line">          &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="keyword">while</span> (leftHeight &gt; <span class="number">0</span>) &#123;</span><br><span class="line">              PDF.addImage(pageData, <span class="string">&#x27;JPEG&#x27;</span>, <span class="number">0</span>, position, imgWidth, imgHeight)</span><br><span class="line">              leftHeight -= pageHeight</span><br><span class="line">              position -= <span class="number">841.89</span></span><br><span class="line">              <span class="keyword">if</span> (leftHeight &gt; <span class="number">0</span>) &#123;</span><br><span class="line">              PDF.addPage()</span><br><span class="line">            &#125;</span><br><span class="line">          &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        PDF.save(htmlTitle + <span class="string">&#x27;.pdf&#x27;</span>)</span><br><span class="line">      &#125;)</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> getPdf</span><br></pre></td></tr></table></figure>
+
+<h4 id="三-文件里引入使用："><a href="#三-文件里引入使用：" class="headerlink" title="三.文件里引入使用："></a>三.文件里引入使用：</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> getPdf <span class="keyword">from</span> <span class="string">&#x27;@/utils/htmlToPdf.js&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&lt;div id=<span class="string">&quot;pdfDom&quot;</span>&gt;</span><br><span class="line">  ... 打印的内容</span><br><span class="line">&lt;/div&gt;</span><br><span class="line"><span class="comment">//添加打印按钮</span></span><br><span class="line"><span class="xml"><span class="tag">&lt;<span class="name">el-button</span> @<span class="attr">click</span>=<span class="string">&quot;downLoadPdf()&quot;</span>&gt;</span>PDF<span class="tag">&lt;/<span class="name">el-button</span>&gt;</span></span></span><br><span class="line"><span class="comment">//methods里添加打印方法</span></span><br><span class="line"><span class="function"><span class="title">downLoadPdf</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">  getPdf(<span class="string">&#x27;pdf文件名&#x27;</span>)</span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure>
+
+<p>喜欢的小伙伴，给博客点击个收藏哦！！！</p>
+
+    
+
+    
+
+    
+
+  </div>
+  <div class="article-info article-info-index">
+    
+    
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">vue</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+    
+
+    
+    <p class="article-more-link">
+      <a class="article-more-a" href="/2021/12/25/Vue%E5%AE%9E%E7%8E%B0%E5%B0%86%E9%A1%B5%E9%9D%A2%E8%BD%AC%E6%88%90PDF%E5%B9%B6%E4%B8%8B%E8%BD%BD/">展开全文 >></a>
+    </p>
+    
+
+    
+    <div class="clearfix"></div>
+  </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-手把手教你发布一个npm包（基于vue）" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+  
+  
+    <h1 itemprop="name">
+	
+	  <a class="article-title" href="/2021/11/22/%E6%89%8B%E6%8A%8A%E6%89%8B%E6%95%99%E4%BD%A0%E5%8F%91%E5%B8%83%E4%B8%80%E4%B8%AAnpm%E5%8C%85%EF%BC%88%E5%9F%BA%E4%BA%8Evue%EF%BC%89/">手把手教你发布一个npm包（基于vue）</a>
+	
+    </h1>
+  
+
+
+  
+  
+<a href="/2021/11/22/%E6%89%8B%E6%8A%8A%E6%89%8B%E6%95%99%E4%BD%A0%E5%8F%91%E5%B8%83%E4%B8%80%E4%B8%AAnpm%E5%8C%85%EF%BC%88%E5%9F%BA%E4%BA%8Evue%EF%BC%89/" class="archive-article-date">
+        <time datetime="2021-11-22T13:26:26.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-11-22</time>
+</a>
+
+  
+  
+    
+
+  
+  </header>
+  
+  <div class="article-entry" itemprop="articleBody">
+    
+    <p>前言：工作的时候总是使用别人的npm包，或者不同项目里有时候会用到一些可以复用的组件，每次都是复制粘贴，这让我对发布一个自己的npm包，产生了浓厚的兴趣。</p>
+<p>我有时心底会好奇自己如何发布一个npm包呢，什么时候自己的包能够被很多人喜欢并使用呢…今天我终于迈出了第一步。</p>
+<p>下面是我发布的关于echarts的包，有兴趣的小伙伴，可以下载使用看看哦</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install easy-echarts</span><br></pre></td></tr></table></figure>
+
+<h4 id="一、编写自己的npm包"><a href="#一、编写自己的npm包" class="headerlink" title="一、编写自己的npm包"></a>一、编写自己的npm包</h4><p>1.新建一个空文件夹</p>
+<p>2.进入文件夹，终端(cmd)运行 <strong>npm init</strong></p>
+<p><img src="/assets/vue/WechatIMG97.png" alt="图片"></p>
+<p>完成后会在目录下生成一个 package.json 文件</p>
+<p>我们可以根据自己的需要补充文件内容</p>
+<p>这是我的：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="string">&quot;name&quot;</span>: <span class="string">&quot;easy-echarts&quot;</span>,</span><br><span class="line">  <span class="string">&quot;version&quot;</span>: <span class="string">&quot;1.0.3&quot;</span>,</span><br><span class="line">  <span class="string">&quot;description&quot;</span>: <span class="string">&quot;&quot;</span>,</span><br><span class="line">  <span class="string">&quot;main&quot;</span>: <span class="string">&quot;index.js&quot;</span>,</span><br><span class="line">  <span class="string">&quot;private&quot;</span>: <span class="literal">false</span>,</span><br><span class="line">  <span class="string">&quot;scripts&quot;</span>: &#123;</span><br><span class="line">    <span class="string">&quot;test&quot;</span>: <span class="string">&quot;echo \&quot;Error: no test specified\&quot; &amp;&amp; exit 1&quot;</span>,</span><br><span class="line">    <span class="string">&quot;build&quot;</span>: <span class="string">&quot;cross-env NODE_ENV=production webpack --progress --hide-modules&quot;</span>,</span><br><span class="line">    <span class="string">&quot;dev&quot;</span>: <span class="string">&quot;cross-env NODE_ENV=development webpack-dev-server --open --hot&quot;</span></span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="string">&quot;author&quot;</span>: <span class="string">&quot;lihang&quot;</span>,</span><br><span class="line">  <span class="string">&quot;license&quot;</span>: <span class="string">&quot;ISC&quot;</span>,</span><br><span class="line">  <span class="string">&quot;browserslist&quot;</span>: [</span><br><span class="line">    <span class="string">&quot;&gt; 1%&quot;</span>,</span><br><span class="line">    <span class="string">&quot;last 2 versions&quot;</span>,</span><br><span class="line">    <span class="string">&quot;not ie &lt;= 8&quot;</span></span><br><span class="line">  ],</span><br><span class="line">  <span class="string">&quot;devDependencies&quot;</span>: &#123;</span><br><span class="line">    <span class="string">&quot;babel-core&quot;</span>: <span class="string">&quot;^6.26.0&quot;</span>,</span><br><span class="line">    <span class="string">&quot;babel-loader&quot;</span>: <span class="string">&quot;^7.1.2&quot;</span>,</span><br><span class="line">    <span class="string">&quot;babel-preset-env&quot;</span>: <span class="string">&quot;^1.6.0&quot;</span>,</span><br><span class="line">    <span class="string">&quot;babel-preset-stage-3&quot;</span>: <span class="string">&quot;^6.24.1&quot;</span>,</span><br><span class="line">    <span class="string">&quot;cross-env&quot;</span>: <span class="string">&quot;^5.0.5&quot;</span>,</span><br><span class="line">    <span class="string">&quot;echarts&quot;</span>: <span class="string">&quot;^4.1.0&quot;</span>,</span><br><span class="line">    <span class="string">&quot;css-loader&quot;</span>: <span class="string">&quot;^0.28.7&quot;</span>,</span><br><span class="line">    <span class="string">&quot;file-loader&quot;</span>: <span class="string">&quot;^1.1.4&quot;</span>,</span><br><span class="line">    <span class="string">&quot;node-sass&quot;</span>: <span class="string">&quot;^4.5.3&quot;</span>,</span><br><span class="line">    <span class="string">&quot;sass-loader&quot;</span>: <span class="string">&quot;^6.0.6&quot;</span>,</span><br><span class="line">    <span class="string">&quot;vue-loader&quot;</span>: <span class="string">&quot;^13.0.5&quot;</span>,</span><br><span class="line">    <span class="string">&quot;vue-template-compiler&quot;</span>: <span class="string">&quot;^2.4.4&quot;</span>,</span><br><span class="line">    <span class="string">&quot;webpack&quot;</span>: <span class="string">&quot;^3.6.0&quot;</span>,</span><br><span class="line">    <span class="string">&quot;webpack-dev-server&quot;</span>: <span class="string">&quot;^2.9.1&quot;</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>3.配置完后，命令行运行 <strong>npm install</strong> 安装依赖包，安装完会生成一个node_modules目录</p>
+<p>4.接下来新建两个文件夹 src(开发目录)，dist(发布目录)</p>
+<p>5.然后我们就可以在 src 目录下编写自己的组件吧</p>
+    
+    <a class="article-more-a" href="/2021/11/22/%E6%89%8B%E6%8A%8A%E6%89%8B%E6%95%99%E4%BD%A0%E5%8F%91%E5%B8%83%E4%B8%80%E4%B8%AAnpm%E5%8C%85%EF%BC%88%E5%9F%BA%E4%BA%8Evue%EF%BC%89/#more">more >></a>
+    
+    
+
+    
+
+    
+
+  </div>
+  <div class="article-info article-info-index">
+    
+    
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">vue</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+    
+
+    
+    <p class="article-more-link">
+      <a class="article-more-a" href="/2021/11/22/%E6%89%8B%E6%8A%8A%E6%89%8B%E6%95%99%E4%BD%A0%E5%8F%91%E5%B8%83%E4%B8%80%E4%B8%AAnpm%E5%8C%85%EF%BC%88%E5%9F%BA%E4%BA%8Evue%EF%BC%89/">展开全文 >></a>
+    </p>
+    
+
+    
+    <div class="clearfix"></div>
+  </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-vue项目里使用scss全局变量" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+  
+  
+    <h1 itemprop="name">
+	
+	  <a class="article-title" href="/2021/11/15/vue%E9%A1%B9%E7%9B%AE%E9%87%8C%E4%BD%BF%E7%94%A8scss%E5%85%A8%E5%B1%80%E5%8F%98%E9%87%8F/">vue项目里使用scss全局变量</a>
+	
+    </h1>
+  
+
+
+  
+  
+<a href="/2021/11/15/vue%E9%A1%B9%E7%9B%AE%E9%87%8C%E4%BD%BF%E7%94%A8scss%E5%85%A8%E5%B1%80%E5%8F%98%E9%87%8F/" class="archive-article-date">
+        <time datetime="2021-11-15T12:41:10.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-11-15</time>
+</a>
+
+  
+  
+    
+
+  
+  </header>
+  
+  <div class="article-entry" itemprop="articleBody">
+    
+    <h4 id="首先："><a href="#首先：" class="headerlink" title="首先："></a>首先：</h4><p>在项目的src文件夹下的style文件夹下创建scss变量js文件</p>
+<p>如图：<br><img src="/assets/vue/WechatIMG94.png" alt="图片"></p>
+<p>创建好的variables.scss.js文件里定义需要全局定义的scss变量</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">* 项目css基础变量设置</span></span><br><span class="line"><span class="comment">* ps:修改变量后需要需要重启项目生效</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="keyword">const</span> variables = &#123;</span><br><span class="line">    <span class="attr">color_333</span>:<span class="string">&#x27;#333&#x27;</span>,</span><br><span class="line">    <span class="attr">size_16</span>:<span class="string">&#x27;16px&#x27;</span>,</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">module</span>.exports = variables</span><br></pre></td></tr></table></figure>
+    
+    <a class="article-more-a" href="/2021/11/15/vue%E9%A1%B9%E7%9B%AE%E9%87%8C%E4%BD%BF%E7%94%A8scss%E5%85%A8%E5%B1%80%E5%8F%98%E9%87%8F/#more">more >></a>
+    
+    
+
+    
+
+    
+
+  </div>
+  <div class="article-info article-info-index">
+    
+    
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">vue</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+    
+
+    
+    <p class="article-more-link">
+      <a class="article-more-a" href="/2021/11/15/vue%E9%A1%B9%E7%9B%AE%E9%87%8C%E4%BD%BF%E7%94%A8scss%E5%85%A8%E5%B1%80%E5%8F%98%E9%87%8F/">展开全文 >></a>
+    </p>
+    
+
+    
+    <div class="clearfix"></div>
+  </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-React-Hooks之useMemo和useCallback详解" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+  
+  
+    <h1 itemprop="name">
+	
+	  <a class="article-title" href="/2021/11/11/React-Hooks%E4%B9%8BuseMemo%E5%92%8CuseCallback%E8%AF%A6%E8%A7%A3/">React-Hooks之useMemo和useCallback详解</a>
+	
+    </h1>
+  
+
+
+  
+  
+<a href="/2021/11/11/React-Hooks%E4%B9%8BuseMemo%E5%92%8CuseCallback%E8%AF%A6%E8%A7%A3/" class="archive-article-date">
+        <time datetime="2021-11-11T12:47:56.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-11-11</time>
+</a>
+
+  
+  
+    
+
+  
+  </header>
+  
+  <div class="article-entry" itemprop="articleBody">
+    
+    <p>要想学习useMemo必须要先知道React.memo,这两者都有一定的优化作用</p>
+<h4 id="memo的作用"><a href="#memo的作用" class="headerlink" title="memo的作用"></a>memo的作用</h4><p>当数据变化时，代码会重新执行一遍，但是<strong>子组件数据没有变化也会执行</strong>，这个时候可以使用<code>memo</code>将子组件封装起来，让子组件的数据只在发生改变时才会执行</p>
+<h4 id="案例"><a href="#案例" class="headerlink" title="案例"></a>案例</h4><p>父组件点击countOne+1，子组件的入参countTwo不变，验证程序会不会执行子组件的代码</p>
+<h4 id="不使用memo的情况"><a href="#不使用memo的情况" class="headerlink" title="不使用memo的情况"></a>不使用memo的情况</h4><p>只改变countOne的值时，虽然说countTwo的值没变，但是也执行了Child的打印语句</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> UseMemo = <span class="function">() =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">const</span> [countOne, setOne] = useState(<span class="function">() =&gt;</span> <span class="number">0</span>)</span><br><span class="line">  <span class="keyword">const</span> [countTwo, setTwo] = useState(<span class="function">() =&gt;</span> <span class="number">0</span>)</span><br><span class="line">  <span class="keyword">return</span> (</span><br><span class="line">    <span class="xml"><span class="tag">&lt;<span class="name">div</span>&gt;</span></span></span><br><span class="line"><span class="xml">      <span class="tag">&lt;<span class="name">h1</span>&gt;</span>&#123;countOne&#125;<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span></span><br><span class="line"><span class="xml">      <span class="tag">&lt;<span class="name">button</span> <span class="attr">onClick</span>=<span class="string">&#123;()</span> =&gt;</span> setOne((countOne) =&gt; countOne + 1)&#125;&gt;</span></span><br><span class="line"><span class="xml">        +countOne</span></span><br><span class="line"><span class="xml">      <span class="tag">&lt;/<span class="name">button</span>&gt;</span></span></span><br><span class="line"><span class="xml">      <span class="tag">&lt;<span class="name">button</span> <span class="attr">onClick</span>=<span class="string">&#123;()</span> =&gt;</span> setTwo((countTwo) =&gt; countTwo + 1)&#125;&gt;</span></span><br><span class="line"><span class="xml">        +countTwo</span></span><br><span class="line"><span class="xml">      <span class="tag">&lt;/<span class="name">button</span>&gt;</span></span></span><br><span class="line"><span class="xml">      <span class="tag">&lt;<span class="name">Child</span> <span class="attr">count</span>=<span class="string">&#123;countTwo&#125;</span>&gt;</span><span class="tag">&lt;/<span class="name">Child</span>&gt;</span></span></span><br><span class="line"><span class="xml">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line">  )</span><br><span class="line">&#125;</span><br><span class="line"> <span class="keyword">const</span> Child = <span class="function">(<span class="params">props</span>) =&gt;</span> &#123;</span><br><span class="line">   <span class="built_in">console</span>.log(<span class="string">&#x27;child执行了&#x27;</span>)</span><br><span class="line">   <span class="keyword">return</span> <span class="xml"><span class="tag">&lt;<span class="name">div</span>&gt;</span>&#123;props.count&#125;<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure>
+
+<p>通过运行发现，Child里的代码执行了。</p>
+    
+    <a class="article-more-a" href="/2021/11/11/React-Hooks%E4%B9%8BuseMemo%E5%92%8CuseCallback%E8%AF%A6%E8%A7%A3/#more">more >></a>
+    
+    
+
+    
+
+    
+
+  </div>
+  <div class="article-info article-info-index">
+    
+    
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">react</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+    
+
+    
+    <p class="article-more-link">
+      <a class="article-more-a" href="/2021/11/11/React-Hooks%E4%B9%8BuseMemo%E5%92%8CuseCallback%E8%AF%A6%E8%A7%A3/">展开全文 >></a>
+    </p>
+    
+
+    
+    <div class="clearfix"></div>
+  </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-React-Hooks之useEffect详解" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+  
+  
+    <h1 itemprop="name">
+	
+	  <a class="article-title" href="/2021/11/09/React-Hooks%E4%B9%8BuseEffect%E8%AF%A6%E8%A7%A3/">React-Hooks之useEffect详解</a>
+	
+    </h1>
+  
+
+
+  
+  
+<a href="/2021/11/09/React-Hooks%E4%B9%8BuseEffect%E8%AF%A6%E8%A7%A3/" class="archive-article-date">
+        <time datetime="2021-11-09T12:46:10.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-11-09</time>
+</a>
+
+  
+  
+    
+
+  
+  </header>
+  
+  <div class="article-entry" itemprop="articleBody">
+    
+    <p>如果你熟悉 React class 的生命周期函数，你可以把 <code>useEffect</code> Hook 看做 <code>componentDidMount</code>，<code>componentDidUpdate</code> 和 <code>componentWillUnmount</code> 这三个函数的组合。</p>
+<h4 id="一、作为-componentDidMount-使用，-作第二个参数"><a href="#一、作为-componentDidMount-使用，-作第二个参数" class="headerlink" title="一、作为 componentDidMount 使用，[ ] 作第二个参数"></a>一、作为 componentDidMount 使用，[ ] 作第二个参数</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> UseEffect = <span class="function">() =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">const</span> [count, setCount] = useState(<span class="function">() =&gt;</span> <span class="number">0</span>)</span><br><span class="line">  useEffect(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">`点击了<span class="subst">$&#123;count&#125;</span>次数`</span>) <span class="comment">//只会初始化执行一次</span></span><br><span class="line">  &#125;, [])</span><br><span class="line">  <span class="keyword">return</span> <span class="xml"><span class="tag">&lt;<span class="name">button</span> <span class="attr">onClick</span>=<span class="string">&#123;()</span> =&gt;</span> setCount((count) =&gt; count + 1)&#125;&gt;点击<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="二、作为-componentDidUpdate-使用，可指定依赖"><a href="#二、作为-componentDidUpdate-使用，可指定依赖" class="headerlink" title="二、作为 componentDidUpdate 使用，可指定依赖"></a>二、作为 componentDidUpdate 使用，可指定依赖</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> UseEffect = <span class="function">() =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">const</span> [count, setCount] = useState(<span class="function">() =&gt;</span> <span class="number">0</span>)</span><br><span class="line">  useEffect(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">     <span class="built_in">console</span>.log(<span class="string">`点击了<span class="subst">$&#123;count&#125;</span>次数`</span>) <span class="comment">//count变化就能执行</span></span><br><span class="line">    &#125;, [count])</span><br><span class="line">  <span class="keyword">return</span> <span class="xml"><span class="tag">&lt;<span class="name">button</span> <span class="attr">onClick</span>=<span class="string">&#123;()</span> =&gt;</span> setCount((count) =&gt; count + 1)&#125;&gt;点击<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="三、作为-componentWillUnmount-使用，通过-return"><a href="#三、作为-componentWillUnmount-使用，通过-return" class="headerlink" title="三、作为 componentWillUnmount 使用，通过 return"></a>三、作为 componentWillUnmount 使用，通过 return</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> UseEffect = <span class="function">() =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">const</span> [count, setCount] = useState(<span class="function">() =&gt;</span> <span class="number">0</span>)</span><br><span class="line">  useEffect(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">      <span class="keyword">const</span> timer = <span class="built_in">setInterval</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">`点击了<span class="subst">$&#123;count&#125;</span>次数`</span>)</span><br><span class="line">      &#125;, <span class="number">1000</span>)</span><br><span class="line">      <span class="keyword">return</span> <span class="function">() =&gt;</span> <span class="built_in">clearInterval</span>(timer)<span class="comment">//组件消灭时，执行return里的操作</span></span><br><span class="line">    &#125;)</span><br><span class="line">  <span class="keyword">return</span> <span class="xml"><span class="tag">&lt;<span class="name">button</span> <span class="attr">onClick</span>=<span class="string">&#123;()</span> =&gt;</span> setCount((count) =&gt; count + 1)&#125;&gt;点击<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="四、以上三种用途可同时存在"><a href="#四、以上三种用途可同时存在" class="headerlink" title="四、以上三种用途可同时存在"></a>四、以上三种用途可同时存在</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> UseEffect = <span class="function">() =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">const</span> [count, setCount] = useState(<span class="function">() =&gt;</span> <span class="number">0</span>)</span><br><span class="line">  useEffect(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">      <span class="keyword">const</span> timer = <span class="built_in">setInterval</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">`点击了<span class="subst">$&#123;count&#125;</span>次数`</span>)</span><br><span class="line">      &#125;, <span class="number">1000</span>)</span><br><span class="line">      <span class="built_in">console</span>.log(<span class="string">&#x27;任何state变化，都会触发&#x27;</span>)</span><br><span class="line">      <span class="keyword">return</span> <span class="function">() =&gt;</span> <span class="built_in">clearInterval</span>(timer)</span><br><span class="line">    &#125;)</span><br><span class="line">  <span class="keyword">return</span> <span class="xml"><span class="tag">&lt;<span class="name">button</span> <span class="attr">onClick</span>=<span class="string">&#123;()</span> =&gt;</span> setCount((count) =&gt; count + 1)&#125;&gt;点击<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>以上就是useEffect的全部用法了呀，喜欢的小伙伴可以点个收藏博客。</p>
+
+    
+
+    
+
+    
+
+  </div>
+  <div class="article-info article-info-index">
+    
+    
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">react</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+    
+
+    
+    <p class="article-more-link">
+      <a class="article-more-a" href="/2021/11/09/React-Hooks%E4%B9%8BuseEffect%E8%AF%A6%E8%A7%A3/">展开全文 >></a>
+    </p>
+    
+
+    
+    <div class="clearfix"></div>
+  </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-h5上传图片进行图片压缩" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -716,494 +1198,6 @@
 
 
   
-    <article id="post-react中的路由传参方式总结" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-  
-  
-    <h1 itemprop="name">
-	
-	  <a class="article-title" href="/2021/10/23/react%E4%B8%AD%E7%9A%84%E8%B7%AF%E7%94%B1%E4%BC%A0%E5%8F%82%E6%96%B9%E5%BC%8F%E6%80%BB%E7%BB%93/">react中的路由传参方式总结</a>
-	
-    </h1>
-  
-
-
-  
-  
-<a href="/2021/10/23/react%E4%B8%AD%E7%9A%84%E8%B7%AF%E7%94%B1%E4%BC%A0%E5%8F%82%E6%96%B9%E5%BC%8F%E6%80%BB%E7%BB%93/" class="archive-article-date">
-        <time datetime="2021-10-23T12:05:04.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-10-23</time>
-</a>
-
-  
-  
-    
-
-  
-  </header>
-  
-  <div class="article-entry" itemprop="articleBody">
-    
-    <h3 id="1-params传参-刷新页面后参数不消失，参数会在地址栏显示"><a href="#1-params传参-刷新页面后参数不消失，参数会在地址栏显示" class="headerlink" title="1.params传参(刷新页面后参数不消失，参数会在地址栏显示)"></a>1.params传参(刷新页面后参数不消失，参数会在地址栏显示)</h3><p>代码展示：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* 向路由组件传递params参数 */</span></span><br><span class="line"><span class="comment">//声明式路由跳转：</span></span><br><span class="line">&lt;Link to=&#123;<span class="string">`/home/message/detail/<span class="subst">$&#123;id&#125;</span>/<span class="subst">$&#123;title&#125;</span>`</span>&#125;&gt;&#123;title&#125;&lt;/Link&gt;</span><br><span class="line"><span class="comment">//或</span></span><br><span class="line"><span class="xml"><span class="tag">&lt;<span class="name">Link</span> <span class="attr">to</span>=<span class="string">&#123;&#123;pathname:</span>`/<span class="attr">home</span>/<span class="attr">message</span>/<span class="attr">detail</span>/$&#123;<span class="attr">id</span>&#125;/$&#123;<span class="attr">title</span>&#125;`&#125;&#125;&gt;</span>&#123;title&#125;<span class="tag">&lt;/<span class="name">Link</span>&gt;</span></span></span><br><span class="line"><span class="comment">//编程式路由跳转：</span></span><br><span class="line"><span class="built_in">this</span>.props.history.push(<span class="string">`/home/message/detail/<span class="subst">$&#123;id&#125;</span>/<span class="subst">$&#123;title&#125;</span>`</span>)</span><br><span class="line"><span class="comment">//或</span></span><br><span class="line"><span class="built_in">this</span>.props.history.push(&#123;<span class="attr">pathname</span>:<span class="string">`/home/message/detail/<span class="subst">$&#123;id&#125;</span>/<span class="subst">$&#123;title&#125;</span>`</span>&#125;)</span><br><span class="line"><span class="comment">/* 声明接收params参数 */</span></span><br><span class="line">&lt;Route path=<span class="string">&quot;/home/message/detail/:id/:title&quot;</span> component=&#123;Detail&#125;/&gt;</span><br><span class="line"><span class="comment">// 接收params参数</span></span><br><span class="line"><span class="keyword">const</span> &#123;id,title&#125; = <span class="built_in">this</span>.props.match.params</span><br></pre></td></tr></table></figure>
-    
-    <a class="article-more-a" href="/2021/10/23/react%E4%B8%AD%E7%9A%84%E8%B7%AF%E7%94%B1%E4%BC%A0%E5%8F%82%E6%96%B9%E5%BC%8F%E6%80%BB%E7%BB%93/#more">more >></a>
-    
-    
-
-    
-
-    
-
-  </div>
-  <div class="article-info article-info-index">
-    
-    
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">react</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-    
-
-    
-    <p class="article-more-link">
-      <a class="article-more-a" href="/2021/10/23/react%E4%B8%AD%E7%9A%84%E8%B7%AF%E7%94%B1%E4%BC%A0%E5%8F%82%E6%96%B9%E5%BC%8F%E6%80%BB%E7%BB%93/">展开全文 >></a>
-    </p>
-    
-
-    
-    <div class="clearfix"></div>
-  </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-react三大属性之ref" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-  
-  
-    <h1 itemprop="name">
-	
-	  <a class="article-title" href="/2021/10/23/react%E4%B8%89%E5%A4%A7%E5%B1%9E%E6%80%A7%E4%B9%8Bref/">react三大属性之ref</a>
-	
-    </h1>
-  
-
-
-  
-  
-<a href="/2021/10/23/react%E4%B8%89%E5%A4%A7%E5%B1%9E%E6%80%A7%E4%B9%8Bref/" class="archive-article-date">
-        <time datetime="2021-10-23T11:55:03.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-10-23</time>
-</a>
-
-  
-  
-    
-
-  
-  </header>
-  
-  <div class="article-entry" itemprop="articleBody">
-    
-    <p>ref是React提供的用来操纵React组件实例或者DOM元素的接口。</p>
-<h3 id="1-字符串形式的ref"><a href="#1-字符串形式的ref" class="headerlink" title="1.字符串形式的ref"></a>1.字符串形式的ref</h3><p>类似于vue中的ref绑定方式，可以通过this.refs.绑定的ref的名字获取到节点dom</p>
-<p>注意的是 这种方式已经不被最新版的react推荐使用，有可能会在未来版本中遗弃</p>
-<p>代码展示：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Demo</span> <span class="keyword">extends</span> <span class="title">React</span>.<span class="title">Component</span></span>&#123;</span><br><span class="line">    <span class="comment">//展示左侧输入框的数据</span></span><br><span class="line">    showData = <span class="function">()=&gt;</span>&#123;</span><br><span class="line">        <span class="keyword">const</span> &#123;input1&#125; = <span class="built_in">this</span>.refs</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="built_in">this</span>.refs,input1,<span class="string">&#x27;refs&#x27;</span>)</span><br><span class="line">        alert(input1.value)</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="title">render</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="keyword">return</span>(</span><br><span class="line">            <span class="xml"><span class="tag">&lt;<span class="name">div</span>&gt;</span></span></span><br><span class="line"><span class="xml">                <span class="tag">&lt;<span class="name">input</span> <span class="attr">ref</span>=<span class="string">&quot;input1&quot;</span> <span class="attr">type</span>=<span class="string">&quot;text&quot;</span> <span class="attr">placeholder</span>=<span class="string">&quot;点击按钮提示数据&quot;</span>/&gt;</span></span></span><br><span class="line"><span class="xml">                <span class="tag">&lt;<span class="name">button</span> <span class="attr">onClick</span>=<span class="string">&#123;this.showData&#125;</span>&gt;</span>点我提示左侧的数据<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span></span><br><span class="line"><span class="xml">            <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line">        )</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-    
-    <a class="article-more-a" href="/2021/10/23/react%E4%B8%89%E5%A4%A7%E5%B1%9E%E6%80%A7%E4%B9%8Bref/#more">more >></a>
-    
-    
-
-    
-
-    
-
-  </div>
-  <div class="article-info article-info-index">
-    
-    
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">react</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-    
-
-    
-    <p class="article-more-link">
-      <a class="article-more-a" href="/2021/10/23/react%E4%B8%89%E5%A4%A7%E5%B1%9E%E6%80%A7%E4%B9%8Bref/">展开全文 >></a>
-    </p>
-    
-
-    
-    <div class="clearfix"></div>
-  </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-react三大属性之props详解" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-  
-  
-    <h1 itemprop="name">
-	
-	  <a class="article-title" href="/2021/10/23/react%E4%B8%89%E5%A4%A7%E5%B1%9E%E6%80%A7%E4%B9%8Bprops%E8%AF%A6%E8%A7%A3/">react三大属性之props详解</a>
-	
-    </h1>
-  
-
-
-  
-  
-<a href="/2021/10/23/react%E4%B8%89%E5%A4%A7%E5%B1%9E%E6%80%A7%E4%B9%8Bprops%E8%AF%A6%E8%A7%A3/" class="archive-article-date">
-        <time datetime="2021-10-23T11:42:10.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-10-23</time>
-</a>
-
-  
-  
-    
-
-  
-  </header>
-  
-  <div class="article-entry" itemprop="articleBody">
-    
-    <h3 id="1-props的基本使用"><a href="#1-props的基本使用" class="headerlink" title="1.props的基本使用"></a>1.props的基本使用</h3><p>react组件之间的传值，是离不开props的</p>
-<p>代码展示：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="class"><span class="keyword">class</span> <span class="title">Parent</span> <span class="keyword">extends</span> <span class="title">Component</span> </span>&#123;</span><br><span class="line">	<span class="function"><span class="title">render</span>(<span class="params"></span>)</span> &#123;</span><br><span class="line">		<span class="keyword">return</span> (</span><br><span class="line">			<span class="xml"><span class="tag">&lt;<span class="name">div</span> <span class="attr">className</span>=<span class="string">&quot;parent&quot;</span>&gt;</span></span></span><br><span class="line"><span class="xml">				<span class="tag">&lt;<span class="name">h3</span>&gt;</span>我是Parent组件<span class="tag">&lt;/<span class="name">h3</span>&gt;</span></span></span><br><span class="line"><span class="xml">				<span class="tag">&lt;<span class="name">A</span> <span class="attr">name</span>=<span class="string">&quot;张三&quot;</span> <span class="attr">age</span>=<span class="string">&#123;20&#125;</span> <span class="attr">sex</span>=<span class="string">&quot;男&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">A</span>&gt;</span></span></span><br><span class="line"><span class="xml">			<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line">		)</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">A</span> <span class="keyword">extends</span> <span class="title">Component</span> </span>&#123;</span><br><span class="line">	<span class="function"><span class="title">render</span>(<span class="params"></span>)</span> &#123;</span><br><span class="line">		<span class="keyword">const</span> &#123;name,age,sex&#125; = <span class="built_in">this</span>.props</span><br><span class="line">		<span class="keyword">return</span> (</span><br><span class="line">			<span class="xml"><span class="tag">&lt;<span class="name">div</span> <span class="attr">className</span>=<span class="string">&quot;a&quot;</span>&gt;</span></span></span><br><span class="line"><span class="xml">				<span class="tag">&lt;<span class="name">h3</span>&gt;</span>我是A组件<span class="tag">&lt;/<span class="name">h3</span>&gt;</span></span></span><br><span class="line"><span class="xml">				<span class="tag">&lt;<span class="name">ul</span>&gt;</span></span></span><br><span class="line"><span class="xml">					<span class="tag">&lt;<span class="name">li</span>&gt;</span>姓名：&#123;name&#125;<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span></span><br><span class="line"><span class="xml">					<span class="tag">&lt;<span class="name">li</span>&gt;</span>年龄：&#123;age&#125;<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span></span><br><span class="line"><span class="xml">					<span class="tag">&lt;<span class="name">li</span>&gt;</span>性别：&#123;sex&#125;<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span></span><br><span class="line"><span class="xml">				<span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span></span><br><span class="line"><span class="xml">			<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line">		)</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>执行结果：</p>
-<p><img src="/assets/react/WechatIMG61.png" alt="执行结果"></p>
-<p>子组件可通过this.props拿到父组件传递过来的参数</p>
-    
-    <a class="article-more-a" href="/2021/10/23/react%E4%B8%89%E5%A4%A7%E5%B1%9E%E6%80%A7%E4%B9%8Bprops%E8%AF%A6%E8%A7%A3/#more">more >></a>
-    
-    
-
-    
-
-    
-
-  </div>
-  <div class="article-info article-info-index">
-    
-    
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">react</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-    
-
-    
-    <p class="article-more-link">
-      <a class="article-more-a" href="/2021/10/23/react%E4%B8%89%E5%A4%A7%E5%B1%9E%E6%80%A7%E4%B9%8Bprops%E8%AF%A6%E8%A7%A3/">展开全文 >></a>
-    </p>
-    
-
-    
-    <div class="clearfix"></div>
-  </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-vue中在字符串中添加点击事件" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-  
-  
-    <h1 itemprop="name">
-	
-	  <a class="article-title" href="/2021/10/23/vue%E4%B8%AD%E5%9C%A8%E5%AD%97%E7%AC%A6%E4%B8%B2%E4%B8%AD%E6%B7%BB%E5%8A%A0%E7%82%B9%E5%87%BB%E4%BA%8B%E4%BB%B6/">vue中在字符串中添加点击事件</a>
-	
-    </h1>
-  
-
-
-  
-  
-<a href="/2021/10/23/vue%E4%B8%AD%E5%9C%A8%E5%AD%97%E7%AC%A6%E4%B8%B2%E4%B8%AD%E6%B7%BB%E5%8A%A0%E7%82%B9%E5%87%BB%E4%BA%8B%E4%BB%B6/" class="archive-article-date">
-        <time datetime="2021-10-23T11:34:24.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-10-23</time>
-</a>
-
-  
-  
-    
-
-  
-  </header>
-  
-  <div class="article-entry" itemprop="articleBody">
-    
-    <p>如果你在用vue写项目中遇到了需要在字符串中写点击事件的奇葩写法，你会不会感到很头疼，我不知道你会不会，反正我肯定会。</p>
-<p>没办法谁叫咋遇到了呢</p>
-<p>话不多说，直接上代码</p>
-<p>html:</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;div <span class="class"><span class="keyword">class</span></span>=<span class="string">&quot;ml-12 mr-12 mt-8&quot;</span> id=<span class="string">&quot;tableDiv&quot;</span> v-html=<span class="string">&quot;divHtml&quot;</span>&gt;&lt;/div&gt;</span><br></pre></td></tr></table></figure>
-
-<p>采用的是v-html指令将元素当成HTML标签解析后输出</p>
-<p>js：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">divHtml= <span class="string">`&lt;div onclick=&quot;changeCategory(&#x27;<span class="subst">$&#123;colCodes[i]&#125;</span>&#x27;,&#x27;<span class="subst">$&#123;cols[i]&#125;</span>&#x27;)&quot;&gt;<span class="subst">$&#123;cols[i]&#125;</span>&lt;/div&gt;`</span></span><br></pre></td></tr></table></figure>
-
-<p>采用了模板字符串写法</p>
-<p>注意：这里有两个巨坑</p>
-<p>巨坑1：相信大家也发现了，字符串里的点击事件是原生的onclick,但是原生的函数changeCategory是定义在window全局对象上的，所以你在methods里面定义changeCategory函数，触发事件是会报错的，如下：</p>
-<p><img src="/assets/vue/WechatIMG73.png" alt="报错图片"></p>
-<p>所以得先将方法绑定到全局上，你可以在组件mounted之后，在window全局对象上定义一个这样的方法.</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">mounted () &#123;</span><br><span class="line">    <span class="built_in">window</span>.changeCategory = <span class="built_in">this</span>.changeCategory</span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure>
-
-
-
-<p>巨坑2：虽然使用的是模版字符串写法，但是触发的事件传参如果是多个参数一定要给每个参数加引号，如</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">changeCategory(<span class="string">&#x27;$&#123;colCodes[i]&#125;&#x27;</span>,<span class="string">&#x27;$&#123;cols[i]&#125;&#x27;</span>)</span><br></pre></td></tr></table></figure>
-
-<p>如果不加就会报如下错误：</p>
-<p><img src="/assets/vue/WechatIMG74.png" alt="报错图片"></p>
-
-    
-
-    
-
-    
-
-  </div>
-  <div class="article-info article-info-index">
-    
-    
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">vue</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-    
-
-    
-    <p class="article-more-link">
-      <a class="article-more-a" href="/2021/10/23/vue%E4%B8%AD%E5%9C%A8%E5%AD%97%E7%AC%A6%E4%B8%B2%E4%B8%AD%E6%B7%BB%E5%8A%A0%E7%82%B9%E5%87%BB%E4%BA%8B%E4%BB%B6/">展开全文 >></a>
-    </p>
-    
-
-    
-    <div class="clearfix"></div>
-  </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-vue中使用swiper插件" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-  
-  
-    <h1 itemprop="name">
-	
-	  <a class="article-title" href="/2021/10/21/vue%E4%B8%AD%E4%BD%BF%E7%94%A8swiper%E6%8F%92%E4%BB%B6/">vue中使用swiper插件</a>
-	
-    </h1>
-  
-
-
-  
-  
-<a href="/2021/10/21/vue%E4%B8%AD%E4%BD%BF%E7%94%A8swiper%E6%8F%92%E4%BB%B6/" class="archive-article-date">
-        <time datetime="2021-10-21T14:51:44.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-10-21</time>
-</a>
-
-  
-  
-    
-
-  
-  </header>
-  
-  <div class="article-entry" itemprop="articleBody">
-    
-    <p>vue中使用swiper插件，在pc端和h5端都可以使用。</p>
-<h3 id="使用版本"><a href="#使用版本" class="headerlink" title="使用版本"></a>使用版本</h3><p>单个文件引入使用版本</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">&quot;swiper&quot;</span>: <span class="string">&quot;^4.0.7&quot;</span>,</span><br><span class="line"><span class="string">&quot;vue-awesome-swiper&quot;</span>: <span class="string">&quot;^3.1.3&quot;</span>,</span><br></pre></td></tr></table></figure>
-<p>全局引入使用版本</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">&quot;swiper&quot;</span>: <span class="string">&quot;^5.4.5&quot;</span>,</span><br><span class="line"><span class="string">&quot;vue-awesome-swiper&quot;</span>: <span class="string">&quot;^4.1.1&quot;</span>,</span><br></pre></td></tr></table></figure>
-
-<p>注意，这里版本如果对应不上，会产生错误。</p>
-<h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install swiper@<span class="number">4.0</span><span class="number">.7</span> vue-awesome-swiper@<span class="number">3.1</span><span class="number">.3</span> --save</span><br></pre></td></tr></table></figure>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install swiper@<span class="number">5.4</span><span class="number">.5</span> vue-awesome-swiper@<span class="number">4.1</span><span class="number">.1</span> --save</span><br></pre></td></tr></table></figure>
-
-<h3 id="引入"><a href="#引入" class="headerlink" title="引入"></a>引入</h3><p>单个文件里引入</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="string">&#x27;swiper/dist/css/swiper.css&#x27;</span></span><br><span class="line"><span class="keyword">import</span> &#123; swiper,swiperSlide &#125; <span class="keyword">from</span> <span class="string">&#x27;vue-awesome-swiper&#x27;</span></span><br><span class="line"><span class="comment">//在components注册</span></span><br><span class="line"><span class="attr">components</span>: &#123;swiper, swiperSlide&#125;,</span><br></pre></td></tr></table></figure>
-
-
-
-<p>在main.js中引入</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* 引入swiper */</span></span><br><span class="line"><span class="keyword">import</span> VueAwesomeSwiper <span class="keyword">from</span> <span class="string">&#x27;vue-awesome-swiper&#x27;</span></span><br><span class="line"><span class="keyword">import</span> <span class="string">&#x27;swiper/css/swiper.css&#x27;</span></span><br><span class="line">Vue.use(VueAwesomeSwiper <span class="comment">/* &#123; default options with global component &#125; */</span>)</span><br></pre></td></tr></table></figure>
-    
-    <a class="article-more-a" href="/2021/10/21/vue%E4%B8%AD%E4%BD%BF%E7%94%A8swiper%E6%8F%92%E4%BB%B6/#more">more >></a>
-    
-    
-
-    
-
-    
-
-  </div>
-  <div class="article-info article-info-index">
-    
-    
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">vue</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-    
-
-    
-    <p class="article-more-link">
-      <a class="article-more-a" href="/2021/10/21/vue%E4%B8%AD%E4%BD%BF%E7%94%A8swiper%E6%8F%92%E4%BB%B6/">展开全文 >></a>
-    </p>
-    
-
-    
-    <div class="clearfix"></div>
-  </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
       <a class="extend prev" rel="prev" href="/">&amp;laquo; Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/3/">Next &amp;raquo;</a>
@@ -1218,7 +1212,7 @@
   <div class="outer">
     <div id="footer-info">
     	<div class="footer-left">
-    		&copy; 2018-2021 <a href="https://white-hang.github.io/" target="_blank">white-Hang</a>
+    		&copy; 2018-2022 <a href="https://white-hang.github.io/" target="_blank">white-Hang</a>
     	</div>
       	<div class="footer-right">
 			
